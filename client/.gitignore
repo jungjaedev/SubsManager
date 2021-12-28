@@ -2,13 +2,6 @@
 
 # dependencies
 /node_modules
-/config
-
-.env
-localhost*
-
-*package-lock.json
-*.pem
 /.pnp
 .pnp.js
 

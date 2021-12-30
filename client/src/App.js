@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import "./App.css";
+import React, { Component } from 'react';
+import './App.css';
 
-import { store as mainStore } from "./app/store.js";
-import Structure from "./Structure";
+import { store as mainStore } from './app/store.js';
+import Structure from './Structure';
 
 class App extends Component {
   constructor(props) {

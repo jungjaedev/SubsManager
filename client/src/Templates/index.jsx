@@ -1,14 +1,15 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import { withStyles } from "@material-ui/styles";
-import { withTheme } from "@material-ui/styles";
+import { withStyles } from '@material-ui/styles';
+import { withTheme } from '@material-ui/styles';
 
-import Box from "@material-ui/core/Box";
-import Grid from "@material-ui/core/Grid";
+import Box from '@material-ui/core/Box';
+import Grid from '@material-ui/core/Grid';
 
 const mapStateToProps = (state) => {
-  return {};
+  return {
+  };
 };
 
 class Structure extends Component {
@@ -26,10 +27,12 @@ class Structure extends Component {
   }
   render() {
     const { classes } = this.props;
-    return <Box className={classes.root}></Box>;
+    return <Box className={classes.root}>
+    </Box>;
   }
 }
 
-const componentStyle = withStyles((theme) => ({}));
+const componentStyle = withStyles((theme) => ({
+}));
 
 export default connect(mapStateToProps)(withTheme(componentStyle(Structure)));

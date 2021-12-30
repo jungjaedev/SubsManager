@@ -108,7 +108,25 @@ class Body extends Component {
         'description': "",
       },
     };
-    return <Box className={classes.root}>body</Box>;
+    return (
+    <Box className={classes.root}>
+      <Grid container direction="column" spacing={2}>
+          <Grid item>peeking list 50</Grid>
+          <Grid container item>
+            <Grid container item direction="row">
+              <Grid container item xs={10}>
+                <Grid item xs={2}>#</Grid>
+                <Grid item xs={10} direction="column">
+                  <Grid>#k-pop</Grid>
+                  <Grid>게시물 5만</Grid>
+                </Grid>
+              </Grid>
+              <Grid item xs={2}>x</Grid>
+            </Grid>
+          </Grid>
+      </Grid>
+    </Box>
+    )
   }
 }
 

@@ -11,7 +11,7 @@ const mapStateToProps = (state) => {
   return {};
 };
 
-class Structure extends Component {
+class Body extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -26,10 +26,10 @@ class Structure extends Component {
   }
   render() {
     const { classes } = this.props;
-    return <Box className={classes.root}></Box>;
+    return <Box className={classes.root}>body</Box>;
   }
 }
 
 const componentStyle = withStyles((theme) => ({}));
 
-export default connect(mapStateToProps)(withTheme(componentStyle(Structure)));
+export default connect(mapStateToProps)(withTheme(componentStyle(Body)));

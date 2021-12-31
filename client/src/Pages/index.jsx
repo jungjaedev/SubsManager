@@ -7,11 +7,13 @@ import { withTheme } from '@material-ui/styles';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 
+import SavedList from './SavedList';
+
 const mapStateToProps = state => {
   return {};
 };
 
-class SignIn extends Component {
+class Pages extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -27,7 +29,11 @@ class SignIn extends Component {
   render() {
     const { classes } = this.props;
 
-    return <Box className={classes.root}></Box>;
+    return (
+      <Box className={classes.root}>
+        <SavedList />
+      </Box>
+    );
   }
 }
 
@@ -35,4 +41,4 @@ const componentStyle = withStyles(theme => ({
   root: theme.styles.Default.Box.root,
 }));
 
-export default connect(mapStateToProps)(withTheme(componentStyle(SignIn)));
+export default connect(mapStateToProps)(withTheme(componentStyle(Pages)));

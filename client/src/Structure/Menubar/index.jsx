@@ -31,13 +31,13 @@ class Menubar extends Component {
 
     return (
       <Box className={classes.footer}>
-        <Grid className={classes.center} xs={4}>
+        <Grid className={classes.center} item xs={4}>
           <ViewListRoundedIcon />
         </Grid>
-        <Grid className={classes.center} xs={4}>
+        <Grid className={classes.center} item xs={4}>
           <SearchRoundedIcon />
         </Grid>
-        <Grid className={classes.center} xs={4}>
+        <Grid className={classes.center} item xs={4}>
           <BookmarkBorderRoundedIcon />
         </Grid>
       </Box>

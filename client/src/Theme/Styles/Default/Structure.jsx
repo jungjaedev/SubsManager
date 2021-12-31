@@ -16,7 +16,7 @@ export const Structure = {
     height: '10vh',
     width: '100%',
     alignItems: 'center',
-    background: ColorThemes.white,
+    background: ColorThemes.lightBlue,
     zIndex: '10',
   },
 
@@ -24,6 +24,7 @@ export const Structure = {
     display: 'flex',
     flexWrap: 'noWrap',
     height: '80vh',
+    width: '100%', 
     background: ColorThemes.white,
   },
 
@@ -33,6 +34,7 @@ export const Structure = {
     bottom: 0,
     height: '10vh',
     position: 'sticky',
-    background: ColorThemes.kentivo,
+    width: '100%',
+    background: ColorThemes.lightBlue,
   },
 };

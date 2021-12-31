@@ -30,7 +30,7 @@ class Menubar extends Component {
     const { classes } = this.props;
 
     return (
-      <Box className={classes.root}>
+      <Box className={classes.footer}>
         <Grid className={classes.center} xs={4}>
           <ViewListRoundedIcon />
         </Grid>
@@ -48,6 +48,7 @@ class Menubar extends Component {
 const componentStyle = withStyles(theme => ({
   root: theme.styles.Default.Box.root,
   center: theme.styles.Default.Box.centerCenter,
+  footer: theme.styles.Default.Structure.footer,
 }));
 
 export default connect(mapStateToProps)(withTheme(componentStyle(Menubar)));

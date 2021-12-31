@@ -107,6 +107,54 @@ class Body extends Component {
         type: "hashtag",
         description: "",
       },
+      11: {
+        pk: 5,
+        id: 5,
+        user_name: "snow",
+        post_count: 3447745,
+        type: "hashtag",
+        description: "",
+      },
+      12: {
+        pk: 6,
+        id: 46,
+        user_name: "facebook",
+        post_count: 231,
+        type: "user",
+        description: "Hi! I am facebook!",
+      },
+      13: {
+        pk: 7,
+        id: 7,
+        user_name: "rotterdam",
+        post_count: 233443,
+        type: "hashtag",
+        description: "",
+      },
+      14: {
+        pk: 8,
+        id: 8,
+        user_name: "instagram",
+        post_count: 3333,
+        type: "user",
+        description: "Hi! I am instagram!",
+      },
+      15: {
+        pk: 9,
+        id: 9,
+        user_name: "ronaldo",
+        post_count: 234,
+        type: "user",
+        description: "Hi! I am instagram!",
+      },
+      16: {
+        pk: 10,
+        id: 10,
+        user_name: "snow",
+        post_count: 3447745,
+        type: "hashtag",
+        description: "",
+      },
     };
     const lists = Object.values(dummyData).map((item) => {
       return (
@@ -129,7 +177,7 @@ class Body extends Component {
       );
     });
     return (
-      <Box className={classes.root}>
+      <Box className={classes.body}>
         <Grid container direction="column" spacing={2}>
           <Grid item>peeking list 50</Grid>
           <Grid container item direction="column">
@@ -142,7 +190,7 @@ class Body extends Component {
 }
 
 const componentStyle = withStyles((theme) => ({
-  root: theme.styles.Default.Box.root,
+  body: theme.styles.Default.Structure.body,
 }));
 
 export default connect(mapStateToProps)(withTheme(componentStyle(Body)));

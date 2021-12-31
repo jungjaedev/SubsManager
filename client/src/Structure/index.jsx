@@ -31,9 +31,9 @@ class Structure extends Component {
     const { classes } = this.props;
     return (
       <Box className={classes.root}>
-        <Header className={classes.header} />
-        <Body className={classes.body} />
-        <Menubar className={classes.footer} />
+        <Header />
+        <Body />
+        <Menubar />
       </Box>
     );
   }
@@ -41,9 +41,6 @@ class Structure extends Component {
 
 const componentStyle = withStyles(theme => ({
   root: theme.styles.Default.Box.rootHeight100,
-  footer: theme.styles.Default.Structure.footer,
-  header: theme.styles.Default.Structure.header,
-  body: theme.styles.Default.Structure.body,
 }));
 
 export default connect(mapStateToProps)(withTheme(componentStyle(Structure)));

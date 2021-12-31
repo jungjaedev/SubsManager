@@ -1,4 +1,4 @@
-import { ColorThemes } from "../../ColorThemes";
+import { ColorThemes } from '../../ColorThemes';
 
 export const Structure = {
   page: {
@@ -11,28 +11,28 @@ export const Structure = {
   },
 
   header: {
-    display: "flex",
-    flexWrap: "wrap",
-    height: "10vh",
-    width: "100%",
-    alignItems: "center",
+    display: 'flex',
+    flexWrap: 'wrap',
+    height: '10vh',
+    width: '100%',
+    alignItems: 'center',
     background: ColorThemes.white,
-    zIndex: "10",
+    zIndex: '10',
   },
 
   body: {
-    // display: "flex",
-    // flexWrap: "noWrap",
-    // height: "82vh",
-    // background: ColorThemes.white,
+    display: 'flex',
+    flexWrap: 'noWrap',
+    height: '80vh',
+    background: ColorThemes.white,
   },
 
   footer: {
-    // display: "flex",
-    // marginTop: "auto",
-    // bottom: 0,
-    // height: "8vh",
-    // position: "sticky",
-    // background: ColorThemes.kentivo,
+    display: 'flex',
+    marginTop: 'auto',
+    bottom: 0,
+    height: '10vh',
+    position: 'sticky',
+    background: ColorThemes.kentivo,
   },
 };

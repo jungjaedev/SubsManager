@@ -75,14 +75,13 @@ export const Box = {
   //OVERFLOWS
 
   overflow: {
-    height: "calc(90vh - 50px)",
-    overflowY: "auto",
-    overflowX: "hidden",
-    "&::-webkit-scrollbar": {
-      display: "none",
+      height: "100%",
+      width: '100%',
+      overflowY: "auto",
+      overflowX: "hidden",
+      "&::-webkit-scrollbar": {
+        display: "none",
+      },
     },
-  },
-
-
-
+  
 };

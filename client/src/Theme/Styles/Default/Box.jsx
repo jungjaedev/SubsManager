@@ -80,6 +80,13 @@ export const Box = {
     alignItems: 'center',
   },
 
+  rowBig: {
+    display: 'flex',
+    width: '100%',
+    minHeight: 122,
+    alignItems: 'center',
+  },
+
   //OVERFLOWS
 
   overflow: {
@@ -87,6 +94,16 @@ export const Box = {
     width: '100%',
     overflowY: 'auto',
     overflowX: 'hidden',
+    '&::-webkit-scrollbar': {
+      display: 'none',
+    },
+  },
+
+  overflowX: {
+    height: '100%',
+    width: '100%',
+    overflowY: 'hidden',
+    overflowX: 'auto',
     '&::-webkit-scrollbar': {
       display: 'none',
     },

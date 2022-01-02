@@ -1,15 +1,17 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-import { withStyles } from "@material-ui/styles";
-import { withTheme } from "@material-ui/styles";
+import { withStyles } from '@material-ui/styles';
+import { withTheme } from '@material-ui/styles';
 
-import Box from "@material-ui/core/Box";
-import Grid from "@material-ui/core/Grid";
+import Box from '@material-ui/core/Box';
+import Grid from '@material-ui/core/Grid';
 
-import SavedList from "./SavedList";
+import SavedList from './SavedList';
+import SavedFeedList from './SavedFeedList';
+import UserHome from './UserHome';
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {};
 };
 
@@ -31,13 +33,15 @@ class Pages extends Component {
 
     return (
       <Box className={classes.overflow}>
-        <SavedList />
+        {/* <SavedList /> */}
+        {/* <SavedFeedList /> */}
+        <UserHome />
       </Box>
     );
   }
 }
 
-const componentStyle = withStyles((theme) => ({
+const componentStyle = withStyles(theme => ({
   overflow: theme.styles.Default.Box.overflow,
 }));
 

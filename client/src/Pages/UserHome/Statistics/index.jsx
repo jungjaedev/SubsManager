@@ -11,7 +11,7 @@ const mapStateToProps = state => {
   return {};
 };
 
-class Components extends Component {
+class Statistics extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -35,4 +35,4 @@ const componentStyle = withStyles(theme => ({
   root: theme.styles.Default.Box.root,
 }));
 
-export default connect(mapStateToProps)(withTheme(componentStyle(Components)));
+export default connect(mapStateToProps)(withTheme(componentStyle(Statistics)));

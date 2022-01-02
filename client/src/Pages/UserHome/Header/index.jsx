@@ -11,7 +11,7 @@ const mapStateToProps = state => {
   return {};
 };
 
-class Components extends Component {
+class Header extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -27,12 +27,26 @@ class Components extends Component {
   render() {
     const { classes } = this.props;
 
-    return <Box className={classes.root}></Box>;
+    return (
+      <Box className={classes.rowBig}>
+        <Grid container direction="row">
+          <Grid item xs={3}>
+            사진
+          </Grid>
+          <Grid item xs={6}>
+            아이디
+          </Grid>
+          <Grid item xs={3}>
+            peeking
+          </Grid>
+        </Grid>
+      </Box>
+    );
   }
 }
 
 const componentStyle = withStyles(theme => ({
-  root: theme.styles.Default.Box.root,
+  rowBig: theme.styles.Default.Box.rowBig,
 }));
 
-export default connect(mapStateToProps)(withTheme(componentStyle(Components)));
+export default connect(mapStateToProps)(withTheme(componentStyle(Header)));

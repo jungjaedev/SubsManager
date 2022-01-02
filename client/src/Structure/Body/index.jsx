@@ -30,7 +30,7 @@ class Body extends Component {
     const { classes } = this.props;
 
     return (
-      <Box className={classes.root}>
+      <Box className={classes.body} pl={3} pr={3}>
         <Pages />
       </Box>
     );
@@ -38,7 +38,7 @@ class Body extends Component {
 }
 
 const componentStyle = withStyles(theme => ({
-  root: theme.styles.Default.Box.root,
+  body: theme.styles.Default.Structure.body,
 }));
 
 export default connect(mapStateToProps)(withTheme(componentStyle(Body)));

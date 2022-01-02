@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/styles';
 import { withTheme } from '@material-ui/styles';
 import PermIdentityRoundedIcon from '@material-ui/icons/PermIdentityRounded';
+import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
 
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
@@ -32,10 +34,12 @@ class Header extends Component {
       <Box className={classes.header}>
         <Grid item xs={3}></Grid>
         <Grid item xs={6} className={classes.centerCenter}>
-          SNEAK PEEK
+          <Button>SNEAK PEEK</Button>
         </Grid>
         <Grid item xs={3}>
-          <PermIdentityRoundedIcon />
+          <IconButton>
+            <PermIdentityRoundedIcon />
+          </IconButton>
         </Grid>
       </Box>
     );

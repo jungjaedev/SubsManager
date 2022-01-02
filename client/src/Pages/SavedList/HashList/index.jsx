@@ -163,12 +163,14 @@ class HashList extends Component {
     });
     return (
       <Box className={classes.body}>
-        <Grid container direction="column" spacing={2}>
-          <Grid item>peeking list 50</Grid>
+        <Box className={classes.root}>
+          <Grid className={classes.row} item>
+            peeking list 50
+          </Grid>
           <Grid container item direction="column">
             {lists}
           </Grid>
-        </Grid>
+        </Box>
       </Box>
     );
   }
@@ -176,6 +178,8 @@ class HashList extends Component {
 
 const componentStyle = withStyles(theme => ({
   body: theme.styles.Default.Structure.body,
+  row: theme.styles.Default.Box.row,
+  root: theme.styles.Default.Box.root,
 }));
 
 export default connect(mapStateToProps)(withTheme(componentStyle(HashList)));

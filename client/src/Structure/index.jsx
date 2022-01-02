@@ -1,16 +1,16 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { Component } from "react";
+import { connect } from "react-redux";
 
-import { withStyles } from '@material-ui/styles';
-import { withTheme } from '@material-ui/styles';
+import { withStyles } from "@material-ui/styles";
+import { withTheme } from "@material-ui/styles";
 
-import Box from '@material-ui/core/Box';
+import Box from "@material-ui/core/Box";
 
-import Header from './Header';
-import Body from './Body';
-import Menubar from './Menubar';
+import Header from "./Header";
+import Body from "./Body";
+import Menubar from "./Menubar";
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {};
 };
 
@@ -39,8 +39,8 @@ class Structure extends Component {
   }
 }
 
-const componentStyle = withStyles(theme => ({
-  root: theme.styles.Default.Box.rootHeight100,
+const componentStyle = withStyles((theme) => ({
+  root: theme.styles.Default.Structure.page,
 }));
 
 export default connect(mapStateToProps)(withTheme(componentStyle(Structure)));

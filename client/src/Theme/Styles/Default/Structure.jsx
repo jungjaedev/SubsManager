@@ -2,12 +2,12 @@ import { ColorThemes } from '../../ColorThemes';
 
 export const Structure = {
   page: {
-    // display: "flex",
-    // flexWrap: "Wrap",
-    // width: "100%",
-    // height: "100vh",
-    // justifyContent: "space-around",
-    // alignContent: "flex-start",
+    display: 'flex',
+    flexWrap: 'Wrap',
+    width: '100%',
+    height: '100vh',
+    justifyContent: 'space-around',
+    alignContent: 'flex-start',
   },
 
   header: {
@@ -24,7 +24,7 @@ export const Structure = {
     display: 'flex',
     flexWrap: 'noWrap',
     height: '80vh',
-    width: '100%', 
+    width: '100%',
     background: ColorThemes.white,
   },
 
@@ -33,7 +33,6 @@ export const Structure = {
     marginTop: 'auto',
     bottom: 0,
     height: '10vh',
-    position: 'sticky',
     width: '100%',
     background: ColorThemes.lightBlue,
   },

@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 
 import { withStyles } from '@material-ui/styles';
 import { withTheme } from '@material-ui/styles';
+import HighlightOffRoundedIcon from '@material-ui/icons/HighlightOffRounded';
+import IconButton from '@material-ui/core/IconButton';
 
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
@@ -28,7 +30,7 @@ class HashListItem extends Component {
     const { classes } = this.props;
 
     return (
-      <Box className={classes.root}>
+      <Box className={classes.rowLarge}>
         <Grid container item>
           <Grid container item direction="row">
             <Grid container item xs={10}>
@@ -41,7 +43,9 @@ class HashListItem extends Component {
               </Grid>
             </Grid>
             <Grid item xs={2}>
-              x
+              <IconButton aria-label="delete">
+                <HighlightOffRoundedIcon />
+              </IconButton>
             </Grid>
           </Grid>
         </Grid>
@@ -52,6 +56,7 @@ class HashListItem extends Component {
 
 const componentStyle = withStyles(theme => ({
   root: theme.styles.Default.Box.root,
+  rowLarge: theme.styles.Default.Box.rowLarge,
 }));
 
 export default connect(mapStateToProps)(withTheme(componentStyle(HashListItem)));

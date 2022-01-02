@@ -6,6 +6,7 @@ import { withTheme } from '@material-ui/styles';
 import ViewListRoundedIcon from '@material-ui/icons/ViewListRounded';
 import SearchRoundedIcon from '@material-ui/icons/SearchRounded';
 import BookmarkBorderRoundedIcon from '@material-ui/icons/BookmarkBorderRounded';
+import IconButton from '@material-ui/core/IconButton';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 
@@ -32,13 +33,19 @@ class Menubar extends Component {
     return (
       <Box className={classes.footer}>
         <Grid className={classes.center} item xs={4}>
-          <ViewListRoundedIcon />
+          <IconButton>
+            <ViewListRoundedIcon />
+          </IconButton>
         </Grid>
         <Grid className={classes.center} item xs={4}>
-          <SearchRoundedIcon />
+          <IconButton>
+            <SearchRoundedIcon />
+          </IconButton>
         </Grid>
         <Grid className={classes.center} item xs={4}>
-          <BookmarkBorderRoundedIcon />
+          <IconButton>
+            <BookmarkBorderRoundedIcon />
+          </IconButton>
         </Grid>
       </Box>
     );

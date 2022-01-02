@@ -11,7 +11,7 @@ const mapStateToProps = state => {
   return {};
 };
 
-class SavedFeedList extends Component {
+class Item extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -27,12 +27,17 @@ class SavedFeedList extends Component {
   render() {
     const { classes } = this.props;
 
-    return <Box className={classes.root}></Box>;
+    return (
+      <Box className={classes.box}>
+        <Grid>사진</Grid>
+      </Box>
+    );
   }
 }
 
 const componentStyle = withStyles(theme => ({
   root: theme.styles.Default.Box.root,
+  box: { width: '33%', height: 80 },
 }));
 
-export default connect(mapStateToProps)(withTheme(componentStyle(SavedFeedList)));
+export default connect(mapStateToProps)(withTheme(componentStyle(Item)));

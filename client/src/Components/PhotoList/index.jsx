@@ -164,7 +164,7 @@ class PhotoList extends Component {
 
     return (
       <Box className={classes.root}>
-        <Grid className={classes.root} direction="row">
+        <Grid container className={classes.root} direction="row">
           {lists}
         </Grid>
       </Box>

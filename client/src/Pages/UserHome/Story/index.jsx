@@ -214,9 +214,9 @@ class Story extends Component {
     };
     const lists = Object.values(dummyData).map((item, idx) => {
       return (
-        <Box className={classes.box} key={idx} data={item}>
+        <Grid className={classes.box} key={idx} data={item}>
           사진
-        </Box>
+        </Grid>
       );
     });
     return (
@@ -231,8 +231,8 @@ const componentStyle = withStyles(theme => ({
   root: theme.styles.Default.Box.root,
   overflowX: theme.styles.Default.Box.overflowX,
   row: theme.styles.Default.Box.row,
-  box: { width: '30', height: '100%', border: '1px solid black' },
-  new: { display: 'flex', height: '50px', width: '100vw', overflowX: 'scroll', marginRight: 30, zIndex: 100 },
+  box: { width: 80, height: '100%', border: '1px solid black' },
+  new: { display: 'flex', height: '50px', width: 100, overflowX: 'scroll', marginRight: 30, zIndex: 100, overflowY: 'auto' },
 }));
 
 export default connect(mapStateToProps)(withTheme(componentStyle(Story)));

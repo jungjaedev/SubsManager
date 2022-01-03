@@ -1,16 +1,17 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
+import React, { Component } from 'react';
+import { connect, useSelector, useDispatch } from 'react-redux';
 
-import { withStyles } from "@material-ui/styles";
-import { withTheme } from "@material-ui/styles";
-import ViewListRoundedIcon from "@material-ui/icons/ViewListRounded";
-import SearchRoundedIcon from "@material-ui/icons/SearchRounded";
-import BookmarkBorderRoundedIcon from "@material-ui/icons/BookmarkBorderRounded";
-import IconButton from "@material-ui/core/IconButton";
-import Box from "@material-ui/core/Box";
-import Grid from "@material-ui/core/Grid";
+import { withStyles } from '@material-ui/styles';
+import { withTheme } from '@material-ui/styles';
+import { selectMenu } from '../../Data/Manager';
+import ViewListRoundedIcon from '@material-ui/icons/ViewListRounded';
+import SearchRoundedIcon from '@material-ui/icons/SearchRounded';
+import BookmarkBorderRoundedIcon from '@material-ui/icons/BookmarkBorderRounded';
+import IconButton from '@material-ui/core/IconButton';
+import Box from '@material-ui/core/Box';
+import Grid from '@material-ui/core/Grid';
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {};
 };
 
@@ -20,8 +21,10 @@ class Menubar extends Component {
     this.state = {};
   }
 
-  handleList = (menu) => {
+  handleList = menu => {
     console.log(menu);
+    const dispatch = useDispatch();
+    dispatch(selectMenu(menu));
   };
 
   componentDidMount() {}
@@ -37,7 +40,7 @@ class Menubar extends Component {
     return (
       <Box className={classes.footer}>
         <Grid className={classes.center} item xs={4}>
-          <IconButton color='secondary' onClick={() => this.handleList("savedList")}>
+          <IconButton color="secondary" onClick={() => this.handleList('savedList')}>
             <ViewListRoundedIcon />
           </IconButton>
         </Grid>
@@ -56,7 +59,7 @@ class Menubar extends Component {
   }
 }
 
-const componentStyle = withStyles((theme) => ({
+const componentStyle = withStyles(theme => ({
   root: theme.styles.Default.Box.root,
   center: theme.styles.Default.Box.centerCenter,
   footer: theme.styles.Default.Structure.footer,

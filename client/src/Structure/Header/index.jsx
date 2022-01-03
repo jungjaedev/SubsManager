@@ -6,7 +6,7 @@ import { withTheme } from '@material-ui/styles';
 import PermIdentityRoundedIcon from '@material-ui/icons/PermIdentityRounded';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
-
+import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 
@@ -34,7 +34,7 @@ class Header extends Component {
       <Box className={classes.header}>
         <Grid item xs={3}></Grid>
         <Grid item xs={6} className={classes.centerCenter}>
-          <Button>SNEAK PEEK</Button>
+          <Button><Typography variant="h5">SNEAK PEEK</Typography></Button>
         </Grid>
         <Grid item xs={3}>
           <IconButton>

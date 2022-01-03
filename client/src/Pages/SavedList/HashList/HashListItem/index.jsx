@@ -3,11 +3,12 @@ import { connect } from 'react-redux';
 
 import { withStyles } from '@material-ui/styles';
 import { withTheme } from '@material-ui/styles';
-import HighlightOffRoundedIcon from '@material-ui/icons/HighlightOffRounded';
 import IconButton from '@material-ui/core/IconButton';
-
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
+
+import HighlightOffRoundedIcon from '@material-ui/icons/HighlightOffRounded';
 
 const mapStateToProps = state => {
   return {};
@@ -38,8 +39,8 @@ class HashListItem extends Component {
                 #
               </Grid>
               <Grid container item xs={10} direction="column">
-                <Grid>#{this.props.data.user_name}</Grid>
-                <Grid>게시물 {this.props.data.post_count}만</Grid>
+                <Grid><Typography variant="body1">#{this.props.data.user_name}</Typography></Grid>
+                <Grid><Typography variant="body2">게시물 {this.props.data.post_count}만</Typography></Grid>
               </Grid>
             </Grid>
             <Grid item xs={2}>

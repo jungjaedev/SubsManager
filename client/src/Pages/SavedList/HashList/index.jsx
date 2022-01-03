@@ -6,7 +6,7 @@ import { withTheme } from '@material-ui/styles';
 
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
-
+import Typography from '@material-ui/core/Typography';
 import HashListItem from './HashListItem';
 
 const mapStateToProps = state => {
@@ -165,7 +165,7 @@ class HashList extends Component {
       <Box className={classes.body}>
         <Box className={classes.root}>
           <Grid className={classes.row} item>
-            peeking list 50
+          <Typography variant="body1">peeking list 50</Typography>
           </Grid>
           <Grid container item direction="column">
             {lists}

@@ -5,7 +5,7 @@ import { withStyles } from '@material-ui/styles';
 import { withTheme } from '@material-ui/styles';
 
 import Box from '@material-ui/core/Box';
-import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
 
 const mapStateToProps = state => {
   return {};
@@ -29,10 +29,12 @@ class Description extends Component {
 
     return (
       <Box className={classes.root}>
-        <Grid direction="column">
-          <Grid>이름</Grid>
-          <Grid>Descriptions</Grid>
-        </Grid>
+        <Box className={classes.rowSmall}>
+          <Typography variant="body1">이름</Typography>
+        </Box>
+        <Box className={classes.root}>
+          <Typography variant="body2">Descriptions</Typography>
+        </Box>
       </Box>
     );
   }
@@ -40,6 +42,7 @@ class Description extends Component {
 
 const componentStyle = withStyles(theme => ({
   root: theme.styles.Default.Box.root,
+  rowSmall: theme.styles.Default.Box.rowSmall,
 }));
 
 export default connect(mapStateToProps)(withTheme(componentStyle(Description)));

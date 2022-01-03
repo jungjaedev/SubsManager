@@ -6,6 +6,7 @@ import { withTheme } from '@material-ui/styles';
 
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
 
 const mapStateToProps = state => {
   return {};
@@ -34,10 +35,10 @@ class Header extends Component {
             사진
           </Grid>
           <Grid item xs={6}>
-            아이디
+            <Typography variant="h6">아이디</Typography>
           </Grid>
           <Grid item xs={3}>
-            peeking
+            <Typography variant="button">peeking</Typography>
           </Grid>
         </Grid>
       </Box>

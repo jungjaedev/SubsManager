@@ -32,11 +32,13 @@ class Header extends Component {
 
     return (
       <Box className={classes.header}>
-        <Grid item xs={3}></Grid>
-        <Grid item xs={6} className={classes.centerCenter}>
-          <Button><Typography variant="h5">SNEAK PEEK</Typography></Button>
+        <Grid item xs={2}></Grid>
+        <Grid item xs={8} className={classes.centerCenter}>
+          <Button>
+            <Typography variant="h5">SNEAK PEEK</Typography>
+          </Button>
         </Grid>
-        <Grid item xs={3}>
+        <Grid item xs={2}>
           <IconButton>
             <PermIdentityRoundedIcon />
           </IconButton>

@@ -171,12 +171,52 @@ class Story extends Component {
         type: 'hashtag',
         description: '',
       },
+      19: {
+        pk: 8,
+        id: 8,
+        user_name: 'instagram',
+        post_count: 3333,
+        type: 'user',
+        description: 'Hi! I am instagram!',
+      },
+      20: {
+        pk: 9,
+        id: 9,
+        user_name: 'ronaldo',
+        post_count: 234,
+        type: 'user',
+        description: 'Hi! I am instagram!',
+      },
+      21: {
+        pk: 10,
+        id: 10,
+        user_name: 'snow',
+        post_count: 3447745,
+        type: 'hashtag',
+        description: '',
+      },
+      22: {
+        pk: 10,
+        id: 10,
+        user_name: 'snow',
+        post_count: 3447745,
+        type: 'hashtag',
+        description: '',
+      },
+      23: {
+        pk: 10,
+        id: 10,
+        user_name: 'snow',
+        post_count: 3447745,
+        type: 'hashtag',
+        description: '',
+      },
     };
     const lists = Object.values(dummyData).map((item, idx) => {
       return (
-        <Grid item className={classes.box} key={idx} data={item}>
+        <Box className={classes.box} key={idx} data={item}>
           사진
-        </Grid>
+        </Box>
       );
     });
     return (
@@ -191,7 +231,7 @@ const componentStyle = withStyles(theme => ({
   root: theme.styles.Default.Box.root,
   overflowX: theme.styles.Default.Box.overflowX,
   row: theme.styles.Default.Box.row,
-  box: { width: '100px', border: '1px solid black' },
+  box: { width: '30', height: '100%', border: '1px solid black' },
   new: { display: 'flex', height: '50px', width: '100vw', overflowX: 'scroll', marginRight: 30, zIndex: 100 },
 }));
 

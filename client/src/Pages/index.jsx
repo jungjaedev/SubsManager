@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+
 
 import { withStyles } from '@material-ui/styles';
 import { withTheme } from '@material-ui/styles';
@@ -11,9 +11,7 @@ import SavedList from './SavedList';
 import SavedFeedList from './SavedFeedList';
 import UserHome from './UserHome';
 
-const mapStateToProps = state => {
-  return {};
-};
+
 
 class Pages extends Component {
   constructor(props) {
@@ -45,4 +43,4 @@ const componentStyle = withStyles(theme => ({
   overflow: theme.styles.Default.Box.overflow,
 }));
 
-export default connect(mapStateToProps)(withTheme(componentStyle(Pages)));
+export default withTheme(componentStyle(Pages));

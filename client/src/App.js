@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 
-import { store as mainStore } from './app/store.js';
+import { store as mainStore } from './Data/store.js';
 import Structure from './Structure';
 
 class App extends Component {

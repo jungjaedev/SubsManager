@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
 import { withStyles } from "@material-ui/styles";
 import { withTheme } from "@material-ui/styles";
@@ -9,51 +9,35 @@ import BookmarkBorderRoundedIcon from "@material-ui/icons/BookmarkBorderRounded"
 import IconButton from "@material-ui/core/IconButton";
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
+//Reducer
+import { selectMenu } from "../../Data/Manager";
 
-const mapStateToProps = (state) => {
-  return {};
-};
-
-class Menubar extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-
-  handleList = (menu) => {
+function Menubar(props) {
+  const { classes } = props;
+  const dispatch = useDispatch();
+  const handleList = (menu) => {
     console.log(menu);
+    dispatch(selectMenu(menu));
   };
-
-  componentDidMount() {}
-
-  componentDidUpdate(prevProps) {}
-
-  shouldComponentUpdate(nextProps, nextState) {
-    return true;
-  }
-  render() {
-    const { classes } = this.props;
-
-    return (
-      <Box className={classes.footer}>
-        <Grid className={classes.center} item xs={4}>
-          <IconButton color='secondary' onClick={() => this.handleList("savedList")}>
-            <ViewListRoundedIcon />
-          </IconButton>
-        </Grid>
-        <Grid className={classes.center} item xs={4}>
-          <IconButton>
-            <SearchRoundedIcon />
-          </IconButton>
-        </Grid>
-        <Grid className={classes.center} item xs={4}>
-          <IconButton>
-            <BookmarkBorderRoundedIcon />
-          </IconButton>
-        </Grid>
-      </Box>
-    );
-  }
+  return (
+    <Box className={classes.footer}>
+      <Grid className={classes.center} item xs={4}>
+        <IconButton color="secondary" onClick={() => handleList("savedList")}>
+          <ViewListRoundedIcon />
+        </IconButton>
+      </Grid>
+      <Grid className={classes.center} item xs={4}>
+        <IconButton color="secondary" onClick={() => handleList("search")}>
+          <SearchRoundedIcon />
+        </IconButton>
+      </Grid>
+      <Grid className={classes.center} item xs={4}>
+        <IconButton>
+          <BookmarkBorderRoundedIcon />
+        </IconButton>
+      </Grid>
+    </Box>
+  );
 }
 
 const componentStyle = withStyles((theme) => ({
@@ -62,4 +46,4 @@ const componentStyle = withStyles((theme) => ({
   footer: theme.styles.Default.Structure.footer,
 }));
 
-export default connect(mapStateToProps)(withTheme(componentStyle(Menubar)));
+export default withTheme(componentStyle(Menubar));

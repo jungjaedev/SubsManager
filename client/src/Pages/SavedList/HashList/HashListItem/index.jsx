@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+
 
 import { withStyles } from '@material-ui/styles';
 import { withTheme } from '@material-ui/styles';
@@ -10,9 +10,7 @@ import Typography from '@material-ui/core/Typography';
 
 import HighlightOffRoundedIcon from '@material-ui/icons/HighlightOffRounded';
 
-const mapStateToProps = state => {
-  return {};
-};
+
 
 class HashListItem extends Component {
   constructor(props) {
@@ -60,4 +58,4 @@ const componentStyle = withStyles(theme => ({
   rowLarge: theme.styles.Default.Box.rowLarge,
 }));
 
-export default connect(mapStateToProps)(withTheme(componentStyle(HashListItem)));
+export default withTheme(componentStyle(HashListItem));

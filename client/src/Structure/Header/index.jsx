@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+
 
 import { withStyles } from '@material-ui/styles';
 import { withTheme } from '@material-ui/styles';
@@ -10,9 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 
-const mapStateToProps = state => {
-  return {};
-};
+
 
 class Header extends Component {
   constructor(props) {
@@ -54,4 +52,4 @@ const componentStyle = withStyles(theme => ({
   header: theme.styles.Default.Structure.header,
 }));
 
-export default connect(mapStateToProps)(withTheme(componentStyle(Header)));
+export default withTheme(componentStyle(Header));

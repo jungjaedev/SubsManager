@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+
 
 import { withStyles } from '@material-ui/styles';
 import { withTheme } from '@material-ui/styles';
@@ -7,9 +7,7 @@ import { withTheme } from '@material-ui/styles';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 
-const mapStateToProps = state => {
-  return {};
-};
+
 
 class Description extends Component {
   constructor(props) {
@@ -45,4 +43,4 @@ const componentStyle = withStyles(theme => ({
   rowSmall: theme.styles.Default.Box.rowSmall,
 }));
 
-export default connect(mapStateToProps)(withTheme(componentStyle(Description)));
+export default withTheme(componentStyle(Description));

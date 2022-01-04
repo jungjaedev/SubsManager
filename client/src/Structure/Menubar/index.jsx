@@ -10,29 +10,34 @@ import IconButton from "@material-ui/core/IconButton";
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 //Reducer
-import { selectMenu } from "../../Data/Manager";
+import { selectMenu, selectActiveMenu } from "../../Data/manager";
 
 function Menubar(props) {
   const { classes } = props;
   const dispatch = useDispatch();
+  const activeMenu = useSelector(selectActiveMenu)
+
+  const [iconColor, setIconColor] = useState('primary')
+  console.log("activeMenu", activeMenu)
+
   const handleList = (menu) => {
-    console.log(menu);
+
     dispatch(selectMenu(menu));
   };
   return (
     <Box className={classes.footer}>
       <Grid className={classes.center} item xs={4}>
-        <IconButton color="secondary" onClick={() => handleList("savedList")}>
+        <IconButton color={iconColor} onClick={() => handleList("savedList")}>
           <ViewListRoundedIcon />
         </IconButton>
       </Grid>
       <Grid className={classes.center} item xs={4}>
-        <IconButton color="secondary" onClick={() => handleList("search")}>
+        <IconButton color={iconColor} onClick={() => handleList("search")}>
           <SearchRoundedIcon />
         </IconButton>
       </Grid>
       <Grid className={classes.center} item xs={4}>
-        <IconButton>
+        <IconButton color={iconColor} onClick={() => handleList("savedFeed")}>
           <BookmarkBorderRoundedIcon />
         </IconButton>
       </Grid>

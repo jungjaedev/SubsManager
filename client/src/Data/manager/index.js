@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-export const Manager = createSlice({
+export const manager = createSlice({
   name: 'manager',
   initialState: {
     activeMenu: 'main',
@@ -11,11 +11,14 @@ export const Manager = createSlice({
       console.log(action.payload)
       state.previousMenu = state.activeMenu;
       state.activeMenu = action.payload;
-      console.log(state.previousMenu, state.activeMenu)
     },
   },
 });
 
-export const { selectMenu } = Manager.actions;
+export const { selectMenu } = manager.actions;
 
-export default Manager.reducer;
+export const selectActiveMenu = (state) => state.manager.activeMenu;
+export const selectPreviousMenu = (state) => state.manager.previousMenu;
+
+
+export default manager.reducer;

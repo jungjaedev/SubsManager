@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+
 
 import { withStyles } from '@material-ui/styles';
 import { withTheme } from '@material-ui/styles';
@@ -8,9 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 
-const mapStateToProps = state => {
-  return {};
-};
+
 
 class Menu extends Component {
   constructor(props) {
@@ -51,4 +49,4 @@ const componentStyle = withStyles(theme => ({
   centerCenter: theme.styles.Default.Box.centerCenter,
 }));
 
-export default connect(mapStateToProps)(withTheme(componentStyle(Menu)));
+export default withTheme(componentStyle(Menu));

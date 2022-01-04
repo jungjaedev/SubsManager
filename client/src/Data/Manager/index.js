@@ -3,13 +3,15 @@ import { createSlice } from '@reduxjs/toolkit';
 export const Manager = createSlice({
   name: 'manager',
   initialState: {
-    activeMenu: 'SavedList',
+    activeMenu: 'main',
     previousMenu: '',
   },
   reducers: {
     selectMenu: (state, action) => {
-      state.previousMenu = action.activeMenu;
+      console.log(action.payload)
+      state.previousMenu = state.activeMenu;
       state.activeMenu = action.payload;
+      console.log(state.previousMenu, state.activeMenu)
     },
   },
 });

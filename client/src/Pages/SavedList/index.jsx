@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+
 
 import { withStyles } from '@material-ui/styles';
 import { withTheme } from '@material-ui/styles';
@@ -11,9 +11,7 @@ import HashList from './HashList';
 import Menu from './Menu';
 import UserList from './UserList';
 
-const mapStateToProps = state => {
-  return {};
-};
+
 
 class SavedList extends Component {
   constructor(props) {
@@ -48,4 +46,4 @@ const componentStyle = withStyles(theme => ({
   root: theme.styles.Default.Box.root,
 }));
 
-export default connect(mapStateToProps)(withTheme(componentStyle(SavedList)));
+export default withTheme(componentStyle(SavedList));

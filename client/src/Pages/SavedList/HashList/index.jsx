@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+
 
 import { withStyles } from '@material-ui/styles';
 import { withTheme } from '@material-ui/styles';
@@ -9,9 +9,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import HashListItem from './HashListItem';
 
-const mapStateToProps = state => {
-  return {};
-};
+
 
 class HashList extends Component {
   constructor(props) {
@@ -182,4 +180,4 @@ const componentStyle = withStyles(theme => ({
   root: theme.styles.Default.Box.root,
 }));
 
-export default connect(mapStateToProps)(withTheme(componentStyle(HashList)));
+export default withTheme(componentStyle(HashList));

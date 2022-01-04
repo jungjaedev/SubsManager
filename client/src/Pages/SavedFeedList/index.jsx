@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+
 
 import { withStyles } from '@material-ui/styles';
 import { withTheme } from '@material-ui/styles';
@@ -9,9 +9,7 @@ import Grid from '@material-ui/core/Grid';
 
 import PhotoList from '../../Components/PhotoList';
 
-const mapStateToProps = state => {
-  return {};
-};
+
 
 class SavedFeedList extends Component {
   constructor(props) {
@@ -43,4 +41,4 @@ const componentStyle = withStyles(theme => ({
   rowLarge: theme.styles.Default.Box.rowLarge,
 }));
 
-export default connect(mapStateToProps)(withTheme(componentStyle(SavedFeedList)));
+export default withTheme(componentStyle(SavedFeedList));

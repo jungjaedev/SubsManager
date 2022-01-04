@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+
 
 import { withStyles } from '@material-ui/styles';
 import { withTheme } from '@material-ui/styles';
@@ -7,9 +7,7 @@ import { withTheme } from '@material-ui/styles';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 
-const mapStateToProps = state => {
-  return {};
-};
+
 
 class Story extends Component {
   constructor(props) {
@@ -235,4 +233,4 @@ const componentStyle = withStyles(theme => ({
   new: { display: 'flex', height: '50px', width: 100, overflowX: 'scroll', marginRight: 30, zIndex: 100, overflowY: 'auto' },
 }));
 
-export default connect(mapStateToProps)(withTheme(componentStyle(Story)));
+export default withTheme(componentStyle(Story));

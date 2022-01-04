@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+
 
 import { withStyles } from '@material-ui/styles';
 import { withTheme } from '@material-ui/styles';
@@ -9,9 +9,7 @@ import Grid from '@material-ui/core/Grid';
 
 import Item from './Item';
 
-const mapStateToProps = state => {
-  return {};
-};
+
 
 class PhotoList extends Component {
   constructor(props) {
@@ -176,4 +174,4 @@ const componentStyle = withStyles(theme => ({
   root: theme.styles.Default.Box.root,
 }));
 
-export default connect(mapStateToProps)(withTheme(componentStyle(PhotoList)));
+export default withTheme(componentStyle(PhotoList));

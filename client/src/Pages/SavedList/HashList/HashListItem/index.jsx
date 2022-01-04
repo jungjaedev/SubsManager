@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-
+import React from 'react';
 
 import { withStyles } from '@material-ui/styles';
 import { withTheme } from '@material-ui/styles';
@@ -10,47 +9,35 @@ import Typography from '@material-ui/core/Typography';
 
 import HighlightOffRoundedIcon from '@material-ui/icons/HighlightOffRounded';
 
+function HashListItem(props) {
+  const { classes } = props;
 
-
-class HashListItem extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-
-  componentDidMount() {}
-
-  componentDidUpdate(prevProps) {}
-
-  shouldComponentUpdate(nextProps, nextState) {
-    return true;
-  }
-  render() {
-    const { classes } = this.props;
-
-    return (
-      <Box className={classes.rowLarge}>
-        <Grid container item>
-          <Grid container item direction="row">
-            <Grid container item xs={10}>
-              <Grid item xs={2}>
-                #
-              </Grid>
-              <Grid container item xs={10} direction="column">
-                <Grid><Typography variant="body1">#{this.props.data.user_name}</Typography></Grid>
-                <Grid><Typography variant="body2">게시물 {this.props.data.post_count}만</Typography></Grid>
-              </Grid>
-            </Grid>
+  return (
+    <Box className={classes.rowLarge}>
+      <Grid container item>
+        <Grid container item direction="row">
+          <Grid container item xs={10}>
             <Grid item xs={2}>
-              <IconButton aria-label="delete">
-                <HighlightOffRoundedIcon />
-              </IconButton>
+              #
+            </Grid>
+            <Grid container item xs={10} direction="column">
+              <Grid>
+                <Typography variant="body1">#{props.data.user_name}</Typography>
+              </Grid>
+              <Grid>
+                <Typography variant="body2">게시물 {props.data.post_count}만</Typography>
+              </Grid>
             </Grid>
           </Grid>
+          <Grid item xs={2}>
+            <IconButton aria-label="delete">
+              <HighlightOffRoundedIcon />
+            </IconButton>
+          </Grid>
         </Grid>
-      </Box>
-    );
-  }
+      </Grid>
+    </Box>
+  );
 }
 
 const componentStyle = withStyles(theme => ({

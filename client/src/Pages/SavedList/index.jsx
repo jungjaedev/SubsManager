@@ -1,45 +1,27 @@
-import React, { Component } from 'react';
-
+import React from 'react';
 
 import { withStyles } from '@material-ui/styles';
 import { withTheme } from '@material-ui/styles';
 
 import Box from '@material-ui/core/Box';
-import Grid from '@material-ui/core/Grid';
 
 import HashList from './HashList';
 import Menu from './Menu';
-import UserList from './UserList';
+// import UserList from './UserList';
 
+function SavedList(props) {
+  const { classes } = props;
 
-
-class SavedList extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-
-  componentDidMount() {}
-
-  componentDidUpdate(prevProps) {}
-
-  shouldComponentUpdate(nextProps, nextState) {
-    return true;
-  }
-  render() {
-    const { classes } = this.props;
-
-    return (
+  return (
+    <Box className={classes.root}>
       <Box className={classes.root}>
-        <Box className={classes.root}>
-          <Menu />
-        </Box>
-        <Box className={classes.root}>
-          <HashList />
-        </Box>
+        <Menu />
       </Box>
-    );
-  }
+      <Box className={classes.root}>
+        <HashList />
+      </Box>
+    </Box>
+  );
 }
 
 const componentStyle = withStyles(theme => ({

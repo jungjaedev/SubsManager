@@ -144,16 +144,16 @@ function HashList(props) {
     return <HashListItem key={idx} data={item} />;
   });
   return (
-    <Box className={classes.body}>
-      <Box className={classes.root}>
-        <Grid className={classes.row} item>
-          <Typography variant="body1">peeking list 50</Typography>
-        </Grid>
-        <Grid container item direction="column">
-          {lists}
-        </Grid>
-      </Box>
+    // <Box className={classes.body}>
+    <Box className={classes.root}>
+      <Grid className={classes.row} item>
+        <Typography variant="body1">peeking list 50</Typography>
+      </Grid>
+      <Grid container item direction="column">
+        {lists}
+      </Grid>
     </Box>
+    // </Box>
   );
 }
 

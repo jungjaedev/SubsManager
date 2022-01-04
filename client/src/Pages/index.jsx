@@ -6,7 +6,7 @@ import { withTheme } from '@material-ui/styles';
 
 import Box from '@material-ui/core/Box';
 
-import { selectActiveMenu } from '../Data/manager';
+import { activeMenu } from '../Data/manager';
 
 import SavedList from './SavedList';
 import SavedFeedList from './SavedFeedList';
@@ -14,12 +14,12 @@ import UserHome from './UserHome';
 
 function Pages(props) {
   const { classes } = props;
-  const activeMenu = useSelector(selectActiveMenu);
-  console.log(123123, activeMenu);
+  const active = useSelector(activeMenu);
+
   const activeComponent = () => {
-    if (activeMenu === 'savedList') return <SavedList />;
-    // if(activeMenu === 'search') return <SavedList />
-    else if (activeMenu === 'savedFeed') return <SavedFeedList />;
+    if (active === 'savedList') return <SavedList />;
+    // if(active === 'search') return <SavedList />
+    else if (active === 'savedFeed') return <SavedFeedList />;
     return <SavedList />;
   };
   return <Box className={classes.overflow}>{activeComponent}</Box>;

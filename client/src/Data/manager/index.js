@@ -7,18 +7,17 @@ export const manager = createSlice({
     previousMenu: '',
   },
   reducers: {
-    selectMenu: (state, action) => {
-      console.log(action.payload)
+    updateMenuAction: (state, action) => {
+      console.log(action.payload);
       state.previousMenu = state.activeMenu;
       state.activeMenu = action.payload;
     },
   },
 });
 
-export const { selectMenu } = manager.actions;
+export const { updateMenuAction } = manager.actions;
 
-export const selectActiveMenu = (state) => state.manager.activeMenu;
-export const selectPreviousMenu = (state) => state.manager.previousMenu;
-
+export const activeMenu = state => state.manager.activeMenu;
+export const previousMenu = state => state.manager.previousMenu;
 
 export default manager.reducer;

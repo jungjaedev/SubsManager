@@ -1,8 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
-import Manager from './Manager';
+import manager from './manager';
+import pages from './pages';
 
 export const store = configureStore({
   reducer: {
-    manager: Manager,
+    manager: manager,
+    pages: pages,
   },
 });

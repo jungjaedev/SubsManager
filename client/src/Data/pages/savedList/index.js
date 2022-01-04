@@ -15,6 +15,6 @@ export const savedList = createSlice({
 
 export const { updateMenuAction } = savedList.actions;
 
-export const activeMenu = state => state.manager.activeMenu;
+export const activeMenu = state => state.pages.savedList.activeMenu;
 
 export default savedList.reducer;

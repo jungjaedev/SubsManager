@@ -1,5 +1,7 @@
-// import { combineReducers } from '@reduxjs/toolkit';
+import { combineReducers } from "@reduxjs/toolkit";
 
-// import { savedList } from './savedList';
+import savedList from "./savedList";
 
-// export const pages = combineReducers({ savedList });
+const pages = combineReducers({ savedList: savedList });
+
+export default pages;

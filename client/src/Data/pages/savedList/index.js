@@ -7,7 +7,6 @@ export const savedList = createSlice({
   },
   reducers: {
     updateMenuAction: (state, action) => {
-      console.log(action.payload);
       state.activeMenu = action.payload;
     },
   },

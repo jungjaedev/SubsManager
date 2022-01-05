@@ -15,9 +15,6 @@ function Menu(props) {
   const dispatch = useDispatch();
 
   const [isCurrent, setIsCurrent] = useState('');
-
-  // const active = useSelector(activeMenu);
-
   const handleList = menu => {
     dispatch(updateMenuAction(menu));
     setIsCurrent(menu);

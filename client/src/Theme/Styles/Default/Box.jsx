@@ -4,7 +4,6 @@ export const Box = {
   root: {
     display: 'flex',
     flexWrap: 'wrap',
-    // alignContent: 'flex-start',
     width: '100%',
     height: 'auto',
   },

@@ -6,7 +6,7 @@ import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import CalendarTodayRoundedIcon from '@material-ui/icons/CalendarTodayRounded';
-import PayList from './PayList';
+import PayItem from './PayItem';
 
 function ThisMonth(props) {
   const { classes } = props;
@@ -140,8 +140,8 @@ function ThisMonth(props) {
       description: '',
     },
   };
-  const lists = Object.values(dummyData).map((item, idx) => {
-    return <PayList key={idx} data={item} />;
+  const list = Object.values(dummyData).map((item, idx) => {
+    return <PayItem key={idx} data={item} />;
   });
 
   return (
@@ -163,11 +163,11 @@ function ThisMonth(props) {
       <Box className={classes.rowLarge}>
         <Typography>이번달 결제 된 구독 서비스</Typography>
       </Box>
-      {lists}
+      {list}
       <Box className={classes.rowLarge}>
         <Typography>이번달 결제해야하는 구독 서비스</Typography>
       </Box>
-      {lists}
+      {list}
     </Box>
   );
 }

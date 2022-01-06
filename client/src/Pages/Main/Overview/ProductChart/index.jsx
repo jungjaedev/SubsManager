@@ -30,7 +30,7 @@ function ProductChart(props) {
 
   return (
     <Box className={classes.root}>
-      <ResponsiveContainer width="100%" height="70%">
+      <ResponsiveContainer width="100%" height="100%">
         <PieChart width={400} height={400}>
           <Pie
             data={data}
@@ -55,7 +55,7 @@ function ProductChart(props) {
 }
 
 const componentStyle = withStyles(theme => ({
-  root: theme.styles.Default.Box.root,
+  root: theme.styles.Default.Chart.container,
 }));
 
 export default withTheme(componentStyle(ProductChart));

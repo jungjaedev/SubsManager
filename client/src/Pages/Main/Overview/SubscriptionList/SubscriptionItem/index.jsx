@@ -1,12 +1,12 @@
-import React from 'react';
+import React from "react";
 
-import { withStyles } from '@material-ui/styles';
-import { withTheme } from '@material-ui/styles';
-import Box from '@material-ui/core/Box';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
+import { withStyles } from "@material-ui/styles";
+import { withTheme } from "@material-ui/styles";
+import Box from "@material-ui/core/Box";
+import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
 
-function PayList(props) {
+function SubscriptionItem(props) {
   const { classes } = props;
 
   return (
@@ -30,9 +30,9 @@ function PayList(props) {
   );
 }
 
-const componentStyle = withStyles(theme => ({
+const componentStyle = withStyles((theme) => ({
   root: theme.styles.Default.Box.root,
   row: theme.styles.Default.Box.row,
 }));
 
-export default withTheme(componentStyle(PayList));
+export default withTheme(componentStyle(SubscriptionItem));

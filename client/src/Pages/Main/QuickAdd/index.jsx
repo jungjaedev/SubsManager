@@ -3,16 +3,16 @@ import React from 'react';
 import { withStyles } from '@material-ui/styles';
 import { withTheme } from '@material-ui/styles';
 import Box from '@material-ui/core/Box';
-import Overview from './Overview';
-import QuickAdd from './QuickAdd';
+import Search from './Search';
+import ProductList from './ProductList';
 
-function Main(props) {
+function Overview(props) {
   const { classes } = props;
 
   return (
     <Box className={classes.root}>
-      <Overview />
-      <QuickAdd />
+      <Search />
+      <ProductList />
     </Box>
   );
 }
@@ -21,4 +21,4 @@ const componentStyle = withStyles(theme => ({
   root: theme.styles.Default.Box.root,
 }));
 
-export default withTheme(componentStyle(Main));
+export default withTheme(componentStyle(Overview));

@@ -60,30 +60,29 @@ export const Box = {
   // ROWS
   row: {
     display: 'flex',
-    minHeight: 40,
+    height: 40,
     alignItems: 'center',
-    height: 'auto',
     width: '100%',
   },
 
   rowSmall: {
     display: 'flex',
     width: '100%',
-    minHeight: 24,
+    height: 24,
     alignItems: 'center',
   },
 
   rowLarge: {
     display: 'flex',
     width: '100%',
-    minHeight: 56,
+    height: 56,
     alignItems: 'center',
   },
 
   rowBig: {
     display: 'flex',
     width: '100%',
-    minHeight: 122,
+    height: 122,
     alignItems: 'center',
   },
 

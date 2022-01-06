@@ -16,7 +16,7 @@ function Header(props) {
       <Grid item xs={2}></Grid>
       <Grid item xs={8} className={classes.centerCenter}>
         <Button>
-          <Typography variant="h5">SNEAK PEEK</Typography>
+          <Typography variant="h5" className={classes.textTransform}>SubsManager</Typography>
         </Button>
       </Grid>
       <Grid item xs={2}>
@@ -32,6 +32,7 @@ const componentStyle = withStyles((theme) => ({
   root: theme.styles.Default.Box.root,
   centerCenter: theme.styles.Default.Box.centerCenter,
   header: theme.styles.Default.Structure.header,
+  textTransform: {textTransform: 'none'}
 }));
 
 export default withTheme(componentStyle(Header));

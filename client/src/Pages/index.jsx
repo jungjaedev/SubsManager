@@ -8,20 +8,20 @@ import Box from "@material-ui/core/Box";
 
 import { activeMenu } from "../Data/manager";
 
-import SavedList from "./SavedList";
-import SavedFeedList from "./SavedFeedList";
-// import UserHome from './UserHome';
-import Search from "./Search";
+import Main from "./Main";
+import ThisMonth from "./ThisMonth";
+import Statistics from "./Statistics";
+import Manage from "./Manage";
 
 function Pages(props) {
   const { classes } = props;
   const active = useSelector(activeMenu);
 
   const activeComponent = () => {
-    if (active === "savedList") return <SavedList />;
-    else if (active === "search") return <Search />;
-    else if (active === "savedFeed") return <SavedFeedList />;
-    return <SavedList />;
+    if (active === "thisMonth") return <ThisMonth />;
+    else if (active === "statistics") return <Statistics />;
+    else if (active === "manage") return <Manage />;
+    return <Main />;
   };
   return <Box className={classes.overflow}>{activeComponent}</Box>;
 }

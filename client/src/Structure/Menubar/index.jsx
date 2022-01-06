@@ -3,9 +3,9 @@ import { useDispatch } from 'react-redux';
 
 import { withStyles } from '@material-ui/styles';
 import { withTheme } from '@material-ui/styles';
-import ViewListRoundedIcon from '@material-ui/icons/ViewListRounded';
-import SearchRoundedIcon from '@material-ui/icons/SearchRounded';
-import BookmarkBorderRoundedIcon from '@material-ui/icons/BookmarkBorderRounded';
+import EditRoundedIcon from '@material-ui/icons/EditRounded';
+import ListAltRoundedIcon from '@material-ui/icons/ListAltRounded';
+import BarChartRoundedIcon from '@material-ui/icons/BarChartRounded';
 import IconButton from '@material-ui/core/IconButton';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
@@ -31,18 +31,18 @@ function Menubar(props) {
   return (
     <Box className={classes.footer}>
       <Grid className={classes.center} item xs={4}>
-        <IconButton color={checkCurrent('savedList')} onClick={() => handleList('savedList')}>
-          <ViewListRoundedIcon />
+        <IconButton color={checkCurrent('thisMonth')} onClick={() => handleList('thisMonth')}>
+          <ListAltRoundedIcon />
         </IconButton>
       </Grid>
       <Grid className={classes.center} item xs={4}>
-        <IconButton color={checkCurrent('search')} onClick={() => handleList('search')}>
-          <SearchRoundedIcon />
+        <IconButton color={checkCurrent('statistics')} onClick={() => handleList('statistics')}>
+          <BarChartRoundedIcon />
         </IconButton>
       </Grid>
       <Grid className={classes.center} item xs={4}>
-        <IconButton color={checkCurrent('savedFeed')} onClick={() => handleList('savedFeed')}>
-          <BookmarkBorderRoundedIcon />
+        <IconButton color={checkCurrent('manage')} onClick={() => handleList('manage')}>
+          <EditRoundedIcon />
         </IconButton>
       </Grid>
     </Box>

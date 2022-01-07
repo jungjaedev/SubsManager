@@ -3,11 +3,18 @@ import React from 'react';
 import { withStyles } from '@material-ui/styles';
 import { withTheme } from '@material-ui/styles';
 import Box from '@material-ui/core/Box';
+import Overview from './Overview';
+import QuickAdd from './QuickAdd';
 
 function Main(props) {
   const { classes } = props;
 
-  return <Box className={classes.root}>Main</Box>;
+  return (
+    <Box className={classes.root}>
+      <Overview />
+      <QuickAdd />
+    </Box>
+  );
 }
 
 const componentStyle = withStyles(theme => ({

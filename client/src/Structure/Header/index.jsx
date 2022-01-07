@@ -17,22 +17,22 @@ function Header(props) {
 
   const dispatch = useDispatch();
 
-  const handleClick = () => {
-    dispatch(updateMenuAction('main'));
+  const handleClick = menu => {
+    dispatch(updateMenuAction(menu));
   };
 
   return (
     <Box className={classes.header}>
       <Grid item xs={2}></Grid>
       <Grid item xs={8} className={classes.centerCenter}>
-        <Button onClick={() => handleClick()}>
+        <Button onClick={() => handleClick('main')}>
           <Typography variant="h5" className={classes.textTransform}>
             SubsManager
           </Typography>
         </Button>
       </Grid>
       <Grid item xs={2}>
-        <IconButton>
+        <IconButton onClick={() => handleClick('myPage')}>
           <PermIdentityRoundedIcon />
         </IconButton>
       </Grid>

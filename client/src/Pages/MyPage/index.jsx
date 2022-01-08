@@ -5,93 +5,100 @@ import { withTheme } from '@material-ui/styles';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+// import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+
+import DetailItem from './DetailItem';
 
 function MyPage(props) {
   const { classes } = props;
-  const [isedit, setIsedit] = useState(false);
+  const [isEdit, setIsEdit] = useState(false);
   const data = {
-    name: 'Tester',
+    account: 'Tester',
     email: 'test@test.com',
     password: 'asdfsadf',
     passwordCheck: 'asdfsadf',
-    language: 'en',
+    language: 'kr',
   };
 
-  const edit = () => {
-    setIsedit(true);
+  const languages = {
+    1: { id: '1', name: 'English', display_name: 'English', code: 'en' },
+    2: { id: '2', name: 'Korean', display_name: '한국어', code: 'kr' },
   };
+
+  const menuItem = Object.values(languages).map((item, idx) => {
+    return (
+      <MenuItem key={idx} value={item.code}>
+        {item.display_name}
+      </MenuItem>
+    );
+  });
+
+  const handleEdit = () => {
+    setIsEdit(!isEdit);
+  };
+
+  const handleDeleteAccount = () => {
+    console.log('탈퇴!!');
+  };
+
+  const handleLogout = () => {
+    console.log('로그아웃!!');
+  };
+
+  const editText = isEdit ? '저장하기' : '내 정보 수정';
+
+  const language = isEdit ? (
+    <FormControl className={classes.formControl}>
+      <Select value={data.language} onChange={() => console.log('selectBox')}>
+        {menuItem}
+      </Select>
+    </FormControl>
+  ) : (
+    <Typography variant="body1">{data.language}</Typography>
+  );
 
   return (
     <Box className={classes.root}>
       <Box className={classes.row}>
         <Grid item xs={8}></Grid>
         <Grid item xs={4}>
-          <Typography variant="body1">로그아웃</Typography>
+          <Button onClick={() => handleLogout()}>
+            <Typography variant="body1">로그아웃</Typography>
+          </Button>
         </Grid>
       </Box>
       <Box className={classes.row}>
         <Grid item xs={8}></Grid>
         <Grid item xs={4}>
-          <Typography variant="body1" onClick={() => edit()}>
-            내 정보 수정
-          </Typography>
+          <Button onClick={() => handleEdit()}>
+            <Typography variant="body1">{editText}</Typography>
+          </Button>
         </Grid>
       </Box>
       <Box className={classes.root}>
-        <Box className={classes.row}>
-          <Grid item xs={5}>
-            <Typography variant="body1" onClick={() => edit()}>
-              아이디
-            </Typography>
-          </Grid>
-          <Grid item xs={7}>
-            {isedit ? (
-              <TextField id="standard-basic" />
-            ) : (
-              <Typography variant="body1" onClick={() => edit()}>
-                {data.name}
-              </Typography>
-            )}
-          </Grid>
-        </Box>
-        <Box className={classes.row}>
-          <Grid item xs={5}>
-            <Typography variant="body1">이메일</Typography>
-          </Grid>
-          <Grid item xs={7}>
-            <Typography variant="body1">{data.email}</Typography>
-          </Grid>
-        </Box>
-        <Box className={classes.row}>
-          <Grid item xs={5}>
-            <Typography variant="body1">비밀번호</Typography>
-          </Grid>
-          <Grid item xs={7}>
-            <Typography variant="body1">{data.password}</Typography>
-          </Grid>
-        </Box>
-        <Box className={classes.row}>
-          <Grid item xs={5}>
-            <Typography variant="body1">비밀번호 확인</Typography>
-          </Grid>
-          <Grid item xs={7}>
-            <Typography variant="body1">{data.passwordCheck}</Typography>
-          </Grid>
-        </Box>
+        <DetailItem data={data} label="account" isEdit={isEdit} />
+        <DetailItem data={data} label="email" isEdit={isEdit} />
+        <DetailItem data={data} label="password" isEdit={isEdit} />
+        <DetailItem data={data} label="passwordCheck" isEdit={isEdit} />
         <Box className={classes.row}>
           <Grid item xs={5}>
             <Typography variant="body1">언어설정</Typography>
           </Grid>
           <Grid item xs={7}>
-            <Typography variant="body1">{data.language}</Typography>
+            {language}
           </Grid>
         </Box>
       </Box>
       <Box className={classes.row}>
         <Grid item xs={8}></Grid>
         <Grid item xs={4}>
-          <Typography variant="body1">회원탈퇴</Typography>
+          <Button onClick={() => handleDeleteAccount()}>
+            <Typography variant="body1">회원탈퇴</Typography>
+          </Button>
         </Grid>
       </Box>
     </Box>

@@ -1,8 +1,5 @@
 export const typography = {
   fontFamily: [
-    //   '-apple-system',
-    //  'BlinkMacSystemFont',
-    //  '"Segoe UI"',
     "Helvetica Neue",
     "Arial",
     "Roboto",

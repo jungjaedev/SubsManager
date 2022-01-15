@@ -19,4 +19,7 @@ export class User {
 
   @Column()
   currency_id: number;
+
+  @Column()
+  TEST: number;
 }

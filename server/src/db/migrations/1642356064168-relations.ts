@@ -1,7 +1,7 @@
 import {MigrationInterface, QueryRunner} from "typeorm";
 
-export class DBMigration1642348861034 implements MigrationInterface {
-    name = 'DBMigration1642348861034'
+export class relations1642356064168 implements MigrationInterface {
+    name = 'relations1642356064168'
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.query(`DROP INDEX \`REL_6be4b9a468f76e02abbf30e77b\` ON \`User\``);

@@ -25,18 +25,28 @@ export class UserService {
   @Column()
   billing_cycle: number;
 
-  @ManyToOne(() => User, (user) => user.user_service)
+  @ManyToOne(() => User, (user) => user.user_service, {
+    onDelete: 'CASCADE',
+  })
   user: User;
 
-  @ManyToOne(() => Service, (service) => service.user_service)
+  @ManyToOne(() => Service, (service) => service.user_service, {
+    onDelete: 'CASCADE',
+  })
   service: Service;
 
-  @ManyToOne(() => Type, (type) => type.user_service)
+  @ManyToOne(() => Type, (type) => type.user_service, {
+    onDelete: 'CASCADE',
+  })
   type: Type;
 
-  @ManyToOne(() => Period, (period) => period.user_service)
+  @ManyToOne(() => Period, (period) => period.user_service, {
+    onDelete: 'CASCADE',
+  })
   period: Period;
 
-  @ManyToOne(() => Currency, (currency) => currency.user_service)
+  @ManyToOne(() => Currency, (currency) => currency.user_service, {
+    onDelete: 'CASCADE',
+  })
   currency: Currency;
 }

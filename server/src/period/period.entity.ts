@@ -12,6 +12,8 @@ export class Period {
   @Column()
   display_name: string;
 
-  @OneToMany(() => UserService, (user_service) => user_service.period)
+  @OneToMany(() => UserService, (user_service) => user_service.period, {
+    cascade: true,
+  })
   user_service: UserService;
 }

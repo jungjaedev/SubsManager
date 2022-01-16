@@ -12,6 +12,8 @@ export class Type {
   @Column()
   display_name: string;
 
-  @OneToMany(() => UserService, (user_service) => user_service.type)
+  @OneToMany(() => UserService, (user_service) => user_service.type, {
+    cascade: true,
+  })
   user_service: UserService;
 }

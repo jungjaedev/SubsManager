@@ -22,9 +22,13 @@ export class Service {
   @Column()
   url: string;
 
-  @OneToMany(() => UserService, (user_service) => user_service.service)
+  @OneToMany(() => UserService, (user_service) => user_service.service, {
+    cascade: true,
+  })
   user_service: UserService;
 
-  @ManyToOne(() => Category, (category) => category.service)
+  @ManyToOne(() => Category, (category) => category.service, {
+    onDelete: 'CASCADE',
+  })
   category: Category;
 }

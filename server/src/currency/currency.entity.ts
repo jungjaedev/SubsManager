@@ -19,9 +19,13 @@ export class Currency {
   @Column()
   symbol: string;
 
-  @OneToMany(() => UserService, (user_service) => user_service.currency)
+  @OneToMany(() => UserService, (user_service) => user_service.currency, {
+    cascade: true,
+  })
   user_service: UserService;
 
-  @OneToMany(() => User, (user) => user.currency)
+  @OneToMany(() => User, (user) => user.currency, {
+    cascade: true,
+  })
   user: User;
 }

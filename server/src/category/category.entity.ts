@@ -12,6 +12,8 @@ export class Category {
   @Column()
   display_name: string;
 
-  @OneToMany(() => Service, (service) => service.category)
+  @OneToMany(() => Service, (service) => service.category, {
+    cascade: true,
+  })
   service: Service;
 }

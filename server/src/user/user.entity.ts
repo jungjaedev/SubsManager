@@ -23,12 +23,18 @@ export class User {
   @Column()
   password: string;
 
-  @OneToMany(() => UserService, (user_service) => user_service.user)
+  @OneToMany(() => UserService, (user_service) => user_service.user, {
+    cascade: true,
+  })
   user_service: UserService;
 
-  @ManyToOne(() => Language, (language) => language.user)
+  @ManyToOne(() => Language, (language) => language.user, {
+    onDelete: 'CASCADE',
+  })
   language: Language;
 
-  @ManyToOne(() => Currency, (currency) => currency.user)
+  @ManyToOne(() => Currency, (currency) => currency.user, {
+    onDelete: 'CASCADE',
+  })
   currency: Currency;
 }

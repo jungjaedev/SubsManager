@@ -1,6 +1,15 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Currency } from 'src/currency/currency.entity';
+import { Language } from 'src/language/language.entity';
+import {
+  Column,
+  Entity,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { UserService } from '../user_service/user_service.entity';
 
-@Entity('USER')
+@Entity('User')
 export class User {
   @PrimaryGeneratedColumn()
   id: number;
@@ -14,12 +23,12 @@ export class User {
   @Column()
   password: string;
 
-  @Column()
-  language_id: number;
+  @OneToMany(() => UserService, (user_service) => user_service.user)
+  user_service: UserService;
 
-  @Column()
-  currency_id: number;
+  @ManyToOne(() => Language, (language) => language.user)
+  language: Language;
 
-  @Column()
-  TEST: number;
+  @ManyToOne(() => Currency, (currency) => currency.user)
+  currency: Currency;
 }

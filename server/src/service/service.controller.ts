@@ -14,7 +14,7 @@ export class ServiceController {
   }
 
   @Post()
-  createBulkServices(): Promise<Service> {
+  createBulkServices() {
 
     return this.serviceService.createBulkServices()}
 

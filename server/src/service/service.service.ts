@@ -7,12 +7,9 @@ import { Service } from './service.entity';
 export class ServiceService {
   constructor(
     @InjectRepository(Service) private serviceRepository: Repository<Service>,
-  ) {
-    
-  }
+  ) {}
 
-  createBulkServices(
-  ): Promise<Service> {
+  createBulkServices() {
     let data = [
       {
         display_name: 'Netflix',
@@ -56,7 +53,7 @@ export class ServiceService {
         createdAt: new Date(),
         updatedAt: new Date(),
       },
-      { 
+      {
         display_name: 'Wavve',
         display_name_ko: '웨이브',
         message: '웨이브 설명메세지',
@@ -394,11 +391,11 @@ export class ServiceService {
       },
     ];
     let category_ids = {
-      'video': 1,
-      'music': 2,
-      'life': 3,
-      'shopping': 3,
-    }
+      video: 1,
+      music: 2,
+      life: 3,
+      shopping: 3,
+    };
     // let create_bulk = data.map(item => {
     //   this.serviceRepository.create({
     //     name: item.display_name.toLowerCase(),
@@ -407,34 +404,33 @@ export class ServiceService {
     //     url: item.url,
     //     // category: category_ids[item.category]
     //   });
-      
-    // })
-    data = data.map(item => {
 
-    })
-    let create_bulk = 
-      this.serviceRepository.createQueryBuilder("service")
-      .insert().values([{
+    // })
+    let newData = data.map((item) => {
+      return {
         name: item.display_name.toLowerCase(),
         display_name_ko: item.display_name_ko,
         display_name: item.display_name,
         url: item.url,
-        // category: category_ids[item.category]
-      }
-      
-    })
-    return this.serviceRepository.save(create_bulk);
+        category: category_ids[item.category],
+      };
+    });
+    return this.serviceRepository
+      .createQueryBuilder('service')
+      .insert()
+      .values(newData)
+      .execute();
   }
-//   createService(
-//     name: string,
-//     display_name: string,
-//     url: string,
-//   ): Promise<Service> {
-//     const newService = this.serviceRepository.create({
-//       name,
-//       display_name,
-//       url,
-//     });
-//     return this.serviceRepository.save(newService);
-//   }
+  //   createService(
+  //     name: string,
+  //     display_name: string,
+  //     url: string,
+  //   ): Promise<Service> {
+  //     const newService = this.serviceRepository.create({
+  //       name,
+  //       display_name,
+  //       url,
+  //     });
+  //     return this.serviceRepository.save(newService);
+  //   }
 }

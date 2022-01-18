@@ -18,5 +18,5 @@ export class Language {
   @OneToMany(() => User, (user) => user.language, {
     cascade: true,
   })
-  user: User;
+  user: User[];
 }

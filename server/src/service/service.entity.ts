@@ -20,6 +20,9 @@ export class Service {
   display_name: string;
 
   @Column()
+  display_name_ko: string;
+
+  @Column()
   url: string;
 
   @OneToMany(() => UserService, (user_service) => user_service.service, {

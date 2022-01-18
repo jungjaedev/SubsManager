@@ -11,14 +11,13 @@ export class UserController {
   //   return 'This action returns all user!!';
   // }
 
-  // @Post()
-  // async createUser(): Promise<User> {
-  //   return this.userService.createUser(
-  //     'accounttest',
-  //     'email@test.com',
-  //     'qwerqwer',
-  //     4,
-  //     5,
-  //   );
-  // }
+  @Post()
+  async createUser(): Promise<User> {
+    return this.userService.createUser(
+      'accounttest',
+      'email@test.com',
+      'qwerqwer',
+      // 5,
+    );
+  }
 }

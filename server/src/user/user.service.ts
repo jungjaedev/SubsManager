@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { Language } from 'src/language/language.entity';
 import { Repository } from 'typeorm';
 import { User } from './user.entity';
 
@@ -9,20 +10,20 @@ export class UserService {
     @InjectRepository(User) private userRespository: Repository<User>,
   ) {}
 
-  // createUser(
-  //   account: string,
-  //   email: string,
-  //   password: string,
-  //   languageId: number,
-  //   currency_id: number,
-  // ): Promise<User> {
-  //   const newUser = this.userRespository.create({
-  //     account,
-  //     email,
-  //     password,
-  //     languageId,
-  //     currency_id,
-  //   });
-  //   return this.userRespository.save(newUser);
-  // }
+  createUser(
+    account: string,
+    email: string,
+    password: string,
+    // languageId: number,
+    // currencyId: number,
+  ): Promise<User> {
+    const newUser = this.userRespository.create({
+      account,
+      email,
+      password,
+      // languageId,
+      // currencyId,
+    });
+    return this.userRespository.save(newUser);
+  }
 }

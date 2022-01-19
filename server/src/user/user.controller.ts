@@ -1,4 +1,4 @@
-import { Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { User } from './user.entity';
 import { UserService } from './user.service';
 
@@ -12,12 +12,16 @@ export class UserController {
   // }
 
   @Post('signup')
-  async createUser(data): Promise<User> {
-    console.log(data)
+  async createUser(
+    @Body('account') account: string,
+    @Body('title') title: string,
+    @Body('password') password: string,
+    @Body('categoryId') categoryId: number,
+    @Body('currencyId') currencyId: number,
+    ): Promise<User> {
+    console.log(account, title, password);
     return this.userService.createUser(
-      'accounttest',
-      'email@test.com',
-      'qwerqwer',
+      account, title, password, categoryId, currencyId
       // 5,
     );
   }

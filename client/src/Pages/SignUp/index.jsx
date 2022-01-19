@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
 import { withStyles } from '@material-ui/styles';
 import { withTheme } from '@material-ui/styles';
@@ -7,29 +8,42 @@ import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+// Reducer
+import { newUserInfo, updateNewUserInfoAction, saveNewUserInfoAction } from '../../Data/user';
 
 function SignUp(props) {
   const { classes } = props;
+  const dispatch = useDispatch();
+  const newUser = useSelector(newUserInfo);
+
+  const handleChange = (key, event) => {
+    const user = { ...newUser };
+    user[key] = event.target.value;
+    dispatch(updateNewUserInfoAction(user));
+  };
 
   const handleSignUp = () => {
     console.log('회원가입!!');
+    dispatch(saveNewUserInfoAction());
   };
 
   return (
     <Box className={classes.root}>
       <Box className={classes.root}>
         <Box className={classes.row}>
-          <TextField id="standard-basic" label="아이디" />
+          <TextField onChange={e => handleChange('account', e)} id="standard-basic" label="아이디" />
         </Box>
         <Box className={classes.row}>
-          <TextField id="standard-basic" label="email" />
+          <TextField onChange={e => handleChange('email', e)} id="standard-basic" label="email" />
         </Box>
         <Box className={classes.row}>
-          <TextField id="standard-basic" label="password" />
+          <TextField onChange={e => handleChange('password', e)} id="standard-basic" label="password" />
         </Box>
         <Box className={classes.row}>
-          <TextField id="standard-basic" label="password" />
+          <TextField onChange={e => handleChange('password check', e)} id="standard-basic" label="password check" />
         </Box>
+        <Box className={classes.row}>language</Box>
+        <Box className={classes.row}>currency</Box>
         <Box className={classes.row}>
           <Grid item xs={8}></Grid>
           <Grid item xs={4}>

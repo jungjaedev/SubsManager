@@ -11,8 +11,9 @@ export class UserController {
   //   return 'This action returns all user!!';
   // }
 
-  @Post()
-  async createUser(): Promise<User> {
+  @Post('signup')
+  async createUser(data): Promise<User> {
+    console.log(data)
     return this.userService.createUser(
       'accounttest',
       'email@test.com',

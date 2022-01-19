@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useDispatch } from 'react-redux';
 
 import { withStyles } from '@material-ui/styles';
@@ -10,21 +10,20 @@ import IconButton from '@material-ui/core/IconButton';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 //Reducer
-import { updateMenuAction } from '../../Data/manager';
+import { updateMenuAction, activeMenu } from '../../Data/manager';
+import { useSelector } from 'react-redux';
 
 function Menubar(props) {
   const { classes } = props;
   const dispatch = useDispatch();
-
-  const [isCurrent, setIsCurrent] = useState('');
+  const active = useSelector(activeMenu);
 
   const handleList = menu => {
     dispatch(updateMenuAction(menu));
-    setIsCurrent(menu);
   };
 
   const checkCurrent = menu => {
-    if (menu === isCurrent) return 'secondary';
+    if (menu === active) return 'secondary';
     return 'primary';
   };
 

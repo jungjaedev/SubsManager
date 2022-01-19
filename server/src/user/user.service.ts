@@ -14,15 +14,15 @@ export class UserService {
     account: string,
     email: string,
     password: string,
-    // languageId: number,
-    // currencyId: number,
+    languageId: number,
+    currencyId: number,
   ): Promise<User> {
     const newUser = this.userRespository.create({
       account,
       email,
       password,
-      // languageId,
-      // currencyId,
+      languageId,
+      currencyId,
     });
     return this.userRespository.save(newUser);
   }

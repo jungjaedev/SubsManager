@@ -1,5 +1,3 @@
-import { ColorThemes } from "../../ColorThemes";
-
 export const TextField = {
   root: {
     display: "flex",

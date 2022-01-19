@@ -3,7 +3,6 @@ import React from "react";
 import { withStyles } from "@material-ui/styles";
 import { withTheme } from "@material-ui/styles";
 import Box from "@material-ui/core/Box";
-import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import ProductChart from "./ProductChart";
 import SubscriptionList from "./SubscriptionList";

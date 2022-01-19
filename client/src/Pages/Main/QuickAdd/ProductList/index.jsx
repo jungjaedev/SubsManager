@@ -140,7 +140,7 @@ function ProductList(props) {
     },
   };
   const list = Object.values(dummyData).map((item, index) => {
-    <ProductItem data={item} key={index} />;
+    return <ProductItem data={item} key={index} />;
   });
   return <Box className={classes.root}>{list}</Box>;
 }

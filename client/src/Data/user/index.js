@@ -31,7 +31,7 @@ export const newUserInfo = state => state.user.newUserInfo;
 export const saveNewUserFuction = info => {
   return dispatch => {
     return axios
-      .post(`${URL}/user/signup`, info, { headers: { 'Content-Type': 'application/json' }, withCredentials: true })
+      .post(`${URL}/user/signup/`, info, { headers: { 'Content-Type': 'application/json' }, withCredentials: true })
       .then(response => {
         console.log('1111111', response.data);
         return response.data;

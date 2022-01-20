@@ -30,21 +30,19 @@ export class User extends BaseEntity {
   })
   user_service: UserService[];
 
+  @Column()
+  languageId: number;
   @ManyToOne(() => Language, (language) => language.user, {
     onDelete: 'CASCADE',
   })
-  @JoinColumn()
+  @JoinColumn({name: "languageId"})
   language: Language;
-
+  
   @Column()
-  languageId: number;
-
+  currencyId: number;
   @ManyToOne(() => Currency, (currency) => currency.user, {
     onDelete: 'CASCADE',
   })
-  @JoinColumn()
+  @JoinColumn({name: "currencyId"})
   currency: Currency;
-
-  @Column()
-  currencyId: number;
 }

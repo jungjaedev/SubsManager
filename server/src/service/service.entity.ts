@@ -28,7 +28,7 @@ export class Service {
   @OneToMany(() => UserService, (user_service) => user_service.service, {
     cascade: true,
   })
-  user_service: UserService;
+  user_service: UserService[];
 
   @ManyToOne(() => Category, (category) => category.service, {
     onDelete: 'CASCADE',

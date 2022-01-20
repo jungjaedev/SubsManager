@@ -15,5 +15,5 @@ export class Type {
   @OneToMany(() => UserService, (user_service) => user_service.type, {
     cascade: true,
   })
-  user_service: UserService;
+  user_service: UserService[];
 }

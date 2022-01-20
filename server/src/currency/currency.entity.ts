@@ -1,8 +1,8 @@
 import { User } from 'src/user/user.entity';
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity('Language')
-export class Language {
+@Entity('Currency')
+export class Currency {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -15,6 +15,9 @@ export class Language {
   @Column()
   code: string;
 
-  @OneToMany(() => User, user => user.language, { cascade: true })
+  @Column()
+  symbol: string;
+
+  @OneToMany(() => User, user => user.currency, { cascade: true })
   user: User[];
 }

@@ -1,3 +1,4 @@
+import { Language } from 'src/language/language.entity';
 import {
   BaseEntity,
   Column,
@@ -21,4 +22,11 @@ export class User extends BaseEntity {
 
   @Column()
   password: string;
+
+  @ManyToOne(() => Language, language => language.user)
+  @JoinColumn({ name: 'languageId' })
+  language: Language;
+
+  @Column()
+  languageId: number;
 }

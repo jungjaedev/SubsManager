@@ -12,9 +12,10 @@ export class UserController {
   // }
 
 
-  // @Post('signup')
-  // async createUser(
-  //   ) : Promise<User> {
-  //   return await this.userService.createUser(account, email, password, languageId, currencyId)
-  // }
+  @Post('signup')
+  async createUser(
+    @Body() user: User
+    )  {
+    return await this.userService.createUser(user)
+  }
 }

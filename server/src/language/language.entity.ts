@@ -14,4 +14,7 @@ export class Language {
 
   @Column()
   code: string;
+
+  @OneToMany(() => User, user => user.language, { cascade: true })
+  user: User[];
 }

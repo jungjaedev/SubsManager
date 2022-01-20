@@ -34,8 +34,8 @@ function Pages(props) {
     const activePage = Object.values(components).find(page => {
       return page.name === active;
     });
-    return activePage.component;
-    // return <SignIn />
+    // return activePage.component;
+    return <SignUp />;
   };
 
   return <Box className={classes.overflow}>{activeComponent}</Box>;

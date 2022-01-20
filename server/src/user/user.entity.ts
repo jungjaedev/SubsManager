@@ -4,6 +4,7 @@ import {
   BaseEntity,
   Column,
   Entity,
+  JoinColumn,
   ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
@@ -32,10 +33,18 @@ export class User extends BaseEntity {
   @ManyToOne(() => Language, (language) => language.user, {
     onDelete: 'CASCADE',
   })
+  @JoinColumn()
   language: Language;
+
+  @Column()
+  languageId: number;
 
   @ManyToOne(() => Currency, (currency) => currency.user, {
     onDelete: 'CASCADE',
   })
+  @JoinColumn()
   currency: Currency;
+
+  @Column()
+  currencyId: number;
 }

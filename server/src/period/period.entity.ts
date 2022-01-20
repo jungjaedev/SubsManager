@@ -15,5 +15,5 @@ export class Period {
   @OneToMany(() => UserService, (user_service) => user_service.period, {
     cascade: true,
   })
-  user_service: UserService;
+  user_service: UserService[];
 }

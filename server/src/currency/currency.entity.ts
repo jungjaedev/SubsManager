@@ -22,10 +22,10 @@ export class Currency {
   @OneToMany(() => UserService, (user_service) => user_service.currency, {
     cascade: true,
   })
-  user_service: UserService;
+  user_service: UserService[];
 
   @OneToMany(() => User, (user) => user.currency, {
     cascade: true,
   })
-  user: User;
+  user: User[];
 }

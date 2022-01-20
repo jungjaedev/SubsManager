@@ -1,3 +1,4 @@
+import { Currency } from 'src/currency/currency.entity';
 import { Language } from 'src/language/language.entity';
 import {
   BaseEntity,
@@ -23,10 +24,15 @@ export class User extends BaseEntity {
   @Column()
   password: string;
 
-  @ManyToOne(() => Language, language => language.user)
+  @Column()
+  languageId: number;
+  @ManyToOne(() => Language, language => language.user, { onDelete: "CASCADE" } )
   @JoinColumn({ name: 'languageId' })
   language: Language;
 
   @Column()
-  languageId: number;
+  currencyId: number;
+  @ManyToOne(() => Currency, currency => currency.user, { onDelete: "CASCADE" } )
+  @JoinColumn({ name: 'currencyId' })
+  currency: Currency;
 }

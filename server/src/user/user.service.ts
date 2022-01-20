@@ -10,17 +10,9 @@ export class UserService {
   ) {}
 
   async createUser(
-    // id: number,
-    // account: string,
-    // email: string,
-    // password: string,
-    // languageId: number,
     user: User
   ) {
-    // const newData = {
-    //   id, account,email,password,languageId
-    // }
-    console.log('--------', user)
+    // console.log('--------', user)
     return await this.userRepository.save(user)
   }
 }

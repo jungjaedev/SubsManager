@@ -9,20 +9,20 @@ export class UserService {
     @InjectRepository(User) private userRespository: Repository<User>,
   ) {}
 
-  createUser(
-    account: string,
-    email: string,
-    password: string,
-    languageId: number,
-    currencyId: number,
-  ): Promise<User> {
-    const newUser = this.userRespository.create({
-      account,
-      email,
-      password,
-      languageId,
-      currencyId,
-    });
-    return this.userRespository.save(newUser);
-  }
+  // createUser(
+  //   account: string,
+  //   email: string,
+  //   password: string,
+  //   languageId: number,
+  //   currencyId: number,
+  // ): Promise<User> {
+  //   const newUser = this.userRespository.create({
+  //     account,
+  //     email,
+  //     password,
+  //     languageId,
+  //     currencyId,
+  //   });
+  //   return this.userRespository.save(newUser);
+  // }
 }

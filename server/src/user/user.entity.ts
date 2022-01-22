@@ -1,5 +1,6 @@
 import { Currency } from 'src/currency/currency.entity';
 import { Language } from 'src/language/language.entity';
+import { UserProduct } from 'src/userProduct/userProduct.entity';
 import {
   BaseEntity,
   Column,
@@ -35,4 +36,7 @@ export class User extends BaseEntity {
   @ManyToOne(() => Currency, currency => currency.user, { onDelete: "CASCADE" } )
   @JoinColumn({ name: 'currencyId' })
   currency: Currency;
+
+  @OneToMany(() => UserProduct, userProduct => userProduct.user, { cascade: true })
+  userProduct: UserProduct[];
 }

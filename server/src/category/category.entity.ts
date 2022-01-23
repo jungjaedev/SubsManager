@@ -12,6 +12,9 @@ export class Category {
   @Column()
   display_name: string;
 
+  @Column()
+  display_name_ko: string;
+
   @OneToMany(() => Product, product => product.category, { cascade: true })
   product: Product[];
 }

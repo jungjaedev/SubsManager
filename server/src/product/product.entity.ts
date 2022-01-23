@@ -17,6 +17,9 @@ export class Product {
   url: string;
 
   @Column()
+  display_name_ko: string;
+
+  @Column()
   categoryId: number;
   @ManyToOne(() => Category, category => category.product, { onDelete: "CASCADE" } )
   @JoinColumn({ name: 'categoryId' })

@@ -1,7 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
-
-export const URL = 'http://localhost:8080';
+import { URL } from '../store';
 
 export const user = createSlice({
   name: 'user',

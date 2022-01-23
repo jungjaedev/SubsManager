@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { withStyles } from '@material-ui/styles';
@@ -10,6 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 // Reducer
 import { newUserInfo, updateNewUserInfoAction, saveNewUserInfoAction } from '../../Data/user';
+import { getAllLanguageAction, getAllCurrencyAction } from '../../Data/manager';
 
 function SignUp(props) {
   const { classes } = props;
@@ -26,6 +27,11 @@ function SignUp(props) {
     console.log('회원가입!!');
     dispatch(saveNewUserInfoAction());
   };
+
+  useEffect(() => {
+    dispatch(getAllLanguageAction());
+    dispatch(getAllCurrencyAction());
+  });
 
   return (
     <Box className={classes.root}>

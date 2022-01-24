@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { withStyles } from '@material-ui/styles';
@@ -10,11 +10,14 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 // Reducer
 import { newUserInfo, updateNewUserInfoAction, saveNewUserInfoAction } from '../../Data/user';
+import { language, getAllFunction, currency } from '../../Data/manager';
 
 function SignUp(props) {
   const { classes } = props;
   const dispatch = useDispatch();
   const newUser = useSelector(newUserInfo);
+  const languageList = useSelector(language);
+  const currencyList = useSelector(currency);
 
   const handleChange = (key, event) => {
     const user = { ...newUser };
@@ -27,6 +30,10 @@ function SignUp(props) {
     dispatch(saveNewUserInfoAction());
   };
 
+  useEffect(() => {
+    dispatch(getAllFunction('language'));
+    dispatch(getAllFunction('currency'));
+  }, [dispatch]);
   return (
     <Box className={classes.root}>
       <Box className={classes.root}>

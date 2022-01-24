@@ -1,4 +1,12 @@
-import { Controller } from '@nestjs/common';
+import { Controller, Get } from '@nestjs/common';
+import { CurrencyService } from './currency.service';
 
 @Controller('currency')
-export class CurrencyController {}
+export class CurrencyController {
+  constructor(private readonly currency: CurrencyService) {}
+
+  @Get()
+  findAll(){
+    return this.currency.findAll();
+  }
+}

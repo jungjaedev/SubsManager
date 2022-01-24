@@ -9,7 +9,7 @@ export class LanguageService {
     @InjectRepository(Language) private languageRepository: Repository<Language>,
   ) {}
 
-  async findAll() {
+  findAll() {
     return this.languageRepository.find()
   }
 }

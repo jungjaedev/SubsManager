@@ -7,12 +7,12 @@ export const manager = createSlice({
   initialState: {
     activeMenu: 'main',
     previousMenu: '',
-    currency: '',
-    language: '',
-    type: '',
-    category: '',
-    product: '',
-    period: '',
+    currency: {},
+    language: {},
+    category: {},
+    type: {},
+    product: {},
+    period: {},
   },
   reducers: {
     updateMenuAction: (state, action) => {
@@ -20,16 +20,18 @@ export const manager = createSlice({
       state.previousMenu = state.activeMenu;
       state.activeMenu = action.payload;
     },
-    getAllLanguageAction: (state, action) => {
-      getAllLanguageFuction();
-    },
-    getAllCurrencyAction: (state, action) => {
-      getAllCurrencyFuction();
+    // getAllAction: (state, action) => {
+    //   console.log(`action.payload : `, action.payload);
+    //   getAllFuction(action.payload);
+    // },
+    updateAllDataAction: (state, action) => {
+      console.log(`action : `, action);
+      // state[type_name] = data;
     },
   },
 });
 
-export const { updateMenuAction, getAllLanguageAction, getAllCurrencyAction } = manager.actions;
+export const { updateMenuAction, getAllAction, updateAllDataAction } = manager.actions;
 
 export const activeMenu = state => state.manager.activeMenu;
 export const previousMenu = state => state.manager.previousMenu;
@@ -41,15 +43,11 @@ export const category = state => state.manager.category;
 export const product = state => state.manager.product;
 export const period = state => state.manager.period;
 
-export const getAllLanguageFuction = () => {
-  return axios.get(`${URL}/language`, { headers: { 'Content-Type': 'application/json' }, withCredentials: true }).then(response => {
-    console.log(11111231231232, response);
-  });
-};
-
-export const getAllCurrencyFuction = () => {
-  return axios.get(`${URL}/currency`, { headers: { 'Content-Type': 'application/json' }, withCredentials: true }).then(response => {
-    console.log('123123CurrencyFuction', response);
+export const getAllFuction = type_name => {
+  // console.log(' getAllFuction state : ', state);
+  // console.log(' getAllFuction dispatch : ', dispatch);
+  return axios.get(`${URL}/${type_name}`, { headers: { 'Content-Type': 'application/json' }, withCredentials: true }).then(response => {
+    return response.data;
   });
 };
 

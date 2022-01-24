@@ -9,7 +9,7 @@ export class CurrencyService {
     @InjectRepository(Currency) private currencyRepository: Repository<Currency>,
   ) {}
 
-  async findAll() {
+  findAll() {
     return this.currencyRepository.find()
   }
 }

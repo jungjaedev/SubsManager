@@ -413,4 +413,8 @@ export class ProductService {
       .values(newData)
       .execute();
   }
+
+  findAll() {
+    return this.productRepository.find()
+  }
 }

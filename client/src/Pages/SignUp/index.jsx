@@ -10,13 +10,14 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 // Reducer
 import { newUserInfo, updateNewUserInfoAction, saveNewUserInfoAction } from '../../Data/user';
-import { getAllAction, language, getAllFuction } from '../../Data/manager';
+import { language, getAllFunction, currency } from '../../Data/manager';
 
 function SignUp(props) {
   const { classes } = props;
   const dispatch = useDispatch();
   const newUser = useSelector(newUserInfo);
-  const newData = useSelector(language);
+  const languageList = useSelector(language);
+  const currencyList = useSelector(currency);
 
   const handleChange = (key, event) => {
     const user = { ...newUser };
@@ -30,12 +31,9 @@ function SignUp(props) {
   };
 
   useEffect(() => {
-    // dispatch(getAllAction('language'));
-    const languageData = getAllFuction('language');
-    console.log('languageData : ', languageData);
-    // dispatch(getAllAction('currency'));
-  });
-  console.log('newData : ', newData);
+    dispatch(getAllFunction('language'));
+    dispatch(getAllFunction('currency'));
+  }, [dispatch]);
   return (
     <Box className={classes.root}>
       <Box className={classes.root}>

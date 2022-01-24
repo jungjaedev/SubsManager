@@ -20,18 +20,13 @@ export const manager = createSlice({
       state.previousMenu = state.activeMenu;
       state.activeMenu = action.payload;
     },
-    // getAllAction: (state, action) => {
-    //   console.log(`action.payload : `, action.payload);
-    //   getAllFuction(action.payload);
-    // },
     updateAllDataAction: (state, action) => {
-      console.log(`action : `, action);
-      // state[type_name] = data;
+      state[action.payload.type_name] = action.payload.data;
     },
   },
 });
 
-export const { updateMenuAction, getAllAction, updateAllDataAction } = manager.actions;
+export const { updateMenuAction, updateAllDataAction } = manager.actions;
 
 export const activeMenu = state => state.manager.activeMenu;
 export const previousMenu = state => state.manager.previousMenu;
@@ -43,12 +38,19 @@ export const category = state => state.manager.category;
 export const product = state => state.manager.product;
 export const period = state => state.manager.period;
 
-export const getAllFuction = type_name => {
-  // console.log(' getAllFuction state : ', state);
-  // console.log(' getAllFuction dispatch : ', dispatch);
-  return axios.get(`${URL}/${type_name}`, { headers: { 'Content-Type': 'application/json' }, withCredentials: true }).then(response => {
-    return response.data;
-  });
+export const getAllFunction = type_name => {
+  return async dispatch => {
+    let newData = {};
+    await axios
+      .get(`${URL}/${type_name}`, {
+        headers: { 'Content-Type': 'application/json' },
+        withCredentials: true,
+      })
+      .then(response => {
+        newData = { type_name: type_name, data: response.data };
+      });
+    return dispatch(updateAllDataAction(newData));
+  };
 };
 
 export default manager.reducer;

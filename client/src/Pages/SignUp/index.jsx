@@ -8,8 +8,10 @@ import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import FormControl from '@material-ui/core/FormControl';
+import NativeSelect from '@material-ui/core/NativeSelect';
 // Reducer
-import { newUserInfo, updateNewUserInfoAction, saveNewUserInfoAction } from '../../Data/user';
+import { newUserInfo, updateNewUserInfoAction, saveNewUserFuction } from '../../Data/user';
 import { language, getAllFunction, currency } from '../../Data/manager';
 
 function SignUp(props) {
@@ -26,14 +28,30 @@ function SignUp(props) {
   };
 
   const handleSignUp = () => {
-    console.log('회원가입!!');
-    dispatch(saveNewUserInfoAction());
+    dispatch(saveNewUserFuction());
   };
 
   useEffect(() => {
     dispatch(getAllFunction('language'));
     dispatch(getAllFunction('currency'));
   }, [dispatch]);
+
+  const languageItem = Object.values(languageList).map((item, idx) => {
+    return (
+      <option key={idx} value={item.id}>
+        {item.display_name}
+      </option>
+    );
+  });
+
+  const currencyItem = Object.values(currencyList).map((item, idx) => {
+    return (
+      <option key={idx} value={item.id}>
+        {item.code} {item.symbol}
+      </option>
+    );
+  });
+
   return (
     <Box className={classes.root}>
       <Box className={classes.root}>
@@ -47,10 +65,32 @@ function SignUp(props) {
           <TextField onChange={e => handleChange('password', e)} id="standard-basic" label="password" />
         </Box>
         <Box className={classes.row}>
-          <TextField onChange={e => handleChange('password check', e)} id="standard-basic" label="password check" />
+          <TextField onChange={e => handleChange('passwordCheck', e)} id="standard-basic" label="password check" />
         </Box>
-        <Box className={classes.row}>language</Box>
-        <Box className={classes.row}>currency</Box>
+        <Box className={classes.row}>
+          <Grid item xs={5}>
+            <Typography>language</Typography>
+          </Grid>
+          <Grid item xs={7}>
+            <FormControl className={classes.formControl}>
+              <NativeSelect value={newUser.languageId} onChange={e => handleChange('languageId', e)}>
+                {languageItem}
+              </NativeSelect>
+            </FormControl>
+          </Grid>
+        </Box>
+        <Box className={classes.row}>
+          <Grid item xs={5}>
+            <Typography>currency</Typography>
+          </Grid>
+          <Grid item xs={7}>
+            <FormControl className={classes.formControl}>
+              <NativeSelect value={newUser.currencyId} onChange={e => handleChange('currencyId', e)}>
+                {currencyItem}
+              </NativeSelect>
+            </FormControl>
+          </Grid>
+        </Box>
         <Box className={classes.row}>
           <Grid item xs={8}></Grid>
           <Grid item xs={4}>

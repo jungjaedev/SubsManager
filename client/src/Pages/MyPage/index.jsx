@@ -9,7 +9,7 @@ import Button from '@material-ui/core/Button';
 // import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
+import NativeSelect from '@material-ui/core/NativeSelect';
 
 import DetailItem from './DetailItem';
 
@@ -31,9 +31,9 @@ function MyPage(props) {
 
   const menuItem = Object.values(languages).map((item, idx) => {
     return (
-      <MenuItem key={idx} value={item.code}>
+      <option key={idx} value={item.code}>
         {item.display_name}
-      </MenuItem>
+      </option>
     );
   });
 
@@ -53,9 +53,9 @@ function MyPage(props) {
 
   const language = isEdit ? (
     <FormControl className={classes.formControl}>
-      <Select value={data.language} onChange={() => console.log('selectBox')}>
+      <NativeSelect value={data.language} onChange={() => console.log('selectBox')}>
         {menuItem}
-      </Select>
+      </NativeSelect>
     </FormControl>
   ) : (
     <Typography variant="body1">{data.language}</Typography>

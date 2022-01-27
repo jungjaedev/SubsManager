@@ -14,4 +14,19 @@ export class UserService {
   ) {
     return await this.userRepository.save(user)
   }
+
+
+  async findOne(account: string): Promise<User | undefined> {
+    console.log('userservice findOne!!!!');
+    const user =  this.userRepository.findOne({account : account});
+    return user;
+  }
+
+  // async authenticateUser(
+  //   user: User
+  // ) {
+  //   return await this.userRepository.save(user)
+  // }
+
+  
 }

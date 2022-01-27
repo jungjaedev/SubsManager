@@ -27,6 +27,11 @@ import { UserService } from './user/user.service';
 import { Product } from './product/product.entity';
 import { ProductService } from './product/product.service';
 import { ProductController } from './product/product.controller';
+import { AuthModule } from './auth/auth.module';
+import { AuthService } from './auth/auth.service';
+import { JwtModule } from '@nestjs/jwt';
+import { JwtService } from '@nestjs/jwt';
+
 
 @Module({
   imports: [
@@ -39,6 +44,8 @@ import { ProductController } from './product/product.controller';
     TypeOrmModule.forFeature([Type]),
     TypeOrmModule.forFeature([Category]),
     TypeOrmModule.forFeature([Product]),
+    AuthModule, 
+    // JwtModule
   ],
   controllers: [
     AppController,
@@ -61,6 +68,8 @@ import { ProductController } from './product/product.controller';
     TypeService,
     CategoryService,
     ProductService,
+    // AuthService,
+    // JwtService
   ],
 })
 export class AppModule {}

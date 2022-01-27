@@ -4,7 +4,7 @@ import { UserService } from './user.service';
 
 @Controller('user')
 export class UserController {
-  constructor(private readonly userProduct: UserService) {}
+  constructor(private readonly user: UserService) {}
 
   // @Get()
   // findAll(): string {
@@ -16,6 +16,13 @@ export class UserController {
   async createUser(
     @Body() user: User
     )  {
-    return await this.userProduct.createUser(user)
+    return await this.user.createUser(user)
   }
+
+  // @Post('signin')
+  // async authenticateUser(
+  //   @Body() user: User
+  //   )  {
+  //   return await this.user.authenticateUser(user)
+  // }
 }

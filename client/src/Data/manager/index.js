@@ -7,12 +7,12 @@ export const manager = createSlice({
   initialState: {
     activeMenu: 'main',
     previousMenu: '',
-    currency: {},
-    language: {},
+    currency: [],
+    language: [],
     category: {},
-    type: {},
-    product: {},
-    period: {},
+    type: [],
+    product: [],
+    period: [],
   },
   reducers: {
     updateMenuAction: (state, action) => {

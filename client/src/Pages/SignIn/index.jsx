@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { withStyles } from '@material-ui/styles';
 import { withTheme } from '@material-ui/styles';
@@ -10,31 +10,35 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
 import { updateMenuAction } from '../../Data/manager';
+import { updateloginInfoAction, loginInfo, loginUserFuction } from '../../Data/authentication';
 
 function SignIn(props) {
   const { classes } = props;
   const dispatch = useDispatch();
+  const userInfo = useSelector(loginInfo);
 
   const handleSignIn = () => {
-    console.log('로그인!');
+    dispatch(loginUserFuction());
   };
 
-  const handleSignUp = () => {
+  const handleNoAccount = () => {
     dispatch(updateMenuAction('signUp'));
+  };
+
+  const handleChange = (key, event) => {
+    const loginUser = { ...userInfo };
+    loginUser[key] = event.target.value;
+    dispatch(updateloginInfoAction(loginUser));
   };
 
   return (
     <Box className={classes.root}>
       <Box className={classes.root}>
         <Box className={classes.row}>
-          <Grid>
-            <TextField id="standard-basic" label="email" />
-          </Grid>
+          <TextField onChange={e => handleChange('account', e)} id="standard-basic" label="account" />
         </Box>
         <Box className={classes.row}>
-          <Grid>
-            <TextField id="standard-basic" label="password" />
-          </Grid>
+          <TextField onChange={e => handleChange('password', e)} id="standard-basic" label="password" />
         </Box>
         <Box className={classes.row}>
           <Grid item xs={8}></Grid>
@@ -47,7 +51,7 @@ function SignIn(props) {
         <Box className={classes.row}>
           <Grid item xs={3}></Grid>
           <Grid item xs={8}>
-            <Button onClick={() => handleSignUp()}>
+            <Button onClick={() => handleNoAccount()}>
               <Typography variant="body1">아이디가 없으신가요?</Typography>
             </Button>
           </Grid>

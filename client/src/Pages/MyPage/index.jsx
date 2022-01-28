@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
 import { withStyles } from '@material-ui/styles';
 import { withTheme } from '@material-ui/styles';
@@ -10,34 +11,29 @@ import Button from '@material-ui/core/Button';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import NativeSelect from '@material-ui/core/NativeSelect';
+import { language, currency } from '../../Data/manager';
+import { userInfo, updateNewUserInfoAction, resetNewUserInfoAction, newUserInfo } from '../../Data/user';
 
 import DetailItem from './DetailItem';
+import DetailSelect from './DetailSelect';
 
 function MyPage(props) {
   const { classes } = props;
+  const dispatch = useDispatch();
   const [isEdit, setIsEdit] = useState(false);
-  const data = {
-    account: 'Tester',
-    email: 'test@test.com',
-    password: 'asdfsadf',
-    passwordCheck: 'asdfsadf',
-    language: 'kr',
-  };
+  const user = useSelector(userInfo);
+  const newUser = useSelector(newUserInfo);
+  const languages = useSelector(language);
+  const currencies = useSelector(currency);
 
-  const languages = {
-    1: { id: '1', name: 'English', display_name: 'English', code: 'en' },
-    2: { id: '2', name: 'Korean', display_name: '한국어', code: 'kr' },
+  const handleChange = (key, event) => {
+    const userData = { ...user };
+    userData[key] = event.target.value;
+    dispatch(updateNewUserInfoAction(userData));
   };
-
-  const menuItem = Object.values(languages).map((item, idx) => {
-    return (
-      <option key={idx} value={item.code}>
-        {item.display_name}
-      </option>
-    );
-  });
 
   const handleEdit = () => {
+    dispatch(updateNewUserInfoAction(user));
     setIsEdit(!isEdit);
   };
 
@@ -49,17 +45,45 @@ function MyPage(props) {
     console.log('로그아웃!!');
   };
 
-  const editText = isEdit ? '저장하기' : '내 정보 수정';
+  const handleCancel = () => {
+    dispatch(resetNewUserInfoAction());
+    setIsEdit(!isEdit);
+    console.log('handleCancel!');
+  };
 
-  const language = isEdit ? (
-    <FormControl className={classes.formControl}>
-      <NativeSelect value={data.language} onChange={() => console.log('selectBox')}>
-        {menuItem}
-      </NativeSelect>
-    </FormControl>
+  const handleSave = () => {
+    /* 
+    Todo : post콜 성공후 isEdit 바꿔주기~~~~~
+    dispatch();
+    */
+    console.log('save!');
+  };
+
+  const cancelBtn = isEdit ? (
+    <Button onClick={() => handleCancel()}>
+      <Typography variant="body1">취소</Typography>
+    </Button>
+  ) : null;
+
+  const editBtn = isEdit ? (
+    <Button onClick={() => handleSave()}>
+      <Typography variant="body1">저장하기</Typography>
+    </Button>
   ) : (
-    <Typography variant="body1">{data.language}</Typography>
+    <Button onClick={() => handleEdit()}>
+      <Typography variant="body1">내 정보 수정</Typography>
+    </Button>
   );
+
+  const passwordCheck = isEdit ? <DetailItem newUser={newUser} data={user} label="passwordCheck" isEdit={isEdit} /> : null;
+
+  const defaultLanguage = languages.find(item => {
+    return item.id === user.languageId;
+  });
+
+  const defaultCurrency = currencies.find(item => {
+    return item.id === user.currencyId;
+  });
 
   return (
     <Box className={classes.root}>
@@ -72,24 +96,47 @@ function MyPage(props) {
         </Grid>
       </Box>
       <Box className={classes.row}>
-        <Grid item xs={8}></Grid>
+        <Grid item xs={4}></Grid>
         <Grid item xs={4}>
-          <Button onClick={() => handleEdit()}>
-            <Typography variant="body1">{editText}</Typography>
-          </Button>
+          {cancelBtn}
+        </Grid>
+        <Grid item xs={4}>
+          {editBtn}
         </Grid>
       </Box>
       <Box className={classes.root}>
-        <DetailItem data={data} label="account" isEdit={isEdit} />
-        <DetailItem data={data} label="email" isEdit={isEdit} />
-        <DetailItem data={data} label="password" isEdit={isEdit} />
-        <DetailItem data={data} label="passwordCheck" isEdit={isEdit} />
+        <DetailItem data={user} newUser={newUser} label="account" isEdit={isEdit} />
+        <DetailItem data={user} newUser={newUser} label="email" isEdit={isEdit} />
+        {/* <DetailItem data={user} newUser={newUser} label="password" isEdit={isEdit} />
+        {passwordCheck} */}
         <Box className={classes.row}>
           <Grid item xs={5}>
             <Typography variant="body1">언어설정</Typography>
           </Grid>
           <Grid item xs={7}>
-            {language}
+            <DetailSelect
+              isEdit={isEdit}
+              data={languages}
+              newUser={newUser}
+              id="languageId"
+              handleChange={handleChange}
+              defaultData={defaultLanguage}
+            />
+          </Grid>
+        </Box>
+        <Box className={classes.row}>
+          <Grid item xs={5}>
+            <Typography variant="body1">통화설정</Typography>
+          </Grid>
+          <Grid item xs={7}>
+            <DetailSelect
+              isEdit={isEdit}
+              data={currencies}
+              newUser={newUser}
+              id="currencyId"
+              handleChange={handleChange}
+              defaultData={defaultCurrency}
+            />
           </Grid>
         </Box>
       </Box>

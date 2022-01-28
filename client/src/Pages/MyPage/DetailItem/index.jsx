@@ -10,7 +10,11 @@ import TextField from '@material-ui/core/TextField';
 function DetailItem(props) {
   const { classes } = props;
 
-  const name = props.isEdit ? <TextField id="standard-basic" /> : <Typography variant="body1">{props.data[props.label]}</Typography>;
+  const name = props.isEdit ? (
+    <TextField defaultValue={props.newUser[props.label]} id="standard-basic" />
+  ) : (
+    <Typography variant="body1">{props.data[props.label]}</Typography>
+  );
 
   return (
     <Box className={classes.row}>

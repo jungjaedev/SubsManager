@@ -7,6 +7,7 @@ import { withTheme } from '@material-ui/styles';
 import Box from '@material-ui/core/Box';
 
 import { activeMenu } from '../Data/manager';
+import { isLoggedIn } from '../Data/user';
 
 import Main from './Main';
 import ThisMonth from './ThisMonth';
@@ -19,6 +20,7 @@ import SignUp from './SignUp';
 function Pages(props) {
   const { classes } = props;
   const active = useSelector(activeMenu);
+  const loggedIn = useSelector(isLoggedIn);
 
   const components = {
     1: { name: 'thisMonth', component: <ThisMonth /> },
@@ -26,17 +28,18 @@ function Pages(props) {
     3: { name: 'manage', component: <Manage /> },
     4: { name: 'myPage', component: <MyPage /> },
     5: { name: 'signUp', component: <SignUp /> },
-    // 6: { name: 'main', component: <Main /> },
-    6: { name: 'main', component: <SignUp /> },
+    6: { name: 'main', component: <Main /> },
     7: { name: 'signIn', component: <SignIn /> },
   };
 
   const activeComponent = () => {
+    if (!loggedIn && active !== 'signUp') {
+      return <SignIn />;
+    }
     const activePage = Object.values(components).find(page => {
       return page.name === active;
     });
     return activePage.component;
-    // return <SignUp />;
   };
 
   return <Box className={classes.overflow}>{activeComponent}</Box>;

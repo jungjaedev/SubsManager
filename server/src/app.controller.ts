@@ -9,11 +9,12 @@ import { AuthService } from './auth/auth.service';
 export class AppController {
   constructor(private readonly appService: AppService, private authService: AuthService) {}
 
-  @UseGuards(LocalAuthGuard)
+  // @UseGuards(LocalAuthGuard)
   @Post('auth/login')
   async login(@Request() req) {
     const {account, password} = req.body
     const user = await this.authService.validateUser(account, password)
+    // console.log('user : ', user)
     return this.authService.login(user);
   }
   

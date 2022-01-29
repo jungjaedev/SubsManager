@@ -8,11 +8,8 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 // import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import NativeSelect from '@material-ui/core/NativeSelect';
 import { language, currency } from '../../Data/manager';
-import { userInfo, updateNewUserInfoAction, resetNewUserInfoAction, newUserInfo } from '../../Data/user';
+import { userInfo, updateNewUserInfoAction, newUserInfo } from '../../Data/user';
 
 import DetailItem from './DetailItem';
 import DetailSelect from './DetailSelect';
@@ -27,14 +24,9 @@ function MyPage(props) {
   const currencies = useSelector(currency);
 
   const handleChange = (key, event) => {
-    const userData = { ...user };
+    const userData = { ...newUser };
     userData[key] = event.target.value;
     dispatch(updateNewUserInfoAction(userData));
-  };
-
-  const handleEdit = () => {
-    dispatch(updateNewUserInfoAction(user));
-    setIsEdit(!isEdit);
   };
 
   const handleDeleteAccount = () => {
@@ -45,37 +37,7 @@ function MyPage(props) {
     console.log('로그아웃!!');
   };
 
-  const handleCancel = () => {
-    dispatch(resetNewUserInfoAction());
-    setIsEdit(!isEdit);
-    console.log('handleCancel!');
-  };
-
-  const handleSave = () => {
-    /* 
-    Todo : post콜 성공후 isEdit 바꿔주기~~~~~
-    dispatch();
-    */
-    console.log('save!');
-  };
-
-  const cancelBtn = isEdit ? (
-    <Button onClick={() => handleCancel()}>
-      <Typography variant="body1">취소</Typography>
-    </Button>
-  ) : null;
-
-  const editBtn = isEdit ? (
-    <Button onClick={() => handleSave()}>
-      <Typography variant="body1">저장하기</Typography>
-    </Button>
-  ) : (
-    <Button onClick={() => handleEdit()}>
-      <Typography variant="body1">내 정보 수정</Typography>
-    </Button>
-  );
-
-  const passwordCheck = isEdit ? <DetailItem newUser={newUser} data={user} label="passwordCheck" isEdit={isEdit} /> : null;
+  const passwordCheck = isEdit ? <DetailItem label="passwordCheck" isEdit={isEdit} /> : null;
 
   const defaultLanguage = languages.find(item => {
     return item.id === user.languageId;
@@ -95,50 +57,13 @@ function MyPage(props) {
           </Button>
         </Grid>
       </Box>
-      <Box className={classes.row}>
-        <Grid item xs={4}></Grid>
-        <Grid item xs={4}>
-          {cancelBtn}
-        </Grid>
-        <Grid item xs={4}>
-          {editBtn}
-        </Grid>
-      </Box>
       <Box className={classes.root}>
-        <DetailItem data={user} newUser={newUser} label="account" isEdit={isEdit} />
-        <DetailItem data={user} newUser={newUser} label="email" isEdit={isEdit} />
-        {/* <DetailItem data={user} newUser={newUser} label="password" isEdit={isEdit} />
-        {passwordCheck} */}
-        <Box className={classes.row}>
-          <Grid item xs={5}>
-            <Typography variant="body1">언어설정</Typography>
-          </Grid>
-          <Grid item xs={7}>
-            <DetailSelect
-              isEdit={isEdit}
-              data={languages}
-              newUser={newUser}
-              id="languageId"
-              handleChange={handleChange}
-              defaultData={defaultLanguage}
-            />
-          </Grid>
-        </Box>
-        <Box className={classes.row}>
-          <Grid item xs={5}>
-            <Typography variant="body1">통화설정</Typography>
-          </Grid>
-          <Grid item xs={7}>
-            <DetailSelect
-              isEdit={isEdit}
-              data={currencies}
-              newUser={newUser}
-              id="currencyId"
-              handleChange={handleChange}
-              defaultData={defaultCurrency}
-            />
-          </Grid>
-        </Box>
+        <DetailItem label="account" />
+        <DetailItem label="email" />
+        <DetailItem label="password" />
+        {passwordCheck}
+        <DetailSelect data={languages} label="언어설정" id="languageId" handleChange={handleChange} defaultData={defaultLanguage} />
+        <DetailSelect data={currencies} label="통화설정" id="currencyId" handleChange={handleChange} defaultData={defaultCurrency} />
       </Box>
       <Box className={classes.row}>
         <Grid item xs={8}></Grid>

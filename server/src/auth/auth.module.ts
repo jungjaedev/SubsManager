@@ -13,7 +13,7 @@ import { jwtConstants } from './constants';
 @Module({
   imports: [TypeOrmModule.forFeature([User]), PassportModule, JwtModule.register({
     secret: jwtConstants.secret,
-    signOptions: { expiresIn: '60s' },
+    signOptions: { expiresIn: '6000s' },
   })],
   providers: [AuthService, LocalStrategy, UserService],
   exports: [AuthService],

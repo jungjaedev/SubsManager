@@ -39,7 +39,6 @@ export const user = createSlice({
     },
     updateEditModeAction: (state, action) => {
       state.editMode = action.payload;
-      console.log('updateEditModeAction : ', action.payload);
     },
   },
 });
@@ -71,15 +70,17 @@ export const saveNewUserFuction = () => {
 
 export const updateUserFuction = () => {
   return (dispatch, getState) => {
+    const userId = getState().user.userInfo.id;
     const userInfo = getState().user.newUserInfo;
+    console.log('userInfo : ', userInfo);
     axios
-      .post(`${URL}/user`, userInfo, {
+      .put(`${URL}/user/${userId}`, userInfo, {
         headers: { 'Content-Type': 'application/json' },
         withCredentials: true,
       })
       .then(response => {
-        // Todo : update userInfo, newUserInfo
-        console.log(response);
+        dispatch(updateNewUserInfoAction(response.data));
+        dispatch(updateUserInfoAction(response.data));
       })
       .catch(error => {
         console.log(error);

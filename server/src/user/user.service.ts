@@ -15,18 +15,32 @@ export class UserService {
     return await this.userRepository.save(user)
   }
 
+  async updateUser(
+    id: number, user: User
+  )  {
+    const selectedUser = await this.findById(id);
+    selectedUser.account = user.account;
+    selectedUser.email = user.email;
+    selectedUser.password = user.password;
+    selectedUser.languageId =  Number(user.languageId);
+    selectedUser.currencyId = Number(user.currencyId);
+    await this.userRepository.update({id},selectedUser);
+    const updatedUser = await this.findById(id);
+    return updatedUser
+  }
+
 
   async findOne(account: string): Promise<User | undefined> {
-    console.log('userservice findOne!!!!');
     const user =  this.userRepository.findOne({account : account});
     return user;
   }
 
-  // async authenticateUser(
-  //   user: User
-  // ) {
-  //   return await this.userRepository.save(user)
-  // }
+  async findById(id: number): Promise<User | undefined> {
+    const user =  this.userRepository.findOne({id : id});
+    return user;
+  }
+
+
 
   
 }

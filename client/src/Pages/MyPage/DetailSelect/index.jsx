@@ -37,14 +37,14 @@ function DetailSelect(props) {
   };
 
   const handleSave = () => {
-    dispatch(updateUserFuction());
+    dispatch(updateUserFuction()).then(() => {
+      dispatch(updateEditModeAction(''));
+      setIsEdit(!isEdit);
+      return console.log('save!');
+    });
     /* 
     Todo : post콜 ';'성공'후 isEdit 바꿔주기~~~~~
     */
-
-    dispatch(updateEditModeAction(''));
-    setIsEdit(!isEdit);
-    console.log('save!');
   };
 
   const handleClick = () => {

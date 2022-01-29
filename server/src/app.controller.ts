@@ -14,7 +14,6 @@ export class AppController {
   async login(@Request() req) {
     const {account, password} = req.body
     const user = await this.authService.validateUser(account, password)
-    // console.log('user : ', user)
     return this.authService.login(user);
   }
   

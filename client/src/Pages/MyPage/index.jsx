@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { withStyles } from '@material-ui/styles';
@@ -23,11 +23,16 @@ function MyPage(props) {
   const languages = useSelector(language);
   const currencies = useSelector(currency);
 
+  useEffect(() => {
+    dispatch(updateNewUserInfoAction(user));
+  }, [dispatch, user]);
+
   const handleChange = (key, event) => {
     const userData = { ...newUser };
     userData[key] = event.target.value;
     dispatch(updateNewUserInfoAction(userData));
   };
+  console.log('{ ...newUser }', { ...newUser });
 
   const handleDeleteAccount = () => {
     console.log('탈퇴!!');

@@ -15,13 +15,16 @@ export class UserService {
     return await this.userRepository.save(user)
   }
 
+  
   async updateUser(
     id: number, user: User
   )  {
     const selectedUser = await this.findById(id);
+    if(user.password.length) {
+      selectedUser.password = user.password;
+    }
     selectedUser.account = user.account;
     selectedUser.email = user.email;
-    selectedUser.password = user.password;
     selectedUser.languageId =  Number(user.languageId);
     selectedUser.currencyId = Number(user.currencyId);
     await this.userRepository.update({id},selectedUser);

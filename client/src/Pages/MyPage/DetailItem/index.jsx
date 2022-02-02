@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { withStyles } from '@material-ui/styles';
@@ -8,12 +8,19 @@ import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import Input from '@material-ui/core/Input';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import IconButton from '@material-ui/core/IconButton';
+import FormControl from '@material-ui/core/FormControl';
+import Visibility from '@material-ui/icons/Visibility';
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
 
-import { userInfo, updateNewUserInfoAction, updateEditModeAction, resetNewUserInfoAction, newUserInfo, editMode } from '../../../Data/user';
+import { userInfo, updateUserFuction, updateEditModeAction, resetNewUserInfoAction, newUserInfo, editMode } from '../../../Data/user';
 
 function DetailItem(props) {
   const { classes } = props;
   const [isEdit, setIsEdit] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const user = useSelector(userInfo);
   const isEditMode = useSelector(editMode);
   const newUser = useSelector(newUserInfo);
@@ -27,20 +34,17 @@ function DetailItem(props) {
   };
 
   const handleSave = () => {
-    /* 
-    Todo : post콜 성공후 isEdit 바꿔주기~~~~~
-    dispatch();
-    */
-    dispatch(updateEditModeAction(''));
-    setIsEdit(!isEdit);
-    console.log('save!');
+    dispatch(updateUserFuction());
   };
 
-  const handleClick = () => {
-    dispatch(updateEditModeAction(props.label));
-    if (isEdit) {
-      console.log('save~~!');
+  useEffect(() => {
+    if (isEdit === true && isEditMode === '') {
+      setIsEdit(!isEdit);
     }
+  }, [isEdit, isEditMode]);
+
+  const handleEdit = () => {
+    dispatch(updateEditModeAction(props.label));
     setIsEdit(!isEdit);
   };
 
@@ -63,17 +67,50 @@ function DetailItem(props) {
     <Box className={classes.row}>
       <Grid item xs={6}></Grid>
       <Grid item xs={6}>
-        <Button disabled={disabled} onClick={() => handleClick()}>
+        <Button disabled={disabled} onClick={() => handleEdit()}>
           <Typography variant="body1">수정</Typography>
         </Button>
       </Grid>
     </Box>
   );
 
+  const newUserValue = newUser && newUser[props.label] ? newUser[props.label] : '';
+
+  const userValue = user && user[props.label] ? user[props.label] : '';
+
+  const handleMouseDownPassword = event => {
+    event.preventDefault();
+  };
+
+  const handleClickShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
+  const passwordValue = newUser.password ? newUser.password : '';
+
   const value = isEdit ? (
-    <TextField defaultValue={newUser[props.label]} id="standard-basic" />
+    props.label === 'password' ? (
+      <FormControl>
+        <Input
+          id="standard-adornment-password"
+          type={showPassword ? 'text' : 'password'}
+          value={passwordValue}
+          onChange={e => props.handleChange(props.label, e)}
+          endAdornment={
+            <InputAdornment position="end">
+              <IconButton aria-label="toggle password visibility" onClick={handleClickShowPassword} onMouseDown={handleMouseDownPassword}>
+                {showPassword ? <Visibility /> : <VisibilityOff />}
+              </IconButton>
+            </InputAdornment>
+          }
+        />
+      </FormControl>
+    ) : (
+      <TextField onChange={e => props.handleChange(props.label, e)} defaultValue={newUserValue} id="standard-basic" />
+    )
+  ) : props.label === 'password' ? (
+    <Typography variant="body1">'**********'</Typography>
   ) : (
-    <Typography variant="body1">{user[props.label]}</Typography>
+    <Typography variant="body1">{userValue}</Typography>
   );
 
   return (

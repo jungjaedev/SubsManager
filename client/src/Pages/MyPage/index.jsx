@@ -17,7 +17,6 @@ import DetailSelect from './DetailSelect';
 function MyPage(props) {
   const { classes } = props;
   const dispatch = useDispatch();
-  const [isEdit, setIsEdit] = useState(false);
   const user = useSelector(userInfo);
   const newUser = useSelector(newUserInfo);
   const languages = useSelector(language);
@@ -32,7 +31,6 @@ function MyPage(props) {
     userData[key] = event.target.value;
     dispatch(updateNewUserInfoAction(userData));
   };
-  console.log('{ ...newUser }', { ...newUser });
 
   const handleDeleteAccount = () => {
     console.log('탈퇴!!');
@@ -41,8 +39,6 @@ function MyPage(props) {
   const handleLogout = () => {
     console.log('로그아웃!!');
   };
-
-  const passwordCheck = isEdit ? <DetailItem label="passwordCheck" isEdit={isEdit} /> : null;
 
   const defaultLanguage = languages.find(item => {
     return item.id === user.languageId;
@@ -63,10 +59,9 @@ function MyPage(props) {
         </Grid>
       </Box>
       <Box className={classes.root}>
-        <DetailItem label="account" />
-        <DetailItem label="email" />
-        <DetailItem label="password" />
-        {passwordCheck}
+        <DetailItem handleChange={handleChange} label="account" />
+        <DetailItem handleChange={handleChange} label="email" />
+        <DetailItem handleChange={handleChange} label="password" />
         <DetailSelect data={languages} label="언어설정" id="languageId" handleChange={handleChange} defaultData={defaultLanguage} />
         <DetailSelect data={currencies} label="통화설정" id="currencyId" handleChange={handleChange} defaultData={defaultCurrency} />
       </Box>

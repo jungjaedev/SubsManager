@@ -72,7 +72,6 @@ export const updateUserFuction = () => {
   return (dispatch, getState) => {
     const userId = getState().user.userInfo.id;
     const userInfo = getState().user.newUserInfo;
-    console.log('userInfo : ', userInfo);
     axios
       .put(`${URL}/user/${userId}`, userInfo, {
         headers: { 'Content-Type': 'application/json' },
@@ -81,6 +80,7 @@ export const updateUserFuction = () => {
       .then(response => {
         dispatch(updateNewUserInfoAction(response.data));
         dispatch(updateUserInfoAction(response.data));
+        dispatch(updateEditModeAction(''));
       })
       .catch(error => {
         console.log(error);

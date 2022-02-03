@@ -34,7 +34,7 @@ export class UserService {
 
 
   async findOne(account: string): Promise<User | undefined> {
-    const user =  this.userRepository.findOne({account : account});
+    const user = await this.userRepository.findOne({account : account});
     return user;
   }
 

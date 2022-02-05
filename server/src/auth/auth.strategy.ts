@@ -1,6 +1,7 @@
 import { Strategy } from 'passport-jwt';
 import { PassportStrategy } from '@nestjs/passport';
 import { Injectable } from '@nestjs/common';
+import { jwtConstants } from './constants';
 
 @Injectable()
 export class AuthStrategy extends PassportStrategy(Strategy) {
@@ -11,11 +12,12 @@ export class AuthStrategy extends PassportStrategy(Strategy) {
         return req.cookies['access_token'];
       },
       ignoreExpiration: false,
-      secretOrKey: 'secret_key'
+      secretOrKey: jwtConstants.secret
     });
   }
 
   async validate(data: any): Promise<any> {
+    console.log('validate : ',data)
     return true;
   }
 }

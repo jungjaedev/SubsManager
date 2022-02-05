@@ -22,13 +22,12 @@ export class UserController {
     }
       
   // @UseGuards(JwtAuthGuard)
-  @UseGuards(AuthGuard('jwt'))
   @Put(':id')
+  @UseGuards(AuthGuard('jwt'))
   async update(
     @Param('id') id: number, @Body() user: User,
     @Req() request
   ) {
-    console.log('123123123',request.cookies)
     return await this.user.updateUser(id, user)
   }
 }

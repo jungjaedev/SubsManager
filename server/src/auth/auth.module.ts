@@ -20,7 +20,11 @@ import { AuthStrategy } from './auth.strategy';
     secret: jwtConstants.secret,
     signOptions: { expiresIn: '24h' },
   })],
-  providers: [AuthService, AuthStrategy, LocalStrategy, JwtStrategy, UserService],
+  providers: [AuthService, 
+    AuthStrategy, 
+    LocalStrategy, 
+    // JwtStrategy, 
+    UserService],
   exports: [AuthService],
 })
 export class AuthModule {}

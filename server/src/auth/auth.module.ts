@@ -8,6 +8,7 @@ import { UserService } from 'src/user/user.service';
 import { JwtModule } from '@nestjs/jwt';
 import { jwtConstants } from './constants';
 import { JwtStrategy } from './jwt.strategy';
+import { AuthStrategy } from './auth.strategy';
 
 
 
@@ -17,9 +18,9 @@ import { JwtStrategy } from './jwt.strategy';
     PassportModule, 
     JwtModule.register({
     secret: jwtConstants.secret,
-    signOptions: { expiresIn: '6000s' },
+    signOptions: { expiresIn: '24h' },
   })],
-  providers: [AuthService, LocalStrategy, JwtStrategy, UserService],
+  providers: [AuthService, AuthStrategy, LocalStrategy, JwtStrategy, UserService],
   exports: [AuthService],
 })
 export class AuthModule {}

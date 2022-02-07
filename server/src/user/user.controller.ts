@@ -21,7 +21,7 @@ export class UserController {
       return await this.user.createUser(user)
     }
       
-  // @UseGuards(JwtAuthGuard)
+
   @Put(':id')
   @UseGuards(AuthGuard('jwt'))
   async update(

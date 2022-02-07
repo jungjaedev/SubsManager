@@ -9,6 +9,7 @@ export class AuthStrategy extends PassportStrategy(Strategy) {
     super({
       jwtFromRequest: (req) => {
         if (!req || !req.cookies) return null;
+        // console.log('req.cookies : ',req.cookies['access_token'])
         return req.cookies['access_token'];
       },
       ignoreExpiration: false,
@@ -17,7 +18,7 @@ export class AuthStrategy extends PassportStrategy(Strategy) {
   }
 
   async validate(data: any): Promise<any> {
-    console.log('validate : ',data)
+    console.log('data:', data)
     return true;
   }
 }

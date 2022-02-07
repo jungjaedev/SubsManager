@@ -1,5 +1,5 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { withStyles } from '@material-ui/styles';
 import { withTheme } from '@material-ui/styles';
@@ -8,6 +8,7 @@ import Box from '@material-ui/core/Box';
 
 import { activeMenu } from '../Data/manager';
 import { isLoggedIn } from '../Data/user';
+import { checkLoginFuction } from '../Data/authentication';
 
 import Main from './Main';
 import ThisMonth from './ThisMonth';
@@ -21,6 +22,11 @@ function Pages(props) {
   const { classes } = props;
   const active = useSelector(activeMenu);
   const loggedIn = useSelector(isLoggedIn);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(checkLoginFuction());
+  }, [dispatch]);
 
   const components = {
     1: { name: 'thisMonth', component: <ThisMonth /> },

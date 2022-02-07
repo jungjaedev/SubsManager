@@ -5,12 +5,13 @@ import { LocalAuthGuard } from './auth/local-auth.guard';
 import { AuthService } from './auth/auth.service';
 import { UserService } from './user/user.service'
 import { JwtAuthGuard } from './auth/jwt-auth.guard';
+import { JwtService } from '@nestjs/jwt'
 
 
 
 @Controller()
 export class AppController {
-  constructor(private readonly  appService: AppService, private authService: AuthService, private userService: UserService) {}
+  constructor(private readonly  appService: AppService, private authService: AuthService, private userService: UserService, private jwtAuthGuard: JwtAuthGuard, private jwtService: JwtService) {}
 
   @UseGuards(LocalAuthGuard)
   @Post('auth/login')
@@ -30,17 +31,10 @@ export class AppController {
   @UseGuards(AuthGuard('jwt'))
   @Get('auth')
   async checkLoggedIn(@Request() req, @Response() res) {
-    console.log(req.cookie)
-    const account = req.body.username;
-    const user = await this.userService.findOne(account)
-    const loginUserData = await this.authService.login(user);
-    const token = loginUserData.access_token;
-    res.cookie('access_token', token, {
-      httpOnly: true,
-      domain: 'localhost', 
-      expires: new Date(Date.now() + 1000 * 60 * 60 * 24),
-    })
-    .send({user: loginUserData.user})
+    console.log('343434343434343434')
+    const verify = await this.jwtAuthGuard.validateToken(req.cookies.access_token);
+    console.log('verify : ',verify)
+    return verify;
   }
 
   @UseGuards(AuthGuard('jwt'))

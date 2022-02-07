@@ -73,4 +73,20 @@ export const logoutUserFuction = () => {
   };
 };
 
+export const checkLoginFuction = () => {
+  return (dispatch, getState) => {
+    axios
+      .get(`${URL}/auth`, {
+        headers: { 'Content-Type': 'application/json' },
+        withCredentials: true,
+      })
+      .then(response => {
+        console.log('checkLoginFuction : ', response);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
+};
+
 export default authentication.reducer;

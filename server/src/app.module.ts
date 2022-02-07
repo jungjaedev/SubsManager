@@ -31,6 +31,7 @@ import { AuthModule } from './auth/auth.module';
 import { AuthService } from './auth/auth.service';
 import { JwtModule } from '@nestjs/jwt';
 import { JwtService } from '@nestjs/jwt';
+import {JwtAuthGuard} from './auth/jwt-auth.guard'
 
 
 @Module({
@@ -69,7 +70,8 @@ import { JwtService } from '@nestjs/jwt';
     CategoryService,
     ProductService,
     // AuthService,
-    // JwtService
+    // JwtService,
+    JwtAuthGuard
   ],
 })
 export class AppModule {}

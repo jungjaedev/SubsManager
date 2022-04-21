@@ -60,6 +60,7 @@ export const saveNewUserFuction = () => {
         withCredentials: true,
       })
       .then(response => {
+        console.log(`response :`, response);
         dispatch(updateMenuAction('signIn'));
       })
       .catch(error => {

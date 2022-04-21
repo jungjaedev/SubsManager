@@ -31,7 +31,7 @@ export class AppController {
   @UseGuards(AuthGuard('jwt'))
   @Get('auth')
   async checkLoggedIn(@Request() req, @Response() res) {
-    console.log('343434343434343434')
+    console.log('343434343434343434', req)
     const verify = await this.jwtAuthGuard.validateToken(req.cookies.access_token);
     console.log('verify : ',verify)
     return verify;

@@ -1,16 +1,36 @@
-import React from "react";
+import React from 'react';
 
-import { withStyles } from "@material-ui/styles";
-import { withTheme } from "@material-ui/styles";
-import Box from "@material-ui/core/Box";
+import { withStyles } from '@material-ui/styles';
+import { withTheme } from '@material-ui/styles';
+import Box from '@material-ui/core/Box';
+
+import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 
 function ProductItem(props) {
   const { classes } = props;
+  // display_name: "Tmon"
+  // name: "tmon"
+  // url: "https://www.tmon.co.kr/"
 
-  return <Box className={classes.root}></Box>;
+  const handleVisitWebsite = () => {
+    window.open(props.data.url);
+  };
+
+  const handleOpenAddModal = () => {
+    console.log('modal open');
+  };
+
+  return (
+    <Box className={classes.root}>
+      <Box onClick={() => handleVisitWebsite()}>{props.data.display_name}</Box>
+      <Box>
+        <AddCircleOutlineIcon onClick={() => handleOpenAddModal()} />
+      </Box>
+    </Box>
+  );
 }
 
-const componentStyle = withStyles((theme) => ({
+const componentStyle = withStyles(theme => ({
   root: theme.styles.Default.Box.root,
 }));
 

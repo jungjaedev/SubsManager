@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { URL } from '../store';
 import { updateMenuAction } from '../manager';
-import { updateUserInfoAction, updateIsLoggedInAction } from '../user';
+import { updateUserInfoAction, updateIsLoggedInAction, resetNewUserInfoAction } from '../user';
 import { getAllFunction } from '../manager';
 
 export const authentication = createSlice({
@@ -65,7 +65,8 @@ export const logoutUserFuction = () => {
         withCredentials: true,
       })
       .then(response => {
-        console.log(response);
+        dispatch(updateMenuAction('signIn'));
+        dispatch(resetNewUserInfoAction());
       })
       .catch(error => {
         console.log(error);

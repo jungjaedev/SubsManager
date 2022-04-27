@@ -51,7 +51,6 @@ export class AppController {
   async logout(@Request() req) {
     const {account, password} = req.body
     const user = await this.authService.validateUser(account, password)
-    console.log('10001', user)
     return this.authService.logout(user);
   }
   

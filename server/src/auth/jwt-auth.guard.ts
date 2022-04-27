@@ -8,12 +8,10 @@ export class JwtAuthGuard extends AuthGuard('jwt') {
     super();
   }
   async validateToken(token: string) {
-    console.log('3123123123')
     try {
       const verify = await this.jwtService.verify(token);
       return verify;
     } catch (e) {
-      console.log('e.message : ',e.message)
       switch (e.message) {
         case 'INVALID_TOKEN':
         case 'TOKEN_IS_ARRAY':
@@ -22,7 +20,6 @@ export class JwtAuthGuard extends AuthGuard('jwt') {
         case 'EXPIRED_TOKEN':
           throw new HttpException('토큰이 만료되었습니다.', 410);
         default:
-          console.log('default')
           throw new HttpException('서버 오류입니다.', 500);
       }
     }

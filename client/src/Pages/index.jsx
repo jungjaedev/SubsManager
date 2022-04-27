@@ -44,7 +44,7 @@ function Pages(props) {
     }
     const activePage = Object.values(components).find(page => {
       return page.name === active;
-    });
+    }); 
     return activePage.component;
   };
 

@@ -7,6 +7,7 @@ export class LanguageController {
 
   @Get()
   findAll(){
+    console.log('language')
     return this.language.findAll();
   }
 }

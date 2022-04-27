@@ -9,10 +9,11 @@ export class JwtAuthGuard extends AuthGuard('jwt') {
   }
   async validateToken(token: string) {
     try {
+      console.log('jwt-auth.guard 13', token)
       const verify = await this.jwtService.verify(token);
       return verify;
     } catch (e) {
-      console.log('5555555', e)
+      console.log('jwt-auth.guard 16', e)
       switch (e.message) {
         case 'INVALID_TOKEN':
         case 'TOKEN_IS_ARRAY':

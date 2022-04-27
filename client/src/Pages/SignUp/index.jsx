@@ -36,6 +36,20 @@ function SignUp(props) {
     dispatch(getAllFunction('currency'));
   }, [dispatch]);
 
+  useEffect(() => {
+    const user = { ...newUser };
+    if (languageList.length && user.languageId === '') {
+      const defaultlang = languageList.find(el => el.name === 'korean');
+      user.languageId = defaultlang.id;
+      dispatch(updateNewUserInfoAction(user));
+    }
+    if (currencyList.length && user.currencyId === '') {
+      const defaultcur = currencyList.find(el => el.code === 'KRW');
+      user.currencyId = defaultcur.id;
+      dispatch(updateNewUserInfoAction(user));
+    }
+  }, [dispatch, languageList, currencyList]);
+
   const languageItem = Object.values(languageList).map((item, idx) => {
     return (
       <option key={idx} value={item.id}>

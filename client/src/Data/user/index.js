@@ -60,6 +60,7 @@ export const saveNewUserFuction = () => {
         withCredentials: true,
       })
       .then(response => {
+        console.log(`response :`, response);
         dispatch(updateMenuAction('signIn'));
       })
       .catch(error => {
@@ -72,10 +73,11 @@ export const updateUserFuction = () => {
   return (dispatch, getState) => {
     const userId = getState().user.userInfo.id;
     const userInfo = getState().user.newUserInfo;
-    const accessToken = getState().authentication.accessToken;
     axios
       .put(`${URL}/user/${userId}`, userInfo, {
-        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${accessToken}` },
+        headers: {
+          'Content-Type': 'application/json',
+        },
         withCredentials: true,
       })
       .then(response => {

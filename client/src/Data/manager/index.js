@@ -48,8 +48,8 @@ export const getAllFunction = type_name => {
       })
       .then(response => {
         newData = { type_name: type_name, data: response.data };
+        return dispatch(updateAllDataAction(newData));
       });
-    return dispatch(updateAllDataAction(newData));
   };
 };
 

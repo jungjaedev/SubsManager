@@ -1,7 +1,8 @@
-import { Body, Controller, Get, Param, Post, Put, UseGuards } from '@nestjs/common';
+import { Body, Controller, Request,Get, Param, Post, Put, Req, UseGuards } from '@nestjs/common';
 import { User } from './user.entity';
 import { UserService } from './user.service';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('user')
 export class UserController {
@@ -20,10 +21,12 @@ export class UserController {
       return await this.user.createUser(user)
     }
       
-  @UseGuards(JwtAuthGuard)
+
   @Put(':id')
+  @UseGuards(AuthGuard('jwt'))
   async update(
-    @Param('id') id: number, @Body() user: User
+    @Param('id') id: number, @Body() user: User,
+    @Req() request
   ) {
     return await this.user.updateUser(id, user)
   }

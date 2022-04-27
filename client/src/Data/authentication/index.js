@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { URL } from '../store';
 import { updateMenuAction } from '../manager';
-import { updateUserInfoAction, updateIsLoggedInAction } from '../user';
+import { updateUserInfoAction, updateIsLoggedInAction, resetNewUserInfoAction } from '../user';
 import { getAllFunction } from '../manager';
 
 export const authentication = createSlice({
@@ -18,9 +18,9 @@ export const authentication = createSlice({
     updateloginInfoAction: (state, action) => {
       state.loginInfo = action.payload;
     },
-    updateAccessTokenAction: (state, action) => {
-      state.accessToken = action.payload;
-    },
+    // updateAccessTokenAction: (state, action) => {
+    //   state.accessToken = action.payload;
+    // },
   },
 });
 
@@ -43,7 +43,7 @@ export const loginUserFuction = () => {
         }
       )
       .then(response => {
-        dispatch(updateAccessTokenAction(response.data.access_token));
+        // dispatch(updateAccessTokenAction(response.data.access_token));
         dispatch(updateUserInfoAction(response.data.user));
         dispatch(updateIsLoggedInAction(true));
         dispatch(updateMenuAction('main'));
@@ -65,7 +65,8 @@ export const logoutUserFuction = () => {
         withCredentials: true,
       })
       .then(response => {
-        console.log(response);
+        dispatch(updateMenuAction('signIn'));
+        dispatch(resetNewUserInfoAction());
       })
       .catch(error => {
         console.log(error);
@@ -81,9 +82,14 @@ export const checkLoginFuction = () => {
         withCredentials: true,
       })
       .then(response => {
-        console.log('checkLoginFuction : ', response);
+        dispatch(updateUserInfoAction(response.data));
+        dispatch(updateIsLoggedInAction(true));
+        dispatch(updateMenuAction('main'));
+        dispatch(getAllFunction('currency'));
+        dispatch(getAllFunction('language'));
       })
       .catch(error => {
+        console.log('9191919');
         console.log(error);
       });
   };

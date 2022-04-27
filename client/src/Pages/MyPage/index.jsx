@@ -10,6 +10,7 @@ import Button from '@material-ui/core/Button';
 // import InputLabel from '@material-ui/core/InputLabel';
 import { language, currency } from '../../Data/manager';
 import { userInfo, updateNewUserInfoAction, newUserInfo } from '../../Data/user';
+import { logoutUserFuction } from '../../Data/authentication';
 
 import DetailItem from './DetailItem';
 import DetailSelect from './DetailSelect';
@@ -37,7 +38,7 @@ function MyPage(props) {
   };
 
   const handleLogout = () => {
-    console.log('로그아웃!!');
+    dispatch(logoutUserFuction());
   };
 
   const defaultLanguage = languages.find(item => {

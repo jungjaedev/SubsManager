@@ -8,16 +8,16 @@ import Grid from '@material-ui/core/Grid';
 import Search from './Search';
 import ProductList from './ProductList';
 
-function Overview(props) {
+function QuickAdd(props) {
   const { classes } = props;
 
   return (
     <Box className={classes.root} pt={4}>
       <Grid item xs={12} className={classes.row}>
-        <Typography variant='h6'>Quick add subscription</Typography>
+        <Typography variant="h6">Quick add subscription</Typography>
       </Grid>
       <Search />
-      <ProductList />
+      <ProductList handleOpenAddModal={props.handleOpenAddModal} />
     </Box>
   );
 }
@@ -27,4 +27,4 @@ const componentStyle = withStyles(theme => ({
   row: theme.styles.Default.Box.row,
 }));
 
-export default withTheme(componentStyle(Overview));
+export default withTheme(componentStyle(QuickAdd));

@@ -33,9 +33,7 @@ function Main(props) {
       <Fab className={classes.floatingBtn} onClick={() => handleOpenAddModal()} color="primary" aria-label="add">
         <AddIcon />
       </Fab>
-      <Modal style={{}} open={open} onClose={() => handleClose()}>
-        <AddProductModal />
-      </Modal>
+      <AddProductModal open={open} handleClose={handleClose} />
     </Box>
   );
 }

@@ -18,10 +18,6 @@ function ProductItem(props) {
     window.open(props.data.url);
   };
 
-  const handleOpenAddModal = () => {
-    console.log('modal open');
-  };
-
   return (
     <Box
       style={{
@@ -39,7 +35,7 @@ function ProductItem(props) {
     >
       <Box>{props.data.display_name}</Box>
       <Box style={{ position: 'absolute', right: -5, bottom: -5 }}>
-        <IconButton onClick={() => handleOpenAddModal()}>
+        <IconButton onClick={() => props.handleOpenAddModal()}>
           <AddCircleOutlineIcon />
         </IconButton>
       </Box>

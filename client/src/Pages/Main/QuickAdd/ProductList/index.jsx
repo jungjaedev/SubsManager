@@ -20,8 +20,8 @@ function ProductList(props) {
 
   const list = Object.values(productList).map((item, index) => {
     return (
-      <Grid item xs={6}>
-        <ProductItem data={item} key={index} />
+      <Grid key={index} className={classes.root} style={{ padding: 4 }} item xs={6}>
+        <ProductItem data={item} />
       </Grid>
     );
   });

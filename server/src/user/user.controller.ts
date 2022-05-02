@@ -28,7 +28,6 @@ export class UserController {
     @Param('id') id: number, @Body() user: User,
     @Req() request
   ) {
-    console.log(31)
     return await this.user.updateUser(id, user)
   }
 }

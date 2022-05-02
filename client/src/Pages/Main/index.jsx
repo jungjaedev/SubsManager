@@ -18,7 +18,6 @@ function Main(props) {
   const [open, setOpen] = useState(false);
 
   const handleOpenAddModal = () => {
-    console.log('add');
     setOpen(true);
   };
 

@@ -30,7 +30,6 @@ function DetailItem(props) {
     dispatch(resetNewUserInfoAction());
     dispatch(updateEditModeAction(''));
     setIsEdit(!isEdit);
-    console.log('handleCancel!');
   };
 
   const handleSave = () => {

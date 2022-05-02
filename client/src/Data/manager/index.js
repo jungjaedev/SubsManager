@@ -16,7 +16,6 @@ export const manager = createSlice({
   },
   reducers: {
     updateMenuAction: (state, action) => {
-      console.log(action.payload);
       state.previousMenu = state.activeMenu;
       state.activeMenu = action.payload;
     },

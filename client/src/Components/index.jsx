@@ -1,16 +1,16 @@
-import React from "react";
+import React from 'react';
 
-import { withStyles } from "@material-ui/styles";
-import { withTheme } from "@material-ui/styles";
-import Box from "@material-ui/core/Box";
+import { withStyles } from '@material-ui/styles';
+import { withTheme } from '@material-ui/styles';
+import Box from '@material-ui/core/Box';
 
-function Modal (props) {
+function Components(props) {
   const { classes } = props;
   return <Box className={classes.root}></Box>;
 }
 
-const componentStyle = withStyles((theme) => ({
+const componentStyle = withStyles(theme => ({
   root: theme.styles.Default.Box.root,
 }));
 
-export default withTheme(componentStyle(Modal));
+export default withTheme(componentStyle(Components));

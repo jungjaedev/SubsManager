@@ -13,6 +13,10 @@ export const manager = createSlice({
     type: [],
     product: [],
     period: [],
+    autoRenew: [
+      { id: 1, name: 'yes', value: true, display_name: 'Yes' },
+      { id: 2, name: 'no', value: false, display_name: 'No' },
+    ],
   },
   reducers: {
     updateMenuAction: (state, action) => {
@@ -36,6 +40,7 @@ export const type = state => state.manager.type;
 export const category = state => state.manager.category;
 export const product = state => state.manager.product;
 export const period = state => state.manager.period;
+export const autoRenew = state => state.manager.autoRenew;
 
 export const getAllFunction = type_name => {
   return async dispatch => {

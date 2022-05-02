@@ -21,7 +21,7 @@ function ProductList(props) {
   const list = Object.values(productList).map((item, index) => {
     return (
       <Grid key={index} className={classes.root} style={{ padding: 4 }} item xs={6}>
-        <ProductItem data={item} />
+        <ProductItem handleOpenAddModal={props.handleOpenAddModal} data={item} />
       </Grid>
     );
   });

@@ -20,6 +20,7 @@ export class AppController {
     const user = await this.userService.findOne(account)
     const loginUserData = await this.authService.login(user);
     const token = loginUserData.access_token;
+    console.log(new Date(Date.now()), new Date(Date.now() + 1000 * 60 * 60))
     res.cookie('access_token', token, {
       httpOnly: true,
       domain: 'localhost', 

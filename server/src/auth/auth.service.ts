@@ -8,6 +8,7 @@ export class AuthService {
   constructor(private userService: UserService, private jwtService: JwtService) {}
 
   async validateUser(account: string, password: string): Promise<any> {
+    console.log("auth.service.ts 11", account)
     const user = await this.userService.findOne(account);
     if (user && user.password === password) {
       const { password, ...result } = user;

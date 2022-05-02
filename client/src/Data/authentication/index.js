@@ -89,7 +89,6 @@ export const checkLoginFuction = () => {
         dispatch(getAllFunction('language'));
       })
       .catch(error => {
-        console.log('9191919');
         console.log(error);
       });
   };

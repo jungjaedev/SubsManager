@@ -20,11 +20,9 @@ export class AppController {
     const user = await this.userService.findOne(account)
     const loginUserData = await this.authService.login(user);
     const token = loginUserData.access_token;
-    console.log(new Date(Date.now()), new Date(Date.now() + 1000 * 60 * 60))
     res.cookie('access_token', token, {
       httpOnly: true,
       domain: 'localhost', 
-      expires: new Date(Date.now() + 1000 * 60 * 60 * 24),
     })
     .send({user: loginUserData.user})
   }
@@ -38,7 +36,6 @@ export class AppController {
       res.cookie('access_token', req.cookies.access_token, {
         httpOnly: true,
         domain: 'localhost', 
-        expires: new Date(Date.now() + 1000 * 60 * 60 * 24),
       })  
       .json(user)
     }
@@ -47,15 +44,16 @@ export class AppController {
 
   @UseGuards(AuthGuard('jwt'))
   @Post('auth/logout')
-  async logout(@Request() req) {
+  async logout(@Request() req, @Response() res) {
     const {account, password} = req.body
     const user = await this.authService.validateUser(account, password)
+    res.cookie('access_token', '', {
+      httpOnly: true,
+      domain: 'localhost', 
+      expires: new Date(Date.now() - 1000 * 60 * 60), // 1시간 후 만료
+    })
+    .send({user: {}})
     return this.authService.logout(user);
-  }
-  
-  @Get()
-  getHello(): string {
-    return this.appService.getHello();
   }
 }
 

@@ -8,7 +8,6 @@ export class AuthStrategy extends PassportStrategy(Strategy) {
   constructor() {
     super({
       jwtFromRequest: (req) => {
-        console.log("auth.strategy.ts 11", req.cookies)
         if (!req || !req.cookies) return null;
         return req.cookies['access_token'];
       },

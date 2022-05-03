@@ -16,12 +16,21 @@ function Dropdown(props) {
   const userProduct = useSelector(productInfo);
 
   let value = '';
-  if (props.name === 'Category' && Object.keys(userProduct.product).length !== 0) {
-    let selectedCategory = props.data.find(el => el.id === userProduct.product.categoryId);
-    value = selectedCategory.id;
-    if (typeof selectedCategory === 'string') {
-      value = '';
+  let disabled = false;
+  if (props.name === 'category') {
+    // 존재하는 프로덕트를 추가하는 경우. 이미 카테고리가 정해져 있으므로, 그 카테고리의 value를 set.
+    if (Object.keys(userProduct.product).length !== 0) {
+      let selectedCategory = props.data.find(el => el.id === userProduct.product.categoryId);
+      value = selectedCategory.id;
+      disabled = true;
+    } else {
+      disabled = false;
+      value = userProduct.hasOwnProperty('category') ? userProduct.category.id : ''
     }
+  }
+
+  if (props.name === 'type') {
+    value = userProduct.type.id
   }
 
   const handleChange = e => {
@@ -30,7 +39,6 @@ function Dropdown(props) {
     let newData = props.data.find(el => el.id === parseInt(selected));
     newUserProduct[props.name] = newData;
     dispatch(updateUserProductInfoAction(newUserProduct));
-    value = e.target.value;
   };
   const options = props.data.map((item, idx) => {
     return (
@@ -46,7 +54,7 @@ function Dropdown(props) {
         {props.displayName}
       </Grid>
       <Grid item xs={9}>
-        <FormControl className={classes.formControl}>
+        <FormControl className={classes.formControl} disabled={disabled}>
           <NativeSelect onChange={e => handleChange(e)} value={value}>
             <option value=""></option>
             {options}

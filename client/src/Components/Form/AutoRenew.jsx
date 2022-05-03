@@ -7,7 +7,7 @@ import Grid from '@material-ui/core/Grid';
 import FormControl from '@material-ui/core/FormControl';
 import NativeSelect from '@material-ui/core/NativeSelect';
 
-function BillingCycle(props) {
+function AutoRenew(props) {
   const { classes } = props;
   const options = props.data.map((item, idx) => {
     return (
@@ -16,25 +16,12 @@ function BillingCycle(props) {
       </option>
     );
   });
-  const days = [];
-  for (let i = 0; i < 31; i++) {
-    days.push(
-      <option key={i + 1} value={i + 1}>
-        {i + 1}
-      </option>
-    );
-  }
   return (
     <Box className={classes.row}>
-      <Grid item xs={6}>
-        Billingcycle : every
+      <Grid item xs={4}>
+        Auto Renew
       </Grid>
-      <Grid item xs={3}>
-        <FormControl className={classes.formControl}>
-          <NativeSelect>{days}</NativeSelect>
-        </FormControl>
-      </Grid>
-      <Grid item xs={3}>
+      <Grid item xs={8}>
         <FormControl className={classes.formControl}>
           <NativeSelect value={props.data.id}>{options}</NativeSelect>
         </FormControl>
@@ -47,4 +34,4 @@ const componentStyle = withStyles(theme => ({
   row: theme.styles.Default.Box.row,
 }));
 
-export default withTheme(componentStyle(BillingCycle));
+export default withTheme(componentStyle(AutoRenew));

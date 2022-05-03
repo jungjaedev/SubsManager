@@ -30,4 +30,6 @@ export class UserController {
   ) {
     return await this.user.updateUser(id, user)
   }
+  // @Post('delete')
+  // async 
 }

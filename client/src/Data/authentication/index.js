@@ -12,22 +12,17 @@ export const authentication = createSlice({
       account: '',
       password: '',
     },
-    accessToken: '',
   },
   reducers: {
     updateloginInfoAction: (state, action) => {
       state.loginInfo = action.payload;
     },
-    // updateAccessTokenAction: (state, action) => {
-    //   state.accessToken = action.payload;
-    // },
   },
 });
 
-export const { updateloginInfoAction, updateAccessTokenAction } = authentication.actions;
+export const { updateloginInfoAction } = authentication.actions;
 
 export const loginInfo = state => state.authentication.loginInfo;
-export const accessToken = state => state.authentication.accessToken;
 
 export const loginUserFuction = () => {
   return (dispatch, getState) => {
@@ -35,7 +30,6 @@ export const loginUserFuction = () => {
     axios
       .post(
         `${URL}/auth/login`,
-        // userInfo,
         { username: userInfo.account, password: userInfo.password },
         {
           headers: { 'Content-Type': 'application/json' },
@@ -43,7 +37,6 @@ export const loginUserFuction = () => {
         }
       )
       .then(response => {
-        // dispatch(updateAccessTokenAction(response.data.access_token));
         dispatch(updateUserInfoAction(response.data.user));
         dispatch(updateIsLoggedInAction(true));
         dispatch(updateMenuAction('main'));
@@ -58,8 +51,6 @@ export const loginUserFuction = () => {
 
 export const logoutUserFuction = () => {
   return (dispatch, getState) => {
-    console.log("logout")
-    deleteAllCookies()
     const userInfo = getState().authentication.loginInfo;
     axios
       .post(`${URL}/auth/logout`, userInfo, {
@@ -95,18 +86,5 @@ export const checkLoginFuction = () => {
       });
   };
 };
-
-
-function deleteAllCookies() {
-  var cookies = document.cookie.split(";");
-  console.log(cookies)
-  for (var i = 0; i < cookies.length; i++) {
-      var cookie = cookies[i];
-      var eqPos = cookie.indexOf("=");
-      var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
-      document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
-  }
-  window.localStorage.clear()
-}
 
 export default authentication.reducer;

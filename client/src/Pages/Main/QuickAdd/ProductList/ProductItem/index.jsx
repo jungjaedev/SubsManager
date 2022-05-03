@@ -1,4 +1,5 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { withStyles } from '@material-ui/styles';
 import { withTheme } from '@material-ui/styles';
@@ -7,11 +8,19 @@ import IconButton from '@material-ui/core/IconButton';
 
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 
+import { updateUserProductInfoAction, productInfo } from 'Data/userProduct';
+
 function ProductItem(props) {
   const { classes } = props;
-  // display_name: "Tmon"
-  // name: "tmon"
-  // url: "https://www.tmon.co.kr/"
+
+  const dispatch = useDispatch();
+  const userProduct = useSelector(productInfo);
+  const handleClick = () => {
+    const newUserProduct = { ...userProduct };
+    newUserProduct.product = props.data;
+    dispatch(updateUserProductInfoAction(newUserProduct));
+    props.handleOpenAddModal();
+  };
 
   const handleVisitWebsite = e => {
     if (e.target !== e.currentTarget) return;
@@ -35,7 +44,7 @@ function ProductItem(props) {
     >
       <Box>{props.data.display_name}</Box>
       <Box style={{ position: 'absolute', right: -5, bottom: -5 }}>
-        <IconButton onClick={() => props.handleOpenAddModal()}>
+        <IconButton onClick={() => handleClick()}>
           <AddCircleOutlineIcon />
         </IconButton>
       </Box>

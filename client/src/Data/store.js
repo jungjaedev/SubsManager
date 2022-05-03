@@ -3,6 +3,7 @@ import manager from './manager';
 import pages from './pages';
 import user from './user';
 import authentication from './authentication';
+import userProduct from './userProduct';
 
 export const URL = 'http://localhost:8080';
 
@@ -12,5 +13,6 @@ export const store = configureStore({
     pages: pages,
     user: user,
     authentication: authentication,
+    userProduct: userProduct,
   },
 });

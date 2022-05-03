@@ -12,22 +12,17 @@ export const authentication = createSlice({
       account: '',
       password: '',
     },
-    accessToken: '',
   },
   reducers: {
     updateloginInfoAction: (state, action) => {
       state.loginInfo = action.payload;
     },
-    // updateAccessTokenAction: (state, action) => {
-    //   state.accessToken = action.payload;
-    // },
   },
 });
 
-export const { updateloginInfoAction, updateAccessTokenAction } = authentication.actions;
+export const { updateloginInfoAction } = authentication.actions;
 
 export const loginInfo = state => state.authentication.loginInfo;
-export const accessToken = state => state.authentication.accessToken;
 
 export const loginUserFuction = () => {
   return (dispatch, getState) => {
@@ -35,7 +30,6 @@ export const loginUserFuction = () => {
     axios
       .post(
         `${URL}/auth/login`,
-        // userInfo,
         { username: userInfo.account, password: userInfo.password },
         {
           headers: { 'Content-Type': 'application/json' },
@@ -43,7 +37,6 @@ export const loginUserFuction = () => {
         }
       )
       .then(response => {
-        // dispatch(updateAccessTokenAction(response.data.access_token));
         dispatch(updateUserInfoAction(response.data.user));
         dispatch(updateIsLoggedInAction(true));
         dispatch(updateMenuAction('main'));

@@ -21,7 +21,7 @@ function CostCurrency(props) {
   return (
     <Box className={classes.row}>
       <Grid item xs={3}>
-        {props.name}
+        Cost
       </Grid>
       <Grid item xs={4}>
         <TextField />

@@ -19,18 +19,18 @@ function Dropdown(props) {
   let disabled = false;
   if (props.name === 'category') {
     // 존재하는 프로덕트를 추가하는 경우. 이미 카테고리가 정해져 있으므로, 그 카테고리의 value를 set.
-    if (Object.keys(userProduct.product).length !== 0) {
+    if (userProduct.product.hasOwnProperty('url')) {
       let selectedCategory = props.data.find(el => el.id === userProduct.product.categoryId);
       value = selectedCategory.id;
       disabled = true;
     } else {
       disabled = false;
-      value = userProduct.hasOwnProperty('category') ? userProduct.category.id : ''
+      value = userProduct.hasOwnProperty('category') ? userProduct.category.id : '';
     }
   }
 
   if (props.name === 'type') {
-    value = userProduct.type.id
+    value = userProduct.type.id;
   }
 
   const handleChange = e => {

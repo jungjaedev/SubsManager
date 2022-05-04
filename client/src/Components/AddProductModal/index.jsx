@@ -7,7 +7,7 @@ import Modal from '@material-ui/core/Modal';
 import Header from './Header';
 import Body from './Body';
 import Footer from './Footer';
-import { getAllFunction, type, category, currency, period } from '../../Data/manager';
+import { getAllFunction, type, category, currency, period, product } from '../../Data/manager';
 
 function AddProductModal(props) {
   const { classes } = props;
@@ -16,6 +16,7 @@ function AddProductModal(props) {
   const currencyList = useSelector(currency);
   const categoryList = useSelector(category);
   const periodList = useSelector(period);
+  const productList = useSelector(product);
 
   useEffect(() => {
     if (!typeList.length) {
@@ -29,6 +30,9 @@ function AddProductModal(props) {
     }
     if (!periodList.length) {
       dispatch(getAllFunction('period'));
+    }
+    if (!productList.length) {
+      dispatch(getAllFunction('product'));
     }
   }, [dispatch]);
 

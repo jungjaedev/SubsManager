@@ -27,12 +27,12 @@ function Body(props) {
     <Box className={classes.root}>
       <Product data={productList} name="product" displayName="Product" />
       <Dropdown data={typeList} name="type" displayName="Type"></Dropdown>
-      <Calendar name="Start Date" displayName="Start Date" />
+      <Calendar name="start_date" displayName="Start Date" />
       {/* <Calendar name="End Date" /> */}
       <BillingCycle data={periodList} name="period" displayName="Period"></BillingCycle>
       <Dropdown data={categoryList} name="category" displayName="Category"></Dropdown>
       <CostCurrency data={currencyList} name="currency" displayName="Currency"></CostCurrency>
-      <AutoRenew data={autoRenewList} name="autoRenew" displayName="AutoRenew" />
+      <AutoRenew data={autoRenewList} name="auto_renew" displayName="AutoRenew" />
     </Box>
   );
 }

@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
 import { withStyles } from '@material-ui/styles';
 import { withTheme } from '@material-ui/styles';
@@ -7,8 +8,19 @@ import Grid from '@material-ui/core/Grid';
 import FormControl from '@material-ui/core/FormControl';
 import NativeSelect from '@material-ui/core/NativeSelect';
 
+import { productInfo, updateUserProductInfoAction } from 'Data/userProduct';
+
 function AutoRenew(props) {
   const { classes } = props;
+  const dispatch = useDispatch();
+  const userProduct = useSelector(productInfo);
+
+  useEffect(() => {
+    const newUserProduct = { ...userProduct };
+    let newData = props.data.find(el => el.id === 1);
+    newUserProduct[props.name] = newData;
+    dispatch(updateUserProductInfoAction(newUserProduct));
+  }, []);
   const options = props.data.map((item, idx) => {
     return (
       <option key={idx} value={item.id}>
@@ -16,6 +28,17 @@ function AutoRenew(props) {
       </option>
     );
   });
+
+  const handleChange = e => {
+    let selected = e.target.value;
+    const newUserProduct = { ...userProduct };
+    let newData = props.data.find(el => el.id === parseInt(selected));
+    newUserProduct[props.name] = newData;
+    dispatch(updateUserProductInfoAction(newUserProduct));
+  };
+
+  let value = userProduct[props.name].id;
+
   return (
     <Box className={classes.row}>
       <Grid item xs={4}>
@@ -23,7 +46,9 @@ function AutoRenew(props) {
       </Grid>
       <Grid item xs={8}>
         <FormControl className={classes.formControl}>
-          <NativeSelect value={props.data.id}>{options}</NativeSelect>
+          <NativeSelect onChange={e => handleChange(e)} value={value}>
+            {options}
+          </NativeSelect>
         </FormControl>
       </Grid>
     </Box>

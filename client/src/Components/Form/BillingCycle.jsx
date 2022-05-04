@@ -48,7 +48,6 @@ function BillingCycle(props) {
 
   const handleChangeCycle = (e, name) => {
     let selected = e.target.value;
-    console.log(selected);
     const newUserProduct = { ...userProduct };
     newUserProduct[name] = selected;
     dispatch(updateUserProductInfoAction(newUserProduct));

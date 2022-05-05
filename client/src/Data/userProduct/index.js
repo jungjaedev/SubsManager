@@ -13,7 +13,7 @@ export const userProduct = createSlice({
       auto_renew: {},
       billing_cycle: 1,
       period: {},
-      cost: 0,
+      cost: '',
       currency: {},
     },
   },

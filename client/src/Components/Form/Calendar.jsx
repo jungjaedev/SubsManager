@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
 import { withStyles } from '@material-ui/styles';
 import { withTheme } from '@material-ui/styles';
@@ -7,13 +8,20 @@ import Grid from '@material-ui/core/Grid';
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
 
+import { productInfo, updateUserProductInfoAction } from 'Data/userProduct';
+
 function Calendar(props) {
   const { classes } = props;
   const [selectedDate, setSelectedDate] = React.useState(new Date());
+  const dispatch = useDispatch();
+  const userProduct = useSelector(productInfo);
 
   const handleDateChange = date => {
-    setSelectedDate(date);
+    const newUserProduct = { ...userProduct };
+    newUserProduct[props.name] = date;
+    dispatch(updateUserProductInfoAction(newUserProduct));
   };
+  let value = !userProduct[props.name].length === 0 ? userProduct[props.name] : new Date();
 
   return (
     <Box className={classes.row}>
@@ -26,8 +34,8 @@ function Calendar(props) {
             margin="normal"
             id="date-picker-dialog"
             format="MM/dd/yyyy"
-            value={selectedDate}
-            onChange={handleDateChange}
+            value={value}
+            onChange={e => handleDateChange(e)}
             KeyboardButtonProps={{
               'aria-label': 'change date',
             }}

@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { withStyles } from '@material-ui/styles';
 import { withTheme } from '@material-ui/styles';
@@ -6,9 +7,20 @@ import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import FormControl from '@material-ui/core/FormControl';
 import NativeSelect from '@material-ui/core/NativeSelect';
+import { updateUserProductInfoAction, productInfo } from 'Data/userProduct';
 
 function BillingCycle(props) {
   const { classes } = props;
+  const dispatch = useDispatch();
+  const userProduct = useSelector(productInfo);
+
+  useEffect(() => {
+    const newUserProduct = { ...userProduct };
+    if (props.data.length && !Object.keys(newUserProduct.period).length) {
+      newUserProduct.period = props.data.find(item => item.name === 'month');
+      dispatch(updateUserProductInfoAction(newUserProduct));
+    }
+  }, []);
   const options = props.data.map((item, idx) => {
     return (
       <option key={idx} value={item.id}>
@@ -24,6 +36,23 @@ function BillingCycle(props) {
       </option>
     );
   }
+  let periodValue = Object.keys(userProduct.period).length ? userProduct.period.id : '';
+
+  const handleChangePeriod = (e, name) => {
+    let selected = e.target.value;
+    const newUserProduct = { ...userProduct };
+    let newData = props.data.find(el => el.id === parseInt(selected));
+    newUserProduct[name] = newData;
+    dispatch(updateUserProductInfoAction(newUserProduct));
+  };
+
+  const handleChangeCycle = (e, name) => {
+    let selected = e.target.value;
+    const newUserProduct = { ...userProduct };
+    newUserProduct[name] = selected;
+    dispatch(updateUserProductInfoAction(newUserProduct));
+  };
+
   return (
     <Box className={classes.row}>
       <Grid item xs={6}>
@@ -31,12 +60,14 @@ function BillingCycle(props) {
       </Grid>
       <Grid item xs={3}>
         <FormControl className={classes.formControl}>
-          <NativeSelect>{days}</NativeSelect>
+          <NativeSelect onChange={e => handleChangeCycle(e, 'billing_cycle')}>{days}</NativeSelect>
         </FormControl>
       </Grid>
       <Grid item xs={3}>
         <FormControl className={classes.formControl}>
-          <NativeSelect value={props.data.id}>{options}</NativeSelect>
+          <NativeSelect onChange={e => handleChangePeriod(e, 'period')} value={periodValue}>
+            {options}
+          </NativeSelect>
         </FormControl>
       </Grid>
     </Box>

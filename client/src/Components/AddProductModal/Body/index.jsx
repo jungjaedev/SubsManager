@@ -12,7 +12,7 @@ import CostCurrency from '../../Form/CostCurrency';
 import Calendar from '../../Form/Calendar';
 import AutoRenew from '../../Form/AutoRenew';
 
-import { type, category, currency, autoRenew, period } from '../../../Data/manager';
+import { type, category, currency, autoRenew, period, product } from '../../../Data/manager';
 
 function Body(props) {
   const { classes } = props;
@@ -21,17 +21,18 @@ function Body(props) {
   const currencyList = useSelector(currency);
   const periodList = useSelector(period);
   const autoRenewList = useSelector(autoRenew);
+  const productList = useSelector(product);
 
   return (
     <Box className={classes.root}>
-      <Product name="Name" />
+      <Product data={productList} name="product" displayName="Product" />
       <Dropdown data={typeList} name="type" displayName="Type"></Dropdown>
-      <Calendar name="Start Date" />
+      <Calendar name="start_date" displayName="Start Date" />
       {/* <Calendar name="End Date" /> */}
       <BillingCycle data={periodList} name="period" displayName="Period"></BillingCycle>
       <Dropdown data={categoryList} name="category" displayName="Category"></Dropdown>
       <CostCurrency data={currencyList} name="currency" displayName="Currency"></CostCurrency>
-      <AutoRenew data={autoRenewList} name="autoRenew" displayName="AutoRenew" />
+      <AutoRenew data={autoRenewList} name="auto_renew" displayName="AutoRenew" />
     </Box>
   );
 }

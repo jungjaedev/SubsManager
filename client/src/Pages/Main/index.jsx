@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import { withStyles } from '@material-ui/styles';
 import { withTheme } from '@material-ui/styles';
 import Box from '@material-ui/core/Box';
-import Modal from '@material-ui/core/Modal';
 
 import Overview from './Overview';
 import QuickAdd from './QuickAdd';

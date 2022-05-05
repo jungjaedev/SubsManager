@@ -14,11 +14,10 @@ function ProductItem(props) {
   const { classes } = props;
 
   const dispatch = useDispatch();
-  const userProduct = useSelector(productInfo);
+
   const handleClick = () => {
-    const newUserProduct = { ...userProduct };
-    newUserProduct.product = props.data;
-    dispatch(updateUserProductInfoAction(newUserProduct));
+    let obj = { key: 'product', value: props.data };
+    dispatch(updateUserProductInfoAction(obj));
     props.handleOpenAddModal();
   };
 

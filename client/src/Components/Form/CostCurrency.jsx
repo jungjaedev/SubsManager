@@ -17,10 +17,9 @@ function CostCurrency(props) {
   const userProduct = useSelector(productInfo);
 
   useEffect(() => {
-    const newUserProduct = { ...userProduct };
     let newData = props.data.find(el => el.code === 'KRW');
-    newUserProduct['currency'] = newData;
-    dispatch(updateUserProductInfoAction(newUserProduct));
+    let obj = { key: props.name, value: newData };
+    dispatch(updateUserProductInfoAction(obj));
   }, []);
 
   const options = props.data.map((item, idx) => {
@@ -32,22 +31,21 @@ function CostCurrency(props) {
   });
 
   const handleChangeCost = (e, name) => {
-    const newUserProduct = { ...userProduct };
     const newData = e.target.value;
-    newUserProduct[name] = newData;
-    dispatch(updateUserProductInfoAction(newUserProduct));
+    console.log(e.target.value);
+    let obj = { key: name, value: newData };
+    dispatch(updateUserProductInfoAction(obj));
   };
 
   const handleChangeCurrency = (e, name) => {
     let selected = e.target.value;
-    const newUserProduct = { ...userProduct };
     let newData = props.data.find(el => el.id === parseInt(selected));
-    newUserProduct[name] = newData;
-    dispatch(updateUserProductInfoAction(newUserProduct));
+    let obj = { key: name, value: newData };
+    dispatch(updateUserProductInfoAction(obj));
   };
 
   let costValue = userProduct.cost;
-  let currencyValue = userProduct.hasOwnProperty('code') ? userProduct.currency.id : props.data.find(el => el.code === 'KRW').id;
+  let currencyValue = userProduct.currency.id;
 
   return (
     <Box className={classes.row}>

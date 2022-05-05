@@ -16,10 +16,9 @@ function AutoRenew(props) {
   const userProduct = useSelector(productInfo);
 
   useEffect(() => {
-    const newUserProduct = { ...userProduct };
     let newData = props.data.find(el => el.id === 1);
-    newUserProduct[props.name] = newData;
-    dispatch(updateUserProductInfoAction(newUserProduct));
+    let obj = { key: props.name, value: newData };
+    dispatch(updateUserProductInfoAction(obj));
   }, []);
   const options = props.data.map((item, idx) => {
     return (
@@ -31,10 +30,9 @@ function AutoRenew(props) {
 
   const handleChange = e => {
     let selected = e.target.value;
-    const newUserProduct = { ...userProduct };
     let newData = props.data.find(el => el.id === parseInt(selected));
-    newUserProduct[props.name] = newData;
-    dispatch(updateUserProductInfoAction(newUserProduct));
+    let obj = { key: props.name, value: newData };
+    dispatch(updateUserProductInfoAction(obj));
   };
 
   let value = userProduct[props.name].id;

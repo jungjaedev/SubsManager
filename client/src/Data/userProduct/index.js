@@ -8,8 +8,8 @@ export const userProduct = createSlice({
     productInfo: {
       product: {},
       type: {},
-      start_date: '',
-      end_date: '',
+      start_date: new Date(),
+      // end_date: '',
       auto_renew: {},
       billing_cycle: 1,
       period: {},
@@ -20,7 +20,7 @@ export const userProduct = createSlice({
   reducers: {
     updateUserProductInfoAction: (state, action) => {
       console.log(action.payload);
-      state.productInfo = action.payload;
+      state.productInfo[action.payload.key] = action.payload.value;
     },
   },
 });
@@ -28,5 +28,25 @@ export const userProduct = createSlice({
 export const { updateUserProductInfoAction } = userProduct.actions;
 
 export const productInfo = state => state.userProduct.productInfo;
+
+export const updateUserFuction = () => {
+  return (dispatch, getState) => {
+    const newProductInfo = getState().userProduct.productInfo;
+    console.log(newProductInfo);
+    axios
+      .post(`${URL}/userProduct/`, newProductInfo, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        withCredentials: true,
+      })
+      .then(response => {
+        console.log(response.data);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
+};
 
 export default userProduct.reducer;

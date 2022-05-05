@@ -21,10 +21,9 @@ function Product(props) {
   }
 
   const handleChange = e => {
-    const newUserProduct = { ...userProduct };
     const newData = { name: e.target.value };
-    newUserProduct[props.name] = newData;
-    dispatch(updateUserProductInfoAction(newUserProduct));
+    let obj = { key: props.name, value: newData };
+    dispatch(updateUserProductInfoAction(obj));
   };
 
   let value = !userProduct.product.name ? '' : userProduct.product.name;

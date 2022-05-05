@@ -17,8 +17,9 @@ function BillingCycle(props) {
   useEffect(() => {
     const newUserProduct = { ...userProduct };
     if (props.data.length && !Object.keys(newUserProduct.period).length) {
-      newUserProduct.period = props.data.find(item => item.name === 'month');
-      dispatch(updateUserProductInfoAction(newUserProduct));
+      let newData = props.data.find(item => item.name === 'month');
+      let obj = { key: props.name, value: newData };
+      dispatch(updateUserProductInfoAction(obj));
     }
   }, []);
   const options = props.data.map((item, idx) => {
@@ -40,17 +41,15 @@ function BillingCycle(props) {
 
   const handleChangePeriod = (e, name) => {
     let selected = e.target.value;
-    const newUserProduct = { ...userProduct };
     let newData = props.data.find(el => el.id === parseInt(selected));
-    newUserProduct[name] = newData;
-    dispatch(updateUserProductInfoAction(newUserProduct));
+    let obj = { key: name, value: newData };
+    dispatch(updateUserProductInfoAction(obj));
   };
 
   const handleChangeCycle = (e, name) => {
     let selected = e.target.value;
-    const newUserProduct = { ...userProduct };
-    newUserProduct[name] = selected;
-    dispatch(updateUserProductInfoAction(newUserProduct));
+    let obj = { key: props.name, value: selected };
+    dispatch(updateUserProductInfoAction(obj));
   };
 
   return (

@@ -12,17 +12,14 @@ import { productInfo, updateUserProductInfoAction } from 'Data/userProduct';
 
 function Calendar(props) {
   const { classes } = props;
-  const [selectedDate, setSelectedDate] = React.useState(new Date());
   const dispatch = useDispatch();
   const userProduct = useSelector(productInfo);
 
   const handleDateChange = date => {
-    const newUserProduct = { ...userProduct };
-    newUserProduct[props.name] = date;
-    dispatch(updateUserProductInfoAction(newUserProduct));
+    let obj = { key: props.name, value: date };
+    dispatch(updateUserProductInfoAction(obj));
   };
-  let value = !userProduct[props.name].length === 0 ? userProduct[props.name] : new Date();
-
+  let value = userProduct[props.name];
   return (
     <Box className={classes.row}>
       <Grid item xs={3}>

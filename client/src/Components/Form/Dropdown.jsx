@@ -35,10 +35,9 @@ function Dropdown(props) {
 
   const handleChange = e => {
     let selected = e.target.value;
-    const newUserProduct = { ...userProduct };
     let newData = props.data.find(el => el.id === parseInt(selected));
-    newUserProduct[props.name] = newData;
-    dispatch(updateUserProductInfoAction(newUserProduct));
+    let obj = { key: props.name, value: newData };
+    dispatch(updateUserProductInfoAction(obj));
   };
   const options = props.data.map((item, idx) => {
     return (

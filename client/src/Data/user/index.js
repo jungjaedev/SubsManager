@@ -32,7 +32,8 @@ export const user = createSlice({
       state.newUserInfo = action.payload;
     },
     resetNewUserInfoAction: (initialState, state, action) => {
-      state.newUserInfo = { ...initialState.newUserInfo };
+      // state.newUserInfo = { ...initialState.newUserInfo };
+      return undefined;
     },
     updateUserInfoAction: (state, action) => {
       state.userInfo = action.payload;

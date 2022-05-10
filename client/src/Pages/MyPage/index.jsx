@@ -20,7 +20,8 @@ function MyPage(props) {
   const userInfo = useSelector((state) => state.user.userInfo);
   const language = useSelector((state) => state.manager.language);
   const currency = useSelector((state) => state.manager.currency);
-
+  const user = useSelector((state) => state.user);
+  console.log(user)
   useEffect(() => {
     dispatch(updateNewUserInfoAction(userInfo));
   }, [dispatch, userInfo]);

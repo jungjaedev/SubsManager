@@ -1,18 +1,31 @@
 import { Body, Controller, Request,Get, Param, Post, Put, Req, UseGuards } from '@nestjs/common';
 import { UserProductService } from './userProduct.service';
-import { UserProduct } from './userProduct.entity';
+import { ProductService } from '../product/product.service';
 
-
+import jwtDecode from "jwt-decode"
 
 @Controller('userProduct')
 export class UserProductController {
-  constructor(private readonly userProduct: UserProductService) {}
+  constructor(private readonly userProduct: UserProductService, private readonly product: ProductService) {}
 
   @Post('/')
   async create(
-    @Body() userProduct: UserProduct, @Request() req
+    @Body() @Request() req,
     )  {
-      console.log(req)
-      return await this.userProduct.createUserProduct(userProduct)
+      const user =jwtDecode(req.cookies.access_token)
+      const data = req.body
+      data['userId'] = user['userId']
+      if(!data.product.id) {
+        const newProduct = {
+          name : data.product.name.toLowerCase().replace(' ','_'),
+          display_name : data.product.name,
+          url : '',
+          display_name_ko : '',
+          categoryId : parseInt(data.category.id)
+        }
+        data.product = { ...newProduct }
+        await this.product.createProduct(data.product)
+      }
+      return await this.userProduct.createUserProduct(data)
     }
 }

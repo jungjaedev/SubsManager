@@ -414,6 +414,13 @@ export class ProductService {
       .execute();
   }
 
+  async createProduct(
+    Product: Product
+  ) {
+    console.log('Product : ',Product)
+    return await this.productRepository.save(Product)
+  }
+
   findAll() {
     return this.productRepository.find()
   }

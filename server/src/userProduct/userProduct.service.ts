@@ -4,6 +4,7 @@ import { Repository } from 'typeorm';
 import { UserProduct } from './userProduct.entity';
 
 
+
 @Injectable()
 export class UserProductService {
   constructor(
@@ -13,6 +14,9 @@ export class UserProductService {
   async createUserProduct(
     userProduct: UserProduct
   ) {
+    // console.log('service : ',userProduct)
     return await this.userProductRepository.save(userProduct)
   }
+
+
 }

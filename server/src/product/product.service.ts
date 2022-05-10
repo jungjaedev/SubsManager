@@ -417,7 +417,6 @@ export class ProductService {
   async createProduct(
     Product: Product
   ) {
-    console.log('Product : ',Product)
     return await this.productRepository.save(Product)
   }
 

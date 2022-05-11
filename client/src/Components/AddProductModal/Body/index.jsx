@@ -4,24 +4,22 @@ import { useSelector } from 'react-redux';
 import { withStyles } from '@material-ui/styles';
 import { withTheme } from '@material-ui/styles';
 import Box from '@material-ui/core/Box';
-// import Product from 'Components/Form/Product';
-import Product from '../../Form/Product';
+// import Product from '../../Form/Product';
+import Product from 'Components/Form/Product';
 import Dropdown from '../../Form/Dropdown';
 import BillingCycle from '../../Form/BillingCycle';
 import CostCurrency from '../../Form/CostCurrency';
 import Calendar from '../../Form/Calendar';
 import AutoRenew from '../../Form/AutoRenew';
 
-import { type, category, currency, autoRenew, period, product } from '../../../Data/manager';
-
 function Body(props) {
   const { classes } = props;
-  const typeList = useSelector(type);
-  const categoryList = useSelector(category);
-  const currencyList = useSelector(currency);
-  const periodList = useSelector(period);
-  const autoRenewList = useSelector(autoRenew);
-  const productList = useSelector(product);
+  const typeList = useSelector(state => state.manager.type);
+  const categoryList = useSelector(state => state.manager.category);
+  const currencyList = useSelector(state => state.manager.currency);
+  const periodList = useSelector(state => state.manager.period);
+  const autoRenewList = useSelector(state => state.manager.autoRenew);
+  const productList = useSelector(state => state.manager.product);
 
   return (
     <Box className={classes.root}>

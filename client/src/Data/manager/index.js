@@ -25,6 +25,7 @@ export const manager = createSlice({
     },
     updateAllDataAction: (state, action) => {
       state[action.payload.type_name] = action.payload.data;
+      console.log(action.payload)
     },
   },
 });

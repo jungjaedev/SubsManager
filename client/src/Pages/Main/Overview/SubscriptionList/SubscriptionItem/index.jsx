@@ -1,13 +1,15 @@
-import React from "react";
+import React from 'react';
 
-import { withStyles } from "@material-ui/styles";
-import { withTheme } from "@material-ui/styles";
-import Box from "@material-ui/core/Box";
-import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
+import { withStyles } from '@material-ui/styles';
+import { withTheme } from '@material-ui/styles';
+import Box from '@material-ui/core/Box';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
 
 function SubscriptionItem(props) {
   const { classes } = props;
+
+  console.log(props.data);
 
   return (
     <Box className={classes.row}>
@@ -30,7 +32,7 @@ function SubscriptionItem(props) {
   );
 }
 
-const componentStyle = withStyles((theme) => ({
+const componentStyle = withStyles(theme => ({
   root: theme.styles.Default.Box.root,
   row: theme.styles.Default.Box.row,
 }));

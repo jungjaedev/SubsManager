@@ -8,11 +8,17 @@ import jwtDecode from "jwt-decode"
 export class UserProductController {
   constructor(private readonly userProduct: UserProductService, private readonly product: ProductService) {}
 
+  @Get()
+  async findUserProductByUserId(  @Request() req ){
+    const user = await jwtDecode(req.cookies.access_token)
+    return this.userProduct.findUserProductByUserId(user);
+  }
+
   @Post('/')
   async create(
     @Body() @Request() req,
     )  {
-      const user =jwtDecode(req.cookies.access_token)
+      const user = await jwtDecode(req.cookies.access_token)
       const data = req.body
       data['userId'] = user['userId']
       if(!data.product.id) {

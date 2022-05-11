@@ -9,6 +9,11 @@ export class PeriodService {
     @InjectRepository(Period) private periodRepository: Repository<Period>,
   ) {}
 
+  findOne(id: number) {
+    return this.periodRepository.findOne({id:id})
+  }
+
+
   findAll() {
     return this.periodRepository.find()
   }

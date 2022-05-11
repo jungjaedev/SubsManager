@@ -9,6 +9,10 @@ export class CurrencyService {
     @InjectRepository(Currency) private currencyRepository: Repository<Currency>,
   ) {}
 
+  findOne(id: number) {
+    return this.currencyRepository.findOne({id:id})
+  }
+
   findAll() {
     return this.currencyRepository.find()
   }

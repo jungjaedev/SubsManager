@@ -9,6 +9,10 @@ export class TypeService {
     @InjectRepository(Type) private typeRepository: Repository<Type>,
   ) {}
 
+  findOne(id: number) {
+    return this.typeRepository.findOne({id:id})
+  }
+
   findAll() {
     return this.typeRepository.find()
   }

@@ -414,6 +414,10 @@ export class ProductService {
       .execute();
   }
 
+  findOne(id: number) {
+    return this.productRepository.findOne({id:id})
+  }
+
   async createProduct(
     Product: Product
   ) {

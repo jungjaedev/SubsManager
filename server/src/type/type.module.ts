@@ -7,6 +7,7 @@ import { Type } from './type.entity';
 @Module({
   imports: [TypeOrmModule.forFeature([Type])],
   providers: [TypeService],
-  controllers: [TypeController]
+  controllers: [TypeController],
+  exports: [TypeService]
 })
 export class TypeModule {}

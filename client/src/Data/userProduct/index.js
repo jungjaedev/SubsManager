@@ -16,23 +16,27 @@ export const userProduct = createSlice({
       cost: '',
       currency: {},
     },
+    userProductList: [],
   },
   reducers: {
     updateUserProductInfoAction: (state, action) => {
       console.log(action.payload);
       state.productInfo[action.payload.key] = action.payload.value;
     },
+    updateAllDataAction: (state, action) => {
+      state.userProductList = action.payload;
+    },
   },
 });
 
-export const { updateUserProductInfoAction } = userProduct.actions;
+export const { updateUserProductInfoAction, updateAllDataAction } = userProduct.actions;
 
 export const productInfo = state => state.userProduct.productInfo;
+export const userProductList = state => state.userProduct.userProductList;
 
 export const updateUserFuction = () => {
   return (dispatch, getState) => {
     const newProductInfo = getState().userProduct.productInfo;
-    console.log(newProductInfo);
     axios
       .post(`${URL}/userProduct/`, newProductInfo, {
         headers: {
@@ -42,6 +46,25 @@ export const updateUserFuction = () => {
       })
       .then(response => {
         console.log(response.data);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
+};
+
+export const getUserProductFuction = () => {
+  return (dispatch, getState) => {
+    axios
+      .get(`${URL}/userProduct/`, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        withCredentials: true,
+      })
+      .then(response => {
+        const newData = response.data;
+        dispatch(updateAllDataAction(newData));
       })
       .catch(error => {
         console.log(error);

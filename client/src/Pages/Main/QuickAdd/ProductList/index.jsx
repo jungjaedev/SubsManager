@@ -12,7 +12,7 @@ import { getAllFunction, product } from 'Data/manager';
 function ProductList(props) {
   const { classes } = props;
   const dispatch = useDispatch();
-  const productList = useSelector(product);
+  const productList = useSelector(state => state.manager.productFiltered);
 
   useEffect(() => {
     dispatch(getAllFunction('product'));

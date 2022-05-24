@@ -1,3 +1,4 @@
+import { ContactsOutlined } from '@material-ui/icons';
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { URL } from '../store';
@@ -17,6 +18,8 @@ export const manager = createSlice({
       { id: 1, name: 'yes', value: true, display_name: 'Yes' },
       { id: 2, name: 'no', value: false, display_name: 'No' },
     ],
+    productFiltered: [],
+    productSearchValue: '',
   },
   reducers: {
     updateMenuAction: (state, action) => {
@@ -25,12 +28,18 @@ export const manager = createSlice({
     },
     updateAllDataAction: (state, action) => {
       state[action.payload.type_name] = action.payload.data;
-      console.log(action.payload)
+      state[`${action.payload.type_name}Filtered`] = action.payload.data;
     },
+    updateFilteredListAction: (state, action) => {
+      state[`${action.payload.type}Filtered`] = action.payload.payload;
+    },
+    updateSearchValueAction: (state, action) => {
+      state[`${action.payload.type}SearchValue`] = action.payload.payload;
+    }
   },
 });
 
-export const { updateMenuAction, updateAllDataAction } = manager.actions;
+export const { updateMenuAction, updateAllDataAction, updateFilteredListAction, updateSearchValueAction } = manager.actions;
 
 export const activeMenu = state => state.manager.activeMenu;
 export const previousMenu = state => state.manager.previousMenu;
@@ -57,5 +66,14 @@ export const getAllFunction = type_name => {
       });
   };
 };
+
+export const searchFunction = (name, searchValue) => {
+  return (dispatch, getState) => {
+    const list = getState().manager[name];
+    const filteredList = list.filter(item => item.name.includes(searchValue) || item.display_name.includes(searchValue))
+    dispatch(updateSearchValueAction({ type: name, payload: searchValue }));
+    dispatch(updateFilteredListAction({ type: name, payload: filteredList }))
+  }
+}
 
 export default manager.reducer;

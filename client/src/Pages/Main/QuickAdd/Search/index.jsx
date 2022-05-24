@@ -1,4 +1,5 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import { withStyles } from "@material-ui/styles";
 import { withTheme } from "@material-ui/styles";
@@ -7,18 +8,41 @@ import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
+import ClearIcon from '@material-ui/icons/Clear';
+import InputAdornment from '@material-ui/core/InputAdornment';
+
+import { searchFunction } from 'Data/manager'
 
 function Search(props) {
   const { classes } = props;
+  const dispatch = useDispatch()
+  const productSearchValue = useSelector(state => state.manager.productSearchValue)
+  const handleChange = (event) => {
+    dispatch(searchFunction('product', event.target.value))
+  }
+  const handleClear = () => {
+    dispatch(searchFunction('product', ''))
+  }
 
   return (
     <Box className={classes.root} mb={2}>
       <Grid item xs={12} className={classes.row}>
-        {/* TODO: insert a search icon. + <Input />*/}
-        <TextField className={classes.textField} label="검색">
-          <IconButton type="submit" className={classes.iconButton} aria-label="search">
-            <SearchIcon />
-          </IconButton>
+        <TextField className={classes.textField}
+          placeholder='Find a subscription product'
+          value={productSearchValue}
+          onChange={(event) => handleChange(event)}
+          InputProps={{
+            startAdornment: <InputAdornment position="start">
+              <SearchIcon />
+            </InputAdornment>,
+            endAdornment: <InputAdornment position="end">
+              <IconButton
+                onClick={() => handleClear()}
+              >
+                <ClearIcon />
+              </IconButton>
+            </InputAdornment>,
+          }}>
         </TextField>
       </Grid>
     </Box>

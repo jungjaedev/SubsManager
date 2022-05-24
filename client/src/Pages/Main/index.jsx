@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { withStyles } from '@material-ui/styles';
 import { withTheme } from '@material-ui/styles';
@@ -12,16 +13,15 @@ import AddIcon from '@material-ui/icons/Add';
 
 import AddProductModal from '../../Components/AddProductModal';
 
+import { updateModalIsOpenAction, modalIsOpen } from 'Data/userProduct';
+
 function Main(props) {
   const { classes } = props;
-  const [open, setOpen] = useState(false);
+  const dispatch = useDispatch();
+  const isOpen = useSelector(modalIsOpen);
 
   const handleOpenAddModal = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
+    dispatch(updateModalIsOpenAction(true));
   };
 
   return (
@@ -31,7 +31,7 @@ function Main(props) {
       <Fab className={classes.floatingBtn} onClick={() => handleOpenAddModal()} color="primary" aria-label="add">
         <AddIcon />
       </Fab>
-      <AddProductModal open={open} handleClose={handleClose} />
+      <AddProductModal open={isOpen} />
     </Box>
   );
 }

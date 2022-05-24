@@ -17,6 +17,7 @@ export const userProduct = createSlice({
       currency: {},
     },
     userProductList: [],
+    modalIsOpen: false,
   },
   reducers: {
     updateUserProductInfoAction: (state, action) => {
@@ -26,15 +27,19 @@ export const userProduct = createSlice({
     updateAllDataAction: (state, action) => {
       state.userProductList = action.payload;
     },
+    updateModalIsOpenAction: (state, action) => {
+      state.modalIsOpen = action.payload;
+    },
   },
 });
 
-export const { updateUserProductInfoAction, updateAllDataAction } = userProduct.actions;
+export const { updateUserProductInfoAction, updateAllDataAction, updateModalIsOpenAction } = userProduct.actions;
 
 export const productInfo = state => state.userProduct.productInfo;
 export const userProductList = state => state.userProduct.userProductList;
+export const modalIsOpen = state => state.userProduct.modalIsOpen;
 
-export const updateUserFuction = () => {
+export const updateUserProductFuction = () => {
   return (dispatch, getState) => {
     const newProductInfo = getState().userProduct.productInfo;
     axios
@@ -46,6 +51,7 @@ export const updateUserFuction = () => {
       })
       .then(response => {
         console.log(response.data);
+        dispatch(updateModalIsOpenAction(false));
       })
       .catch(error => {
         console.log(error);

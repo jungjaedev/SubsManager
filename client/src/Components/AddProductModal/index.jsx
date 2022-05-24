@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+
 import { withStyles } from '@material-ui/styles';
 import { withTheme } from '@material-ui/styles';
 import Box from '@material-ui/core/Box';
@@ -7,11 +8,14 @@ import Modal from '@material-ui/core/Modal';
 import Header from './Header';
 import Body from './Body';
 import Footer from './Footer';
+
 import { getAllFunction, type, category, currency, period, product } from '../../Data/manager';
+import { modalIsOpen, updateModalIsOpenAction } from 'Data/userProduct';
 
 function AddProductModal(props) {
   const { classes } = props;
   const dispatch = useDispatch();
+  const isOpen = useSelector(modalIsOpen);
   const typeList = useSelector(type);
   const currencyList = useSelector(currency);
   const categoryList = useSelector(category);
@@ -36,8 +40,12 @@ function AddProductModal(props) {
     }
   }, [dispatch]);
 
+  const handleClose = () => {
+    dispatch(updateModalIsOpenAction(false));
+  };
+
   return (
-    <Modal open={props.open} onClose={() => props.handleClose()}>
+    <Modal open={isOpen} onClose={() => handleClose()}>
       <Box
         style={{ width: '90%', margin: '5% auto', border: '1px solid black', backgroundColor: 'white', padding: 10 }}
         className={classes.root}

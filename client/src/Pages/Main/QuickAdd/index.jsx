@@ -17,7 +17,7 @@ function QuickAdd(props) {
         <Typography variant="h6">Quick add subscription</Typography>
       </Grid>
       <Search />
-      <ProductList handleOpenAddModal={props.handleOpenAddModal} />
+      <ProductList />
     </Box>
   );
 }

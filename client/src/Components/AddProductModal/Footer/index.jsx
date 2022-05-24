@@ -7,14 +7,14 @@ import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 
-import { updateUserFuction } from 'Data/userProduct';
+import { updateUserProductFuction } from 'Data/userProduct';
 
 function Footer(props) {
   const { classes } = props;
   const dispatch = useDispatch();
 
   const handleSave = () => {
-    dispatch(updateUserFuction());
+    dispatch(updateUserProductFuction());
   };
 
   return (

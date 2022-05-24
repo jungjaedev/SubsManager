@@ -18,7 +18,7 @@ function ProductItem(props) {
   const handleClick = () => {
     let obj = { key: 'product', value: props.data };
     dispatch(updateUserProductInfoAction(obj));
-    props.handleOpenAddModal();
+    dispatch(updateModalIsOpenAction(true));
   };
 
   const handleVisitWebsite = e => {

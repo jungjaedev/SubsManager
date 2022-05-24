@@ -8,7 +8,7 @@ import IconButton from '@material-ui/core/IconButton';
 
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 
-import { updateUserProductInfoAction } from 'Data/userProduct';
+import { updateUserProductInfoAction, updateModalIsOpenAction } from 'Data/userProduct';
 
 function ProductItem(props) {
   const { classes } = props;

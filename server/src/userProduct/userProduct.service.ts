@@ -25,9 +25,9 @@ export class UserProductService {
 
     for(const el of userProductList) {
       let currency = await this.currencyService.findOne(el.currencyId);
-      let period = await this.periodService.findOne(el.currencyId);
-      let product = await this.productService.findOne(el.currencyId);
-      let type = await this.typeService.findOne(el.currencyId);
+      let period = await this.periodService.findOne(el.periodId);
+      let product = await this.productService.findOne(el.productId);
+      let type = await this.typeService.findOne(el.typeId);
       el['currency'] = {...currency};
       el['period'] = {...period};
       el['product'] = {...product};

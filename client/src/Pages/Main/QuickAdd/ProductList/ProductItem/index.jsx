@@ -41,7 +41,7 @@ function ProductItem(props) {
       onClick={e => handleVisitWebsite(e)}
       className={classes.root}
     >
-      <Box>{props.data.display_name}</Box>
+      {props.data.display_name}
       <Box style={{ position: 'absolute', right: -5, bottom: -5 }}>
         <IconButton onClick={() => handleClick()}>
           <AddCircleOutlineIcon />

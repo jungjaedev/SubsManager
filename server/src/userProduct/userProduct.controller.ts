@@ -16,7 +16,7 @@ export class UserProductController {
 
   @Post('/')
   async create(
-    @Body() @Request() req,
+    @Request() req,
     )  {
       const user = await jwtDecode(req.cookies.access_token)
       const data = req.body

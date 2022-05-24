@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import { withStyles } from '@material-ui/styles';
 import { withTheme } from '@material-ui/styles';
@@ -8,7 +8,7 @@ import IconButton from '@material-ui/core/IconButton';
 
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 
-import { updateUserProductInfoAction, productInfo } from 'Data/userProduct';
+import { updateUserProductInfoAction, updateModalIsOpenAction } from 'Data/userProduct';
 
 function ProductItem(props) {
   const { classes } = props;
@@ -18,7 +18,7 @@ function ProductItem(props) {
   const handleClick = () => {
     let obj = { key: 'product', value: props.data };
     dispatch(updateUserProductInfoAction(obj));
-    props.handleOpenAddModal();
+    dispatch(updateModalIsOpenAction(true));
   };
 
   const handleVisitWebsite = e => {

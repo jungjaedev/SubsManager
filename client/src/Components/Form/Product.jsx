@@ -7,12 +7,12 @@ import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 
-import { productInfo, updateUserProductInfoAction } from 'Data/userProduct';
+import { updateUserProductInfoAction } from 'Data/userProduct';
 
 function Product(props) {
   const { classes } = props;
   const dispatch = useDispatch();
-  const userProduct = useSelector(productInfo);
+  const userProduct = useSelector(state => state.userProduct.productInfo);
 
   let disabled = false;
 
@@ -26,7 +26,7 @@ function Product(props) {
     dispatch(updateUserProductInfoAction(obj));
   };
 
-  let value = !userProduct.product.name ? '' : userProduct.product.name;
+  let value = !userProduct.product.display_name ? '' : userProduct.product.display_name;
 
   return (
     <Box className={classes.row}>

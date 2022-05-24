@@ -8,7 +8,6 @@ import Typography from '@material-ui/core/Typography';
 
 function SubscriptionItem(props) {
   const { classes } = props;
-
   return (
     <Box className={classes.row}>
       <Grid item xs={2}>

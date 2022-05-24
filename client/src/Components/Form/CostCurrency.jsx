@@ -32,7 +32,6 @@ function CostCurrency(props) {
 
   const handleChangeCost = (e, name) => {
     const newData = e.target.value;
-    console.log(e.target.value);
     let obj = { key: name, value: newData };
     dispatch(updateUserProductInfoAction(obj));
   };

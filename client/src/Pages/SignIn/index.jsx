@@ -9,7 +9,7 @@ import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
-import { updateMenuAction } from '../../Data/manager';
+// import { updateMenuAction } from '../../Data/manager';
 import { updateloginInfoAction, loginInfo, loginUserFuction } from '../../Data/authentication';
 
 function SignIn(props) {
@@ -23,6 +23,7 @@ function SignIn(props) {
 
   const handleNoAccount = () => {
     dispatch(updateMenuAction('signUp'));
+    // dispatch({type: 'manager/updateMenuAction', payload: 'signUp'})
   };
 
   const handleChange = (key, event) => {

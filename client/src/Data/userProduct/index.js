@@ -21,7 +21,6 @@ export const userProduct = createSlice({
   },
   reducers: {
     updateUserProductInfoAction: (state, action) => {
-      console.log(action.payload);
       state.productInfo[action.payload.key] = action.payload.value;
     },
     updateAllDataAction: (state, action) => {

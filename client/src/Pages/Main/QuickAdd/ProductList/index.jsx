@@ -13,7 +13,6 @@ function ProductList(props) {
   const { classes } = props;
   const dispatch = useDispatch();
   const productList = useSelector(product);
-  console.log(productList);
 
   useEffect(() => {
     dispatch(getAllFunction('product'));

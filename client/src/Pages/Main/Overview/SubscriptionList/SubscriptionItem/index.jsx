@@ -8,19 +8,18 @@ import Typography from '@material-ui/core/Typography';
 
 function SubscriptionItem(props) {
   const { classes } = props;
-
   return (
     <Box className={classes.row}>
-      <Grid item xs={2}>
-        <Typography>날짜</Typography>
+      <Grid item xs={4}>
+        {props.data.product.display_name}
       </Grid>
-      <Grid item xs={2}>
-        IMG
+      <Grid item xs={4}>
+        <Typography>
+          every {props.data.billing_cycle}&nbsp;
+          {props.data.period.display_name}
+        </Typography>
       </Grid>
-      <Grid item xs={3}>
-        {props.data.user_name}
-      </Grid>
-      <Grid className={classes.row} item xs={4}>
+      <Grid className={classes.row} item xs={3}>
         <Grid item xs={3}>
           {props.data.currency.symbol}
         </Grid>

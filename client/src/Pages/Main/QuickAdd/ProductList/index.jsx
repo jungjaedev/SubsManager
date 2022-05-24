@@ -13,18 +13,20 @@ function ProductList(props) {
   const { classes } = props;
   const dispatch = useDispatch();
   const productList = useSelector(product);
+  console.log(productList);
 
   useEffect(() => {
     dispatch(getAllFunction('product'));
   }, [dispatch]);
 
   const list = Object.values(productList).map((item, index) => {
-    return (
+    return item.url ? (
       <Grid key={index} className={classes.root} style={{ padding: 4 }} item xs={6}>
-        <ProductItem handleOpenAddModal={props.handleOpenAddModal} data={item} />
+        <ProductItem data={item} />
       </Grid>
-    );
+    ) : null;
   });
+
   return <Box className={classes.root}>{list}</Box>;
 }
 

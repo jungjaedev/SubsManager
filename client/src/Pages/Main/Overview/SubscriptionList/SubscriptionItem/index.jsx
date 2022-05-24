@@ -9,12 +9,10 @@ import Typography from '@material-ui/core/Typography';
 function SubscriptionItem(props) {
   const { classes } = props;
 
-  console.log(props.data);
-
   return (
     <Box className={classes.row}>
       <Grid item xs={2}>
-        <Typography>23일 목</Typography>
+        <Typography>날짜</Typography>
       </Grid>
       <Grid item xs={2}>
         IMG
@@ -22,10 +20,15 @@ function SubscriptionItem(props) {
       <Grid item xs={3}>
         {props.data.user_name}
       </Grid>
-      <Grid item xs={3}>
-        11,000won
+      <Grid className={classes.row} item xs={4}>
+        <Grid item xs={3}>
+          {props.data.currency.symbol}
+        </Grid>
+        <Grid item xs={7} style={{ textAlign: 'right' }}>
+          {parseInt(props.data.cost).toLocaleString()}
+        </Grid>
       </Grid>
-      <Grid item xs={2}>
+      <Grid item xs={1}>
         edit
       </Grid>
     </Box>

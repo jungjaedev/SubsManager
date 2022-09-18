@@ -23,6 +23,7 @@ function SignIn(props) {
 
   const handleNoAccount = () => {
     dispatch(updateMenuAction('signUp'));
+    // dispatch({type: 'manager/updateMenuAction', payload: 'signUp'})
   };
 
   const handleChange = (key, event) => {

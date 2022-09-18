@@ -7,9 +7,8 @@ import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-// import InputLabel from '@material-ui/core/InputLabel';
-import { language, currency } from '../../Data/manager';
-import { userInfo, updateNewUserInfoAction, newUserInfo } from '../../Data/user';
+import { updateNewUserInfoAction } from '../../Data/user';
+import { logoutUserFuction } from '../../Data/authentication';
 
 import DetailItem from './DetailItem';
 import DetailSelect from './DetailSelect';
@@ -17,17 +16,17 @@ import DetailSelect from './DetailSelect';
 function MyPage(props) {
   const { classes } = props;
   const dispatch = useDispatch();
-  const user = useSelector(userInfo);
-  const newUser = useSelector(newUserInfo);
-  const languages = useSelector(language);
-  const currencies = useSelector(currency);
-
+  const newUserInfo = useSelector((state) => state.user.newUserInfo);
+  const userInfo = useSelector((state) => state.user.userInfo);
+  const language = useSelector((state) => state.manager.language);
+  const currency = useSelector((state) => state.manager.currency);
+  const user = useSelector((state) => state.user);
   useEffect(() => {
-    dispatch(updateNewUserInfoAction(user));
-  }, [dispatch, user]);
+    dispatch(updateNewUserInfoAction(userInfo));
+  }, [dispatch, userInfo]);
 
   const handleChange = (key, event) => {
-    const userData = { ...newUser };
+    const userData = { ...newUserInfo };
     userData[key] = event.target.value;
     dispatch(updateNewUserInfoAction(userData));
   };
@@ -37,15 +36,15 @@ function MyPage(props) {
   };
 
   const handleLogout = () => {
-    console.log('로그아웃!!');
+    dispatch(logoutUserFuction());
   };
 
-  const defaultLanguage = languages.find(item => {
-    return item.id === user.languageId;
+  const defaultLanguage = language.find(item => {
+    return item.id === userInfo.languageId;
   });
 
-  const defaultCurrency = currencies.find(item => {
-    return item.id === user.currencyId;
+  const defaultCurrency = currency.find(item => {
+    return item.id === userInfo.currencyId;
   });
 
   return (
@@ -62,8 +61,8 @@ function MyPage(props) {
         <DetailItem handleChange={handleChange} label="account" />
         <DetailItem handleChange={handleChange} label="email" />
         <DetailItem handleChange={handleChange} label="password" />
-        <DetailSelect data={languages} label="언어설정" id="languageId" handleChange={handleChange} defaultData={defaultLanguage} />
-        <DetailSelect data={currencies} label="통화설정" id="currencyId" handleChange={handleChange} defaultData={defaultCurrency} />
+        <DetailSelect data={language} label="언어설정" id="languageId" handleChange={handleChange} defaultData={defaultLanguage} />
+        <DetailSelect data={currency} label="통화설정" id="currencyId" handleChange={handleChange} defaultData={defaultCurrency} />
       </Box>
       <Box className={classes.row}>
         <Grid item xs={8}></Grid>

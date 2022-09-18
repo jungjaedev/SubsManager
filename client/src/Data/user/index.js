@@ -31,8 +31,9 @@ export const user = createSlice({
     updateNewUserInfoAction: (state, action) => {
       state.newUserInfo = action.payload;
     },
-    resetNewUserInfoAction: (initialState, state, action) => {
-      state.newUserInfo = { ...initialState.newUserInfo };
+    resetNewUserInfoAction: (state, action) => {
+      // state.newUserInfo = { ...initialState.newUserInfo };
+      state.newUserInfo = action.payload;
     },
     updateUserInfoAction: (state, action) => {
       state.userInfo = action.payload;
@@ -72,10 +73,11 @@ export const updateUserFuction = () => {
   return (dispatch, getState) => {
     const userId = getState().user.userInfo.id;
     const userInfo = getState().user.newUserInfo;
-    const accessToken = getState().authentication.accessToken;
     axios
       .put(`${URL}/user/${userId}`, userInfo, {
-        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${accessToken}` },
+        headers: {
+          'Content-Type': 'application/json',
+        },
         withCredentials: true,
       })
       .then(response => {
